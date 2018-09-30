@@ -30,6 +30,8 @@ class CommentMentionMain {
 		// add_filter( 'preprocess_comment', array( $this, 'cm_preprocess_comment' ) );
 		add_action( 'comment_post', array( $this, 'cm_preprocess_comment' ), 10, 3 );
 
+		$this->cm_settings = get_option( 'cm_settings' );
+
 	}
 
 	/**
@@ -240,17 +242,24 @@ class CommentMentionMain {
 
 				// Get user data.
 				$cm_user_data = get_user_by( 'id', $uid );
+				$comment_data['mentioned_user_data'] = $cm_user_data;
 
 				// Get email body.
 				$cm_mail_body = $this->cm_mail_body( $comment_data );
+				$cm_mail_sub  = $this->cm_mail_subject();
 
 				// Set headers.
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 
+				// Set mail as HTML format.
+				add_filter( 'wp_mail_content_type',function(){
+					return "text/html";
+				} );
+
 				// Send mail.
 				wp_mail(
 					$cm_user_data->user_email,
-					__('You were mentioned in a comment', 'comment-mention'),
+					$cm_mail_sub,
 					$cm_mail_body,
 					$headers
 				);
@@ -275,11 +284,60 @@ class CommentMentionMain {
 		// Get post name related to that comment.
 		$post_name = get_the_title( $comment_data['comment_post_ID'] );
 
-		// Set email body.
-		$mail_body = __( 'You are mentioned on the post. Check the follwing details for that:' );
-		$mail_body .= __( 'Comment Link:' ) . '<a href="' . $cm_comment_link . '">' . $post_name . '</a>' ;
+		// Get mentioned user's display name.
+		$user_name = $comment_data['mentioned_user_data']->display_name;
 
-		return $mail_body;
+		$mail_content = ! empty( $this->cm_settings['cm_mail_content'] ) ? $this->cm_settings['cm_mail_content'] : '';
+
+		if ( empty( $mail_content ) ) {
+			$mail_content = $this->cm_default_mail_content();
+		}
+
+		$search = array(
+			'#comment_link#',
+			'#post_name#',
+			'#user_name#'
+		);
+
+		$replace = array(
+			$cm_comment_link,
+			$post_name,
+			$user_name
+		);
+
+		$mail_content = str_replace( $search , $replace, $mail_content );
+
+		return $mail_content;
+	}
+
+	/**
+	 * Get Email subject sent to mentioned User.
+	 */
+	public function cm_mail_subject() {
+
+		// Get subject from settings.
+		$subject = ! empty( $this->cm_settings['cm_email_subject'] ) ? $this->cm_settings['cm_email_subject'] : '';
+
+		// If no subject is set, then return default.
+		if ( empty( $subject ) ) {
+
+			$subject = __('You were mentioned in a comment', 'comment-mention');
+
+		}
+
+		// Return subject.
+		return $subject;
+	}
+
+	public function cm_default_mail_content() {
+
+		$content = 'Hi, <strong>#user_name#,</strong>
+
+Someone mentioned you in a post. See the details below:
+
+<a href="#comment_link#"><strong>#post_name#</strong></a>';
+
+		return $content;
 	}
 
 

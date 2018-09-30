@@ -45,3 +45,4 @@ if ( ! defined( 'CM_BASE_NAME' ) ) {
 
 // Include admin functions file.
 require CM_PATH . 'app/main/class-comment-mention.php';
+require CM_PATH . 'app/admin/class-admin-comment-mention.php';
