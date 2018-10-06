@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:     Comment Mention
- * Plugin URI:      https://bhargavb.wordpress.com
  * Description:     Mention user in comments. Mentioned user will get email notification
  * Author:          Bunty
  * Author URI:      https://bhargavb.wordpress.com
