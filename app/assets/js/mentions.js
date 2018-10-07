@@ -1,16 +1,16 @@
-/* global cm */
+/* global cmt_mntn */
 
-window.cm = window.cm || {};
+window.cmt_mntn = window.cmt_mntn || {};
 
-( function( cm, $, undefined ) {
+( function( cmt_mntn, $, undefined ) {
 	var mentionsQueryCache = [],
 		mentionsItem;
 
-	cm.mentions       = cm.mentions || {};
-	cm.mentions.users = window.cm.mentions.users || [];
+	cmt_mntn.mentions       = cmt_mntn.mentions || {};
+	cmt_mntn.mentions.users = window.cmt_mntn.mentions.users || [];
 
 	if ( typeof window.BP_Suggestions === 'object' ) {
-		cm.mentions.users = window.BP_Suggestions.friends || cm.mentions.users;
+		cmt_mntn.mentions.users = window.BP_Suggestions.friends || cmt_mntn.mentions.users;
 	}
 
 	/**
@@ -19,7 +19,7 @@ window.cm = window.cm || {};
 	 * @param {array|object} options If array, becomes the suggestions' data source. If object, passed as config to $.atwho().
 	 * @since 2.1.0
 	 */
-	$.fn.cm_mentions = function( options ) {
+	$.fn.cmt_mntn_mentions = function( options ) {
 		if ( $.isArray( options ) ) {
 			options = { data: options };
 		}
@@ -176,7 +176,7 @@ window.cm = window.cm || {};
 						self.xhr.abort();
 					}
 
-					params = { 'action': 'cm_get_users', 'term': query };
+					params = { 'action': 'cmt_mntn_get_users', 'term': query };
 
 					if ( $.isNumeric( this.$inputor.data( 'suggestions-group-id' ) ) ) {
 						params['group-id'] = parseInt( this.$inputor.data( 'suggestions-group-id' ), 10 );
@@ -243,7 +243,7 @@ window.cm = window.cm || {};
 
 	$( document ).ready(function() {
 		// Activity/reply, post comments, dashboard post 'text' editor.
-		$( '#comments form textarea' ).cm_mentions( cm.mentions.users );
+		$( '#comments form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
 	});
 
-})( cm, jQuery );
+})( cmt_mntn, jQuery );

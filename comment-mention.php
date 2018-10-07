@@ -17,31 +17,31 @@
  * @package    Comment_Mention
  * @subpackage Main
  */
-if ( ! defined( 'CM_VERSION' ) ) {
+if ( ! defined( 'CMT_MNTN_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'CM_VERSION', '1.0.0' );
+	define( 'CMT_MNTN_VERSION', '1.0.0' );
 }
-if ( ! defined( 'CM_PATH' ) ) {
+if ( ! defined( 'CMT_MNTN_PATH' ) ) {
 	/**
 	 *  The server file system path to the plugin directory.
 	 */
-	define( 'CM_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'CMT_MNTN_PATH', plugin_dir_path( __FILE__ ) );
 }
-if ( ! defined( 'CM_URL' ) ) {
+if ( ! defined( 'CMT_MNTN_URL' ) ) {
 	/**
 	 * The url to the plugin directory.
 	 */
-	define( 'CM_URL', plugin_dir_url( __FILE__ ) );
+	define( 'CMT_MNTN_URL', plugin_dir_url( __FILE__ ) );
 }
-if ( ! defined( 'CM_BASE_NAME' ) ) {
+if ( ! defined( 'CMT_MNTN_BASE_NAME' ) ) {
 	/**
 	 * The url to the plugin directory.
 	 */
-	define( 'CM_BASE_NAME', plugin_basename( __FILE__ ) );
+	define( 'CMT_MNTN_BASE_NAME', plugin_basename( __FILE__ ) );
 }
 
 // Include admin functions file.
-require CM_PATH . 'app/main/class-comment-mention.php';
-require CM_PATH . 'app/admin/class-admin-comment-mention.php';
+require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
+require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';

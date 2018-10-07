@@ -19,25 +19,26 @@ class CommentMentionMain {
 	public function __construct() {
 
 		// Enqueue script
-		add_action( 'wp_enqueue_scripts', array( $this, 'cm_enqueue_styles_script' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'cmt_mntn_enqueue_styles_script' ) );
 
 		// Ger users.
-		add_action( 'wp_ajax_cm_get_users', array( $this, 'cm_ajax_get_users' ) );
+		add_action( 'wp_ajax_cmt_mntn_get_users', array( $this, 'cmt_mntn_ajax_get_users' ) );
 
 		// Modify comment content.
-		add_filter( 'pre_comment_content', array( $this, 'cm_at_name_filter' ) );
+		add_filter( 'pre_comment_content', array( $this, 'cmt_mntn_at_name_filter' ) );
 
-		// add_filter( 'preprocess_comment', array( $this, 'cm_preprocess_comment' ) );
-		add_action( 'comment_post', array( $this, 'cm_preprocess_comment' ), 10, 3 );
+		// Process comment.
+		add_action( 'comment_post', array( $this, 'cmt_mntn_preprocess_comment' ), 10, 3 );
 
-		$this->cm_settings = get_option( 'cm_settings' );
+		// Get plugin settings.
+		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
 	}
 
 	/**
 	 * Add scripts and styles.
 	 */
-	public function cm_enqueue_styles_script() {
+	public function cmt_mntn_enqueue_styles_script() {
 
 		// Set ajax URL.
 		wp_localize_script( 'jquery', 'ajax', array(
@@ -47,38 +48,38 @@ class CommentMentionMain {
 		// Atwho CSS.
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_style(
-			'cm-atwho-css',
-			CM_URL . 'app/assets/css/jquery.atwho.css',
+			'cmt-mntn-atwho-css',
+			CMT_MNTN_URL . 'app/assets/css/jquery.atwho.css',
 			array(),
-			filemtime( CM_PATH . 'app/assets/css/jquery.atwho.css' )
+			filemtime( CMT_MNTN_PATH . 'app/assets/css/jquery.atwho.css' )
 		);
 
 		// caret CSS.
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_script(
-			'cm-caret',
-			CM_URL . 'app/assets/js/jquery.caret.js',
+			'cmt-mntn-caret',
+			CMT_MNTN_URL . 'app/assets/js/jquery.caret.js',
 			array( 'jquery' ),
-			filemtime( CM_PATH . 'app/assets/js/jquery.caret.js'),
+			filemtime( CMT_MNTN_PATH . 'app/assets/js/jquery.caret.js'),
 			true
 		);
 
 		// Atwho JS.
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_script(
-			'cm-atwho',
-			CM_URL . 'app/assets/js/jquery.atwho.js',
-			array( 'cm-caret' ),
-			filemtime( CM_PATH . 'app/assets/js/jquery.atwho.js'),
+			'cmt-mntn-atwho',
+			CMT_MNTN_URL . 'app/assets/js/jquery.atwho.js',
+			array( 'cmt-mntn-caret' ),
+			filemtime( CMT_MNTN_PATH . 'app/assets/js/jquery.atwho.js'),
 			true
 		);
 
 		// Plugin script.
 		wp_enqueue_script(
-			'cm-mentions',
-			CM_URL . 'app/assets/js/mentions.js',
-			array( 'cm-caret', 'cm-atwho' ),
-			filemtime( CM_PATH . 'app/assets/js/mentions.js'),
+			'cmt-mntn-mentions',
+			CMT_MNTN_URL . 'app/assets/js/mentions.js',
+			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
+			filemtime( CMT_MNTN_PATH . 'app/assets/js/mentions.js'),
 			true
 		);
 
@@ -87,7 +88,7 @@ class CommentMentionMain {
 	/**
 	 * Get usernames.
 	 */
-	public function cm_ajax_get_users() {
+	public function cmt_mntn_ajax_get_users() {
 
 		// Set arguments.
 		$args = array(
@@ -95,7 +96,7 @@ class CommentMentionMain {
 		);
 
 		// Get usernames.
-		$results = $this->cm_get_users( $args['term'] );
+		$results = $this->cmt_mntn_get_users( $args['term'] );
 
 		// Send response as json.
 		if ( is_wp_error( $results ) ) {
@@ -112,7 +113,7 @@ class CommentMentionMain {
 	 * @param  string $username Username text.
 	 * @return object           Object of usernames.
 	 */
-	public function cm_get_users( $username ) {
+	public function cmt_mntn_get_users( $username ) {
 
 		global $wpdb;
 
@@ -128,10 +129,10 @@ class CommentMentionMain {
 	/**
 	 * Find and link @-mentioned users in the contents of a given item.
 	 */
-	public function cm_at_name_filter( $content ) {
+	public function cmt_mntn_at_name_filter( $content ) {
 
 		// Try to find mentions.
-		$usernames = $this->cm_find_mentions( $content );
+		$usernames = $this->cmt_mntn_find_mentions( $content );
 
 		// If no mentions found, then halt the process.
 		if ( empty( $usernames ) )
@@ -173,7 +174,7 @@ class CommentMentionMain {
 	/**
 	 * Locate usernames in an comment content string, as designated by an @ sign.
 	 */
-	public function cm_find_mentions( $content ) {
+	public function cmt_mntn_find_mentions( $content ) {
 
 		$pattern = '/[@]+([A-Za-z0-9-_\.@]+)\b/';
 		preg_match_all( $pattern, $content, $usernames );
@@ -221,7 +222,7 @@ class CommentMentionMain {
 	 * @param  obj $comment_data      Comment data.
 	 * @return void
 	 */
-	public function cm_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
+	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
 
 		// Get content.
 		$content = $comment_data['comment_content'];
@@ -230,7 +231,7 @@ class CommentMentionMain {
 		$comment_data['comment_ID'] = $comment_ID;
 
 		// Get usernames from comment content.
-		$usernames = $this->cm_find_mentions( $content );
+		$usernames = $this->cmt_mntn_find_mentions( $content );
 
 		// Iterate the username loop.
 		foreach ( $usernames as $username ) {
@@ -241,12 +242,12 @@ class CommentMentionMain {
 			if ( $uid ) {
 
 				// Get user data.
-				$cm_user_data = get_user_by( 'id', $uid );
-				$comment_data['mentioned_user_data'] = $cm_user_data;
+				$cmt_mntn_user_data = get_user_by( 'id', $uid );
+				$comment_data['mentioned_user_data'] = $cmt_mntn_user_data;
 
 				// Get email body.
-				$cm_mail_body = $this->cm_mail_body( $comment_data );
-				$cm_mail_sub  = $this->cm_mail_subject();
+				$cmt_mntn_mail_body = $this->cmt_mntn_mail_body( $comment_data );
+				$cmt_mntn_mail_sub  = $this->cmt_mntn_mail_subject();
 
 				// Set headers.
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
@@ -258,9 +259,9 @@ class CommentMentionMain {
 
 				// Send mail.
 				wp_mail(
-					$cm_user_data->user_email,
-					$cm_mail_sub,
-					$cm_mail_body,
+					$cmt_mntn_user_data->user_email,
+					$cmt_mntn_mail_sub,
+					$cmt_mntn_mail_body,
 					$headers
 				);
 
@@ -276,10 +277,10 @@ class CommentMentionMain {
 	 * @param  array $comment_data Array of comment data.
 	 * @return strin               Mail body.
 	 */
-	function cm_mail_body( $comment_data ) {
+	function cmt_mntn_mail_body( $comment_data ) {
 
 		// Get current comment link.
-		$cm_comment_link = get_permalink( $comment_data['comment_post_ID'] ) . '#comment-' . $comment_data['comment_ID'];
+		$cmt_mntn_comment_link = get_permalink( $comment_data['comment_post_ID'] ) . '#comment-' . $comment_data['comment_ID'];
 
 		// Get post name related to that comment.
 		$post_name = get_the_title( $comment_data['comment_post_ID'] );
@@ -287,10 +288,10 @@ class CommentMentionMain {
 		// Get mentioned user's display name.
 		$user_name = $comment_data['mentioned_user_data']->display_name;
 
-		$mail_content = ! empty( $this->cm_settings['cm_mail_content'] ) ? $this->cm_settings['cm_mail_content'] : '';
+		$mail_content = ! empty( $this->cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $this->cmt_mntn_settings['cmt_mntn_mail_content'] : '';
 
 		if ( empty( $mail_content ) ) {
-			$mail_content = $this->cm_default_mail_content();
+			$mail_content = $this->cmt_mntn_default_mail_content();
 		}
 
 		$search = array(
@@ -300,7 +301,7 @@ class CommentMentionMain {
 		);
 
 		$replace = array(
-			$cm_comment_link,
+			$cmt_mntn_comment_link,
 			$post_name,
 			$user_name
 		);
@@ -313,10 +314,10 @@ class CommentMentionMain {
 	/**
 	 * Get Email subject sent to mentioned User.
 	 */
-	public function cm_mail_subject() {
+	public function cmt_mntn_mail_subject() {
 
 		// Get subject from settings.
-		$subject = ! empty( $this->cm_settings['cm_email_subject'] ) ? $this->cm_settings['cm_email_subject'] : '';
+		$subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : '';
 
 		// If no subject is set, then return default.
 		if ( empty( $subject ) ) {
@@ -329,7 +330,7 @@ class CommentMentionMain {
 		return $subject;
 	}
 
-	public function cm_default_mail_content() {
+	public function cmt_mntn_default_mail_content() {
 
 		$content = 'Hi, <strong>#user_name#,</strong>
 
