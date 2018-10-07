@@ -45,7 +45,10 @@ class CommentMentionAdmin {
 		// Get settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
-		// Get subject.
+		// Get status.
+		$cmt_mntn_email_enable = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
+
+		// Get subject
 		$cmt_mntn_subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : $this->_comment_mention->cmt_mntn_mail_subject();
 
 		// Get content
@@ -58,6 +61,14 @@ class CommentMentionAdmin {
 		<form method="post" action="">
 			<?php wp_nonce_field( 'cmt_mntn_save_data_action', 'cmt_mntn_save_data_field' ); ?>
 			<table class="form-table">
+
+				<tr valign="top">
+				<th scope="row"><?php _e( 'Enable Emails', 'comment-mention' ); ?></th>
+				<td>
+					<input type="checkbox" name="cmt_mntn_email_enable" value="1" <?php checked( $cmt_mntn_email_enable, '1' ); ?> />
+					<p class="description"><?php _e( 'Whether to send email to mentioned user or not.', 'comment-mention' ) ?><br/>
+				</td>
+				</tr>
 
 				<tr valign="top">
 				<th scope="row"><?php _e( 'Email Subject', 'comment-mention' ); ?></th>
@@ -111,6 +122,10 @@ class CommentMentionAdmin {
 			$cmt_mntn_settings = array();
 
 			// Get data from form
+			if ( isset( $_POST['cmt_mntn_email_enable'] ) && ! empty( $_POST['cmt_mntn_email_enable'] ) ) {
+				$cmt_mntn_settings['cmt_mntn_email_enable'] = $_POST['cmt_mntn_email_enable'];
+			}
+
 			if ( isset( $_POST['cmt_mntn_email_subject'] ) && ! empty( $_POST['cmt_mntn_email_subject'] ) ) {
 				$cmt_mntn_settings['cmt_mntn_email_subject'] = $_POST['cmt_mntn_email_subject'];
 			}

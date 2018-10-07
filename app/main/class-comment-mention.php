@@ -224,6 +224,12 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
 
+		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
+
+		if ( ! $is_send_email_enabled ) {
+			return;
+		}
+
 		// Get content.
 		$content = $comment_data['comment_content'];
 
