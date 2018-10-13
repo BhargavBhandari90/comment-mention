@@ -339,6 +339,11 @@ class CommentMentionMain {
 		return $subject;
 	}
 
+	/**
+	 * Get default mail content.
+	 *
+	 * @return string Mail content.
+	 */
 	public function cmt_mntn_default_mail_content() {
 
 		$content = 'Hi, <strong>#user_name#,</strong>
