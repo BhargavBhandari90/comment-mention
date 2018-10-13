@@ -119,7 +119,10 @@ class CommentMentionMain {
 
 		// Get results from DB.
 		$results = $wpdb->get_results(
-			"SELECT user_login as name FROM $wpdb->users WHERE user_login LIKE '$username%'"
+			$wpdb->prepare(
+				"SELECT user_login as name FROM $wpdb->users WHERE user_login LIKE %s" ,
+				$username . '%'
+			)
 		);
 
 		return $results;
@@ -199,7 +202,7 @@ class CommentMentionMain {
 				continue;
 			}
 
-			$user_id  = $user_obj->ID;
+			$user_id  = intval( $user_obj->ID );
 
 			// The user ID exists, so let's add it to our array.
 			if ( ! empty( $user_id ) ) {
@@ -265,9 +268,9 @@ class CommentMentionMain {
 
 				// Send mail.
 				wp_mail(
-					$cmt_mntn_user_data->user_email,
-					$cmt_mntn_mail_sub,
-					$cmt_mntn_mail_body,
+					esc_html( $cmt_mntn_user_data->user_email ),
+					esc_html( $cmt_mntn_mail_sub ),
+					wp_kses_post( $cmt_mntn_mail_body ),
 					$headers
 				);
 
@@ -307,9 +310,9 @@ class CommentMentionMain {
 		);
 
 		$replace = array(
-			$cmt_mntn_comment_link,
-			$post_name,
-			$user_name
+			esc_url( $cmt_mntn_comment_link ),
+			esc_html( $post_name ),
+			esc_html( $user_name )
 		);
 
 		$mail_content = str_replace( $search , $replace, $mail_content );

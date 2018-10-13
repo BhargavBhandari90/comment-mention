@@ -88,7 +88,7 @@ class CommentMentionAdmin {
 							'media_buttons' => false,
 						);
 
-						wp_editor( $cmt_mntn_mail_content, $editor_id, $settings );
+						wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
 					?>
 					<p class="description"><?php _e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
 					<strong>#comment_link#</strong><br/>
@@ -123,15 +123,15 @@ class CommentMentionAdmin {
 
 			// Get data from form
 			if ( isset( $_POST['cmt_mntn_email_enable'] ) && ! empty( $_POST['cmt_mntn_email_enable'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_email_enable'] = $_POST['cmt_mntn_email_enable'];
+				$cmt_mntn_settings['cmt_mntn_email_enable'] = intval( $_POST['cmt_mntn_email_enable'] );
 			}
 
 			if ( isset( $_POST['cmt_mntn_email_subject'] ) && ! empty( $_POST['cmt_mntn_email_subject'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_email_subject'] = $_POST['cmt_mntn_email_subject'];
+				$cmt_mntn_settings['cmt_mntn_email_subject'] = sanitize_text_field( $_POST['cmt_mntn_email_subject'] );
 			}
 
 			if ( isset( $_POST['cmt_mntn_mail_content'] ) && ! empty( $_POST['cmt_mntn_mail_content'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] );
+				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) );
 			}
 
 			// Save to option table.
