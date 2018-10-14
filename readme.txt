@@ -1,7 +1,6 @@
 === Comment Mention ===
-
-Contributors: bhagavbhandari90
-Tags: comments, mention, email
+Contributors: bhargavbhandari90
+Tags: comments, mention, email, user
 Requires at least: 4.6
 Tested up to: 4.9.8
 Stable tag: 4.3
@@ -19,12 +18,16 @@ This plugin is useful for those who wanted to enable mention on their blog site.
 
 What this plugin does? Just wring username followed by '@' in comment box. It will send the email to mentioned user.
 
-Email setting is provided in backend.
+Email setting is provided in backend. You can change email subject and content by your own.
 
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
+
+== Screenshots ==
+1. Mention the user by typing "@" in the comment box.
+2. Setting for sending email to mentioned user.
 
 e.g.
 
