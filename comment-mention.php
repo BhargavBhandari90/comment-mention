@@ -6,7 +6,7 @@
  * Author URI:      https://bhargavb.wordpress.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
- * Version:         1.0.0
+ * Version:         1.0.1
  *
  * @package         Comment_Mention
  */

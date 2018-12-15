@@ -20,6 +20,8 @@ What this plugin does? Just wring username followed by '@' in comment box. It wi
 
 Email setting is provided in backend. You can change email subject and content by your own.
 
+https://www.youtube.com/watch?v=Nz47aKJhsKQ
+
 
 == Installation ==
 
@@ -40,3 +42,6 @@ e.g.
 
 = 1.0.0 =
 * Initial Release.
+
+= 1.0.1 =
+* Fix issue of sending two mails to mentioned users

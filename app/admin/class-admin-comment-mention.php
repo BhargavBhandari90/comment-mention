@@ -17,6 +17,11 @@ class CommentMentionAdmin {
 	 */
 	public function __construct() {
 
+		// Allow for backend only.
+		if ( ! is_admin() ) {
+			return;
+		}
+
 		// Add admin menu.
 		add_action( 'admin_menu', array( $this, 'cmt_mntn_plugin_setup_menu' ) );
 
