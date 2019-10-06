@@ -1,6 +1,5 @@
 # Copyright (C) 2019 WPGULP
 # This file is distributed under the same license as the WPGULP package.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: WPGULP\n"
@@ -12,38 +11,35 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://AhmadAwais.com/contact/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/admin/class-admin-comment-mention.php:71
+#: app/admin/class-admin-comment-mention.php:79
 msgid "Enable Emails"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:74
+#: app/admin/class-admin-comment-mention.php:82
 msgid "Whether to send email to mentioned user or not."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:79
+#: app/admin/class-admin-comment-mention.php:87
 msgid "Email Subject"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:82
+#: app/admin/class-admin-comment-mention.php:90
 msgid "Subject for mentioned user email."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:87
+#: app/admin/class-admin-comment-mention.php:95
 msgid "Email Content"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:98
+#: app/admin/class-admin-comment-mention.php:106
 msgid "Mail content for mentioned user email. Available shortcodes:"
 msgstr ""
 
-#: app/main/class-comment-mention.php:334
+#: app/main/class-comment-mention.php:342
 msgid "You were mentioned in a comment"
 msgstr ""

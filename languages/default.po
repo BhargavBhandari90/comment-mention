@@ -24,7 +24,7 @@ msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:79
 msgid "Enable Emails"
-msgstr "US Enable Emails"
+msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:82
 msgid "Whether to send email to mentioned user or not."
