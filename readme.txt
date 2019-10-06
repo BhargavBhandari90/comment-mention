@@ -1,10 +1,11 @@
 === Comment Mention ===
 Contributors: bhargavbhandari90
+Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user
 Requires at least: 4.6
-Tested up to: 4.9.8
-Stable tag: 4.3
-Requires PHP: 5.2.4
+Tested up to: 5.2.3
+Stable tag: 1.1.0
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +15,7 @@ Mention user in comments without BuddyPress plugin. Mentioned user will get emai
 
 Now you can enable user mention functionality in post comments without using BuddyPress plugin.
 
-This plugin is useful for those who wanted to enable mention on their blog site.
+This plugin is useful for those who wants to enable mention on their blog site.
 
 What this plugin does? Just wring username followed by '@' in comment box. It will send the email to mentioned user.
 
@@ -40,8 +41,11 @@ e.g.
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial Release.
+= 1.1.0 =
+* Add support for language.
 
 = 1.0.1 =
-* Fix issue of sending two mails to mentioned users
+* Fix issue of sending two mails to mentioned users.
+
+= 1.0.0 =
+* Initial Release.
