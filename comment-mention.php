@@ -6,7 +6,7 @@
  * Author URI:      https://bhargavb.wordpress.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
- * Version:         1.0.1
+ * Version:         1.1.0
  *
  * @package         Comment_Mention
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'CMT_MNTN_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'CMT_MNTN_VERSION', '1.0.0' );
+	define( 'CMT_MNTN_VERSION', '1.1.0' );
 }
 if ( ! defined( 'CMT_MNTN_PATH' ) ) {
 	/**
@@ -41,6 +41,24 @@ if ( ! defined( 'CMT_MNTN_BASE_NAME' ) ) {
 	 */
 	define( 'CMT_MNTN_BASE_NAME', plugin_basename( __FILE__ ) );
 }
+
+/**
+ * Apply transaltion file as per WP language.
+ */
+function cmt_mntn_text_domain_loader() {
+
+	// Get mo file as per current locale.
+	$mofile = CMT_MNTN_PATH . 'languages/' . get_locale() .'.mo';
+
+	// If file does not exists, then applu default mo.
+	if ( ! file_exists( $mofile ) ) {
+		$mofile = CMT_MNTN_PATH . 'languages/default.mo';
+	}
+
+	load_textdomain( 'comment-mention', $mofile );
+}
+
+add_action( 'plugins_loaded', 'cmt_mntn_text_domain_loader' );
 
 // Include admin functions file.
 require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';

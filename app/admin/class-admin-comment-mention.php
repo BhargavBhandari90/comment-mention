@@ -6,6 +6,14 @@
  */
 
 /**
+ * Exit if accessed directly
+ *
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
  * Class for comment mention methods.
  *
  * @package Comment_Mention
@@ -120,8 +128,8 @@ class CommentMentionAdmin {
 
 		// Verify nounce for security.
 		if (
-		    isset( $_POST['cmt_mntn_save_data_field'] )
-		    && wp_verify_nonce( $_POST['cmt_mntn_save_data_field'], 'cmt_mntn_save_data_action' )
+			isset( $_POST['cmt_mntn_save_data_field'] )
+			&& wp_verify_nonce( $_POST['cmt_mntn_save_data_field'], 'cmt_mntn_save_data_action' )
 		) {
 
 			$cmt_mntn_settings = array();
