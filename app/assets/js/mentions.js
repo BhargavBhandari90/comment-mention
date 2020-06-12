@@ -245,6 +245,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 		// Activity/reply, post comments, dashboard post 'text' editor.
 		$( '#comments form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
 		$( '.bbp-topic-form form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
+		$( '.bbp-reply-form form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
 	});
 
 })( cmt_mntn, jQuery );
