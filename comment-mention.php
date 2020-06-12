@@ -62,4 +62,6 @@ add_action( 'plugins_loaded', 'cmt_mntn_text_domain_loader' );
 
 // Include admin functions file.
 require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
+require CMT_MNTN_PATH . 'app/main/class-bbpress-user-mention.php';
 require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';
+require CMT_MNTN_PATH . 'app/includes/common-functions.php';
