@@ -48,6 +48,21 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_enqueue_styles_script() {
 
+		if ( ! is_single() ) {
+			return;
+		}
+
+		$bbpress_post_types = array(
+			'reply' => true,
+			'topic' => true,
+		);
+
+		// If bbpress pages and mention is not enable, then don't include the scripts and styles.
+		if ( isset( $bbpress_post_types[ get_post_type() ] ) &&
+			 ! cmt_mntn_enable_bbp_user_mention() ) {
+			return;
+		}
+
 		// Set ajax URL.
 		wp_localize_script( 'jquery', 'ajax', array(
 			'url' => admin_url( 'admin-ajax.php' )

@@ -25,15 +25,25 @@ class CommentMentionBBPress {
 	 */
 	public function __construct() {
 
+		// If bbpress is not activate, then don't execute this class.
+		if ( ! class_exists( 'bbPress' ) ) {
+			return;
+		}
+
 		// Add setting for enable/disable user mention for bb-press.
 		add_filter( 'bbp_admin_get_settings_fields', array( $this, 'cmt_mntn_enable_bbpress_mention' ) );
 
 		// Set default option for enable user mention for bb-press.
 		add_filter( 'bbp_get_default_options', array( $this, 'cmt_mntn_enable_bbpress_mention_option' ) );
 
-		// Send email to mentioned user in topic.
-		add_filter( 'bbp_new_topic', array( $this, 'cmt_mntn_bbpress_mention_user_email' ) );
-		add_filter( 'bbp_new_reply', array( $this, 'cmt_mntn_bbpress_mention_user_email' ) );
+		// If enabled user mention, then send email.
+		if ( cmt_mntn_enable_bbp_user_mention() ) {
+
+			// Send email to mentioned user in topic & reply.
+			add_filter( 'bbp_new_topic', array( $this, 'cmt_mntn_bbpress_mention_user_email' ) );
+			add_filter( 'bbp_new_reply', array( $this, 'cmt_mntn_bbpress_mention_user_email' ) );
+
+		}
 
 		// Get plugin settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
@@ -107,6 +117,16 @@ class CommentMentionBBPress {
 
 		// Bail, if anything goes wrong.
 		if ( empty( $post_id ) ) {
+			return;
+		}
+
+		// Get email enabled setting.
+		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] )
+			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
+			: false;
+
+		// If emails not enabled, then abort.
+		if ( ! $is_send_email_enabled ) {
 			return;
 		}
 

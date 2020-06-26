@@ -92,7 +92,3 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 
 	return $mail_setting;
 }
-
-function cmt_mntn_post_mail_subject() {
-
-}
