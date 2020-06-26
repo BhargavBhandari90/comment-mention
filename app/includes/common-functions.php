@@ -25,3 +25,60 @@ function cmt_mntn_enable_bbp_user_mention( $default = 1 ) {
 	// Filter & return
 	return (bool) apply_filters( 'cmt_mntn_enable_bbp_user_mention', (bool) get_option( '_bbp_enable_user_mention', $default ) );
 }
+
+/**
+ * Get email content.
+ *
+ * @param  integer $uid     User ID.
+ * @param  integer $post_id Mentioned post ID.
+ * @return string           Email Content.
+ */
+function cmt_mntn_mail_setting( $uid, $post_id ) {
+
+	// Get setting.
+	$cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
+
+	// Get current comment link.
+	$cmt_mntn_comment_link = trailingslashit( get_permalink( $post_id ) ) . '#post-' . intval( $post_id );
+
+	// Get post name related to that comment.
+	$post_name = get_the_title( $post_id );
+
+	// Get user.
+	$cmt_mntn_user_data = get_user_by( 'id', $uid );
+
+	// Get mentioned user's display name.
+	$user_name = isset( $cmt_mntn_user_data->display_name )
+		? $cmt_mntn_user_data->display_name
+		: '';
+
+	$mail_content = ! empty( $cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $cmt_mntn_settings['cmt_mntn_mail_content'] : '';
+
+	if ( empty( $mail_content ) ) {
+		$mail_content = CommentMentionMain::cmt_mntn_default_mail_content();
+	}
+
+	$search = array(
+		'#comment_link#',
+		'#post_name#',
+		'#user_name#'
+	);
+
+	$replace = array(
+		esc_url( $cmt_mntn_comment_link ),
+		esc_html( $post_name ),
+		esc_html( $user_name )
+	);
+
+	// Replace with actual values.
+	$mail_setting['email_content'] = str_replace( $search , $replace, $mail_content );
+	$mail_setting['email_subject'] = ! empty( $cmt_mntn_settings['cmt_mntn_email_subject'] )
+		? $cmt_mntn_settings['cmt_mntn_email_subject']
+		: __('You were mentioned in a comment', 'comment-mention');
+
+	return $mail_setting;
+}
+
+function cmt_mntn_post_mail_subject() {
+
+}

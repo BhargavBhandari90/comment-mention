@@ -185,7 +185,7 @@ class CommentMentionMain {
 	/**
 	 * Locate usernames in an comment content string, as designated by an @ sign.
 	 */
-	public function cmt_mntn_find_mentions( $content ) {
+	public static function cmt_mntn_find_mentions( $content ) {
 
 		$pattern = '/[@]+([A-Za-z0-9-_\.@]+)\b/';
 		preg_match_all( $pattern, $content, $usernames );
@@ -352,7 +352,7 @@ class CommentMentionMain {
 	 *
 	 * @return string Mail content.
 	 */
-	public function cmt_mntn_default_mail_content() {
+	public static function cmt_mntn_default_mail_content() {
 
 		$content = 'Hi, <strong>#user_name#,</strong>
 

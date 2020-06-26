@@ -30,6 +30,12 @@ class CommentMentionBBPress {
 
 		// Set default option for enable user mention for bb-press.
 		add_filter( 'bbp_get_default_options', array( $this, 'cmt_mntn_enable_bbpress_mention_option' ) );
+
+		// Send email to mentioned user in topic.
+		add_filter( 'bbp_new_topic', array( $this, 'cmt_mntn_bbpress_mention_user_email' ) );
+
+		// Get plugin settings.
+		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 	}
 
 	/**
@@ -88,6 +94,73 @@ class CommentMentionBBPress {
 		$options['_bbp_enable_user_mention'] = true;
 
 		return $options;
+	}
+
+	/**
+	 * Send email to mentioned user.
+	 *
+	 * @param  integer $topic_id Topic ID.
+	 * @return void
+	 */
+	public function cmt_mntn_bbpress_mention_user_email( $topic_id ) {
+
+		// Bail, if anything goes wrong.
+		if ( empty( $topic_id ) ) {
+			return;
+		}
+
+		// Get topic content.
+		$topic_content = get_post_field( 'post_content', $topic_id );
+
+		// Prevention.
+		if ( empty( $topic_content ) ) {
+			return;
+		}
+
+		// Check if there are mentions in the topic content.
+		$usernames = CommentMentionMain::cmt_mntn_find_mentions( $topic_content );
+
+		// If no user mention, then don't do anything.
+		if ( empty( $usernames ) ) {
+			return;
+		}
+
+		// Iterate the username loop.
+		foreach ( $usernames as $username ) {
+
+			// Get user id.
+			$uid = username_exists( $username );
+
+			if ( $uid ) {
+
+				// Get user data.
+				$cmt_mntn_user_data    = get_user_by( 'id', $uid );
+				$cmt_mntn_mail_setting = cmt_mntn_mail_setting( $uid, $topic_id );
+
+				// Get email body.
+				$cmt_mntn_mail_body = $cmt_mntn_mail_setting['email_content'];
+				$cmt_mntn_mail_sub  = $cmt_mntn_mail_setting['email_subject'];
+
+				// Set headers.
+				$headers[] = 'Content-Type: text/html; charset=UTF-8';
+
+				// Set mail as HTML format.
+				add_filter( 'wp_mail_content_type',function(){
+					return "text/html";
+				} );
+
+				// Send mail.
+				wp_mail(
+					esc_html( $cmt_mntn_user_data->user_email ),
+					esc_html( $cmt_mntn_mail_sub ),
+					wp_kses_post( $cmt_mntn_mail_body ),
+					$headers
+				);
+
+			}
+
+		}
+
 	}
 
 }
