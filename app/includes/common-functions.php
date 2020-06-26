@@ -35,14 +35,28 @@ function cmt_mntn_enable_bbp_user_mention( $default = 1 ) {
  */
 function cmt_mntn_mail_setting( $uid, $post_id ) {
 
-	// Get setting.
-	$cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
+	// Bail, if anything goes wrong.
+	if ( empty( $uid ) || empty( $post_id ) ) {
+		return;
+	}
+
+	// Get post name related to that comment.
+	$post_name = get_the_title( $post_id );
 
 	// Get current comment link.
 	$cmt_mntn_comment_link = trailingslashit( get_permalink( $post_id ) ) . '#post-' . intval( $post_id );
 
-	// Get post name related to that comment.
-	$post_name = get_the_title( $post_id );
+	// Get topic id related to reply.
+	if ( 'reply' === get_post_type( $post_id ) && function_exists( 'bbp_get_reply_topic_id' ) ) {
+
+		$topic_id = bbp_get_reply_topic_id( $post_id );
+
+		// Get current comment link.
+		$cmt_mntn_comment_link = trailingslashit( get_permalink( $topic_id ) ) . '#post-' . intval( $post_id );
+	}
+
+	// Get setting.
+	$cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
 	// Get user.
 	$cmt_mntn_user_data = get_user_by( 'id', $uid );
