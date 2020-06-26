@@ -48,7 +48,7 @@ if ( ! defined( 'CMT_MNTN_BASE_NAME' ) ) {
 function cmt_mntn_text_domain_loader() {
 
 	// Get mo file as per current locale.
-	$mofile = CMT_MNTN_PATH . 'languages/' . get_locale() .'.mo';
+	$mofile = CMT_MNTN_PATH . 'languages/' . get_locale() . '.mo';
 
 	// If file does not exists, then applu default mo.
 	if ( ! file_exists( $mofile ) ) {

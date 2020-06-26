@@ -7,7 +7,6 @@
 
 /**
  * Exit if accessed directly
- *
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -46,7 +45,16 @@ class CommentMentionAdmin {
 	 */
 	public function cmt_mntn_plugin_setup_menu() {
 
-		add_menu_page( 'Comment Mention Settings', 'Comment Mention', 'manage_options', 'comment-mention', array( $this, 'cmt_mntn_admin_settings' ) );
+		add_menu_page(
+			esc_html__( 'Comment Mention Settings', 'comment-mention' ),
+			esc_html__( 'Comment Mention', 'comment-mention' ),
+			'manage_options',
+			'comment-mention',
+			array(
+				$this,
+				'cmt_mntn_admin_settings',
+			)
+		);
 
 	}
 
@@ -69,30 +77,30 @@ class CommentMentionAdmin {
 
 		?>
 		<div class="wrap">
-		<h1>Comment Mention Settings</h1>
+		<h1><?php esc_html_e( 'Comment Mention Settings', 'comment-mention' ); ?></h1>
 
 		<form method="post" action="">
 			<?php wp_nonce_field( 'cmt_mntn_save_data_action', 'cmt_mntn_save_data_field' ); ?>
 			<table class="form-table">
 
 				<tr valign="top">
-				<th scope="row"><?php _e( 'Enable Emails', 'comment-mention' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Enable Emails', 'comment-mention' ); ?></th>
 				<td>
 					<input type="checkbox" name="cmt_mntn_email_enable" value="1" <?php checked( $cmt_mntn_email_enable, '1' ); ?> />
-					<p class="description"><?php _e( 'Whether to send email to mentioned user or not.', 'comment-mention' ) ?><br/>
+					<p class="description"><?php esc_html_e( 'Whether to send email to mentioned user or not.', 'comment-mention' ); ?><br/>
 				</td>
 				</tr>
 
 				<tr valign="top">
-				<th scope="row"><?php _e( 'Email Subject', 'comment-mention' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Email Subject', 'comment-mention' ); ?></th>
 				<td>
 					<input type="text" name="cmt_mntn_email_subject" value="<?php echo esc_attr( $cmt_mntn_subject ); ?>" />
-					<p class="description"><?php _e( 'Subject for mentioned user email.', 'comment-mention' ) ?><br/>
+					<p class="description"><?php esc_html_e( 'Subject for mentioned user email.', 'comment-mention' ); ?><br/>
 				</td>
 				</tr>
 
 				<tr valign="top">
-				<th scope="row"><?php _e( 'Email Content', 'comment-mention' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Email Content', 'comment-mention' ); ?></th>
 				<td>
 					<?php
 
@@ -102,11 +110,11 @@ class CommentMentionAdmin {
 						);
 
 						wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
-					?>
-					<p class="description"><?php _e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
-					<strong>#comment_link#</strong><br/>
-					<strong>#post_name#</strong><br/>
-					<strong>#user_name#</strong><br/>
+						?>
+					<p class="description"><?php esc_html_e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
+					<strong>#comment_link#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Link where user is mentioned.', 'comment-mention' ); ?><br/>
+					<strong>#post_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Post title where user is mentioned.', 'comment-mention' ); ?><br/>
+					<strong>#user_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Username who is mentioned.', 'comment-mention' ); ?><br/>
 					</p>
 				</td>
 				</tr>

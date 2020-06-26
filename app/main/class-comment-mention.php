@@ -8,7 +8,6 @@
 
 /**
  * Exit if accessed directly
- *
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -64,9 +63,13 @@ class CommentMentionMain {
 		}
 
 		// Set ajax URL.
-		wp_localize_script( 'jquery', 'ajax', array(
-			'url' => admin_url( 'admin-ajax.php' )
-		) );
+		wp_localize_script(
+			'jquery',
+			'ajax',
+			array(
+				'url' => admin_url( 'admin-ajax.php' ),
+			)
+		);
 
 		// Atwho CSS.
 		// Ref: https://github.com/ichord/At.js/
@@ -74,7 +77,7 @@ class CommentMentionMain {
 			'cmt-mntn-atwho-css',
 			CMT_MNTN_URL . 'app/assets/css/jquery.atwho.css',
 			array(),
-			filemtime( CMT_MNTN_PATH . 'app/assets/css/jquery.atwho.css' )
+			CMT_MNTN_VERSION
 		);
 
 		// caret CSS.
@@ -83,7 +86,7 @@ class CommentMentionMain {
 			'cmt-mntn-caret',
 			CMT_MNTN_URL . 'app/assets/js/jquery.caret.js',
 			array( 'jquery' ),
-			filemtime( CMT_MNTN_PATH . 'app/assets/js/jquery.caret.js'),
+			CMT_MNTN_VERSION,
 			true
 		);
 
@@ -93,7 +96,7 @@ class CommentMentionMain {
 			'cmt-mntn-atwho',
 			CMT_MNTN_URL . 'app/assets/js/jquery.atwho.js',
 			array( 'cmt-mntn-caret' ),
-			filemtime( CMT_MNTN_PATH . 'app/assets/js/jquery.atwho.js'),
+			CMT_MNTN_VERSION,
 			true
 		);
 
@@ -102,7 +105,7 @@ class CommentMentionMain {
 			'cmt-mntn-mentions',
 			CMT_MNTN_URL . 'app/assets/js/mentions.js',
 			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
-			filemtime( CMT_MNTN_PATH . 'app/assets/js/mentions.js'),
+			CMT_MNTN_VERSION,
 			true
 		);
 
@@ -143,7 +146,7 @@ class CommentMentionMain {
 		// Get results from DB.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT user_login as name FROM $wpdb->users WHERE user_login LIKE %s" ,
+				"SELECT user_login as name FROM $wpdb->users WHERE user_login LIKE %s",
 				$username . '%'
 			)
 		);
@@ -161,20 +164,21 @@ class CommentMentionMain {
 		$usernames = $this->cmt_mntn_find_mentions( $content );
 
 		// If no mentions found, then halt the process.
-		if ( empty( $usernames ) )
+		if ( empty( $usernames ) ) {
 			return $content;
+		}
 
 		// We don't want to link @mentions that are inside of links, so we
 		// temporarily remove them.
 		$replace_count = 0;
-		$replacements = array();
+		$replacements  = array();
 		foreach ( $usernames as $username ) {
 			// Prevent @ name linking inside <a> tags.
 			preg_match_all( '/(<a.*?(?!<\/a>)@' . $username . '.*?<\/a>)/', $content, $content_matches );
 			if ( ! empty( $content_matches[1] ) ) {
 				foreach ( $content_matches[1] as $replacement ) {
 					$replacements[ '#BPAN' . $replace_count ] = $replacement;
-					$content = str_replace( $replacement, '#BPAN' . $replace_count, $content );
+					$content                                  = str_replace( $replacement, '#BPAN' . $replace_count, $content );
 					$replace_count++;
 				}
 			}
@@ -183,7 +187,7 @@ class CommentMentionMain {
 		// Linkify the mentions with the username.
 		foreach ( (array) $usernames as $user_id => $username ) {
 			$author_url = get_author_posts_url( $user_id );
-			$content = preg_replace( '/(@' . $username . '\b)/', "<a class='comment-mention' href='$author_url' rel='nofollow'>@$username</a>", $content );
+			$content    = preg_replace( '/(@' . $username . '\b)/', "<a class='comment-mention' href='$author_url' rel='nofollow'>@$username</a>", $content );
 		}
 
 		// Put everything back.
@@ -216,7 +220,7 @@ class CommentMentionMain {
 		$mentioned_users = array();
 
 		// We've found some mentions! Check to see if users exist.
-		foreach( (array) array_values( $usernames ) as $username ) {
+		foreach ( (array) array_values( $usernames ) as $username ) {
 
 			// Get user info by login.
 			$user_obj = get_user_by( 'login', $username );
@@ -225,7 +229,7 @@ class CommentMentionMain {
 				continue;
 			}
 
-			$user_id  = intval( $user_obj->ID );
+			$user_id = intval( $user_obj->ID );
 
 			// The user ID exists, so let's add it to our array.
 			if ( ! empty( $user_id ) ) {
@@ -243,9 +247,9 @@ class CommentMentionMain {
 	/**
 	 * Send email notifications to mentioned users.
 	 *
-	 * @param  int $comment_ID        Current comment id.
+	 * @param  int    $comment_ID        Current comment id.
 	 * @param  string $comment_status Comment status.
-	 * @param  obj $comment_data      Comment data.
+	 * @param  obj    $comment_data      Comment data.
 	 * @return void
 	 */
 	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
@@ -274,7 +278,7 @@ class CommentMentionMain {
 			if ( $uid ) {
 
 				// Get user data.
-				$cmt_mntn_user_data = get_user_by( 'id', $uid );
+				$cmt_mntn_user_data                  = get_user_by( 'id', $uid );
 				$comment_data['mentioned_user_data'] = $cmt_mntn_user_data;
 
 				// Get email body.
@@ -285,9 +289,12 @@ class CommentMentionMain {
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 
 				// Set mail as HTML format.
-				add_filter( 'wp_mail_content_type',function(){
-					return "text/html";
-				} );
+				add_filter(
+					'wp_mail_content_type',
+					function() {
+						return 'text/html';
+					}
+				);
 
 				// Send mail.
 				wp_mail(
@@ -298,7 +305,6 @@ class CommentMentionMain {
 				);
 
 			}
-
 		}
 
 	}
@@ -329,16 +335,16 @@ class CommentMentionMain {
 		$search = array(
 			'#comment_link#',
 			'#post_name#',
-			'#user_name#'
+			'#user_name#',
 		);
 
 		$replace = array(
 			esc_url( $cmt_mntn_comment_link ),
 			esc_html( $post_name ),
-			esc_html( $user_name )
+			esc_html( $user_name ),
 		);
 
-		$mail_content = str_replace( $search , $replace, $mail_content );
+		$mail_content = str_replace( $search, $replace, $mail_content );
 
 		return $mail_content;
 	}
@@ -354,7 +360,7 @@ class CommentMentionMain {
 		// If no subject is set, then return default.
 		if ( empty( $subject ) ) {
 
-			$subject = __('You were mentioned in a comment', 'comment-mention');
+			$subject = esc_html__( 'You were mentioned in a comment', 'comment-mention' );
 
 		}
 

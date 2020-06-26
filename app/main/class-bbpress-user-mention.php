@@ -166,9 +166,12 @@ class CommentMentionBBPress {
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
 
 				// Set mail as HTML format.
-				add_filter( 'wp_mail_content_type', function() {
-					return "text/html";
-				} );
+				add_filter(
+					'wp_mail_content_type',
+					function() {
+						return 'text/html';
+					}
+				);
 
 				// Send mail.
 				wp_mail(
@@ -179,7 +182,6 @@ class CommentMentionBBPress {
 				);
 
 			}
-
 		}
 
 	}

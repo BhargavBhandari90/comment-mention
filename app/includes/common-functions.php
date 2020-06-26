@@ -7,7 +7,6 @@
 
 /**
  * Exit if accessed directly
- *
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -75,20 +74,20 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 	$search = array(
 		'#comment_link#',
 		'#post_name#',
-		'#user_name#'
+		'#user_name#',
 	);
 
 	$replace = array(
 		esc_url( $cmt_mntn_comment_link ),
 		esc_html( $post_name ),
-		esc_html( $user_name )
+		esc_html( $user_name ),
 	);
 
 	// Replace with actual values.
-	$mail_setting['email_content'] = str_replace( $search , $replace, $mail_content );
+	$mail_setting['email_content'] = str_replace( $search, $replace, $mail_content );
 	$mail_setting['email_subject'] = ! empty( $cmt_mntn_settings['cmt_mntn_email_subject'] )
 		? $cmt_mntn_settings['cmt_mntn_email_subject']
-		: __('You were mentioned in a comment', 'comment-mention');
+		: esc_html__( 'You were mentioned in a comment', 'comment-mention' );
 
 	return $mail_setting;
 }
