@@ -1,15 +1,17 @@
 === Comment Mention ===
 Contributors: bhargavbhandari90
 Donate link: https://www.paypal.me/BnB90/50
-Tags: comments, mention, email, user
+Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
-Tested up to: 5.2.3
+Tested up to: 5.4.2
 Stable tag: 1.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Mention user in comments without BuddyPress plugin. Mentioned user will get email notification.
+
+Compatible with BBPress as well.
 
 == Description ==
 
@@ -40,6 +42,9 @@ e.g.
 
 
 == Changelog ==
+
+= 1.2.0 =
+* Add bbpress compatibility.
 
 = 1.1.0 =
 * Add support for language.
