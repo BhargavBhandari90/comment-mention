@@ -16,30 +16,58 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/admin/class-admin-comment-mention.php:79
-msgid "Enable Emails"
+#: app/admin/class-admin-comment-mention.php:49, app/admin/class-admin-comment-mention.php:80
+msgid "Comment Mention Settings"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:82
-msgid "Whether to send email to mentioned user or not."
+#: app/admin/class-admin-comment-mention.php:50
+msgid "Comment Mention"
 msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:87
-msgid "Email Subject"
+msgid "Enable Emails"
 msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:90
-msgid "Subject for mentioned user email."
+msgid "Whether to send email to mentioned user or not."
 msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:95
+msgid "Email Subject"
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:98
+msgid "Subject for mentioned user email."
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:103
 msgid "Email Content"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:106
+#: app/admin/class-admin-comment-mention.php:114
 msgid "Mail content for mentioned user email. Available shortcodes:"
 msgstr ""
 
-#: app/main/class-comment-mention.php:342
+#: app/admin/class-admin-comment-mention.php:115
+msgid "Link where user is mentioned."
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:116
+msgid "Post title where user is mentioned."
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:117
+msgid "Username who is mentioned."
+msgstr ""
+
+#: app/includes/common-functions.php:90, app/main/class-comment-mention.php:363
 msgid "You were mentioned in a comment"
+msgstr ""
+
+#: app/main/class-bbpress-user-mention.php:61
+msgid "Enable User Mention"
+msgstr ""
+
+#: app/main/class-bbpress-user-mention.php:91
+msgid "Enable User Mention in Topics & Replies Content"
 msgstr ""
