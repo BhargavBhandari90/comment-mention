@@ -5,7 +5,7 @@
 - **Requires at least:** 4.6 
 - **Tested up to:** 5.4.2 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.2.0 
+- **Stable tag:** 1.2.1 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -33,6 +33,9 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 3. Use the Comment Mention menu to configure the plugin
 
 ## Changelog ##
+
+### 1.2.1 ###
+* Fix issue of mention with post comment.
 
 ### 1.2.0 ###
 * Add bbpress compatibility.
