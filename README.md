@@ -32,6 +32,12 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the Comment Mention menu to configure the plugin
 
+## Buy me a coffee/beer ##
+
+Do you like this plugin? Support it by buying me coffee OR beer. ;)
+
+https://www.paypal.com/paypalme/BnB90/
+
 ## Changelog ##
 
 ### 1.2.1 ###
