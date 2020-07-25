@@ -5,7 +5,7 @@
 - **Requires at least:** 4.6 
 - **Tested up to:** 5.4.2 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.2.1 
+- **Stable tag:** 1.2.2 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -39,6 +39,10 @@ Do you like this plugin? Support it by buying me coffee OR beer. ;)
 https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
+
+
+### 1.2.2 ###
+* Fix issue of class not added for mentions added by other than administrator.
 
 ### 1.2.1 ###
 * Fix issue of mention with post comment.
