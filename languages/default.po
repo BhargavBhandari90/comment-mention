@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Comment Mention\n"
 "Report-Msgid-Bugs-To: https://AhmadAwais.com/contact/\n"
-"POT-Creation-Date: 2020-06-27 02:29+0530\n"
+"POT-Creation-Date: 2020-07-25 14:36+0530\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: AhmadAwais <your_email@email.com>\n"
@@ -77,4 +77,22 @@ msgstr ""
 
 #: app/main/class-bbpress-user-mention.php:91
 msgid "Enable User Mention in Topics & Replies Content"
+msgstr ""
+
+#: comment-mention.php:56
+msgid "Settings"
+msgstr ""
+
+#: comment-mention.php:85
+msgid ""
+"Do you like Comment Mention plugin? Support it by buying me coffee OR "
+"beer. ;)"
+msgstr ""
+
+#: comment-mention.php:87
+msgid "Buy Coffee/Beer"
+msgstr ""
+
+#: comment-mention.php:89
+msgid "Dismiss this notice"
 msgstr ""
