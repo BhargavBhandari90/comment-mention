@@ -32,7 +32,7 @@ class CommentMentionMain {
 		add_action( 'wp_ajax_cmt_mntn_get_users', array( $this, 'cmt_mntn_ajax_get_users' ) );
 
 		// Modify comment content.
-		add_filter( 'pre_comment_content', array( $this, 'cmt_mntn_at_name_filter' ) );
+		add_filter( 'pre_comment_content', array( $this, 'cmt_mntn_at_name_filter' ), 999 );
 
 		// Process comment.
 		add_action( 'comment_post', array( $this, 'cmt_mntn_preprocess_comment' ), 10, 3 );
