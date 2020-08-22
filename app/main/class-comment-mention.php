@@ -62,15 +62,6 @@ class CommentMentionMain {
 			return;
 		}
 
-		// Set ajax URL.
-		wp_localize_script(
-			'jquery',
-			'ajax',
-			array(
-				'url' => admin_url( 'admin-ajax.php' ),
-			)
-		);
-
 		// Atwho CSS.
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_style(
@@ -107,6 +98,15 @@ class CommentMentionMain {
 			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
 			CMT_MNTN_VERSION,
 			true
+		);
+
+		// Set ajax URL.
+		wp_localize_script(
+			'cmt-mntn-mentions',
+			'ajax',
+			array(
+				'url' => admin_url( 'admin-ajax.php' ),
+			)
 		);
 
 	}
