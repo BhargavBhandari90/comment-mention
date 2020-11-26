@@ -254,7 +254,9 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
 
-		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
+		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] )
+			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
+			: false;
 
 		if ( ! $is_send_email_enabled ) {
 			return;
@@ -332,16 +334,27 @@ class CommentMentionMain {
 			$mail_content = $this->cmt_mntn_default_mail_content();
 		}
 
+		$commenter_name  = isset( $comment_data['comment_author'] )
+			? $comment_data['comment_author']
+			: esc_html__( 'Someone', 'comment-mention' );
+		$comment_content = isset( $comment_data['comment_content'] )
+			? $comment_data['comment_content']
+			: '';
+
 		$search = array(
 			'#comment_link#',
 			'#post_name#',
 			'#user_name#',
+			'#commenter_name#',
+			'#comment_content#',
 		);
 
 		$replace = array(
 			esc_url( $cmt_mntn_comment_link ),
 			esc_html( $post_name ),
 			esc_html( $user_name ),
+			esc_html( $commenter_name ),
+			$comment_content,
 		);
 
 		$mail_content = str_replace( $search, $replace, $mail_content );

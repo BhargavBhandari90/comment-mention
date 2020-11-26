@@ -71,16 +71,25 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 		$mail_content = CommentMentionMain::cmt_mntn_default_mail_content();
 	}
 
+	$post_author_id  = get_post_field( 'post_author', $post_id );
+	$author_obj      = get_user_by( 'ID', $post_author_id );
+	$commenter_name  = isset( $author_obj->user_login ) ? $author_obj->user_login : 'Someone';
+	$comment_content = get_post_field( 'post_content', $post_id );
+
 	$search = array(
 		'#comment_link#',
 		'#post_name#',
 		'#user_name#',
+		'#commenter_name#',
+		'#comment_content#',
 	);
 
 	$replace = array(
 		esc_url( $cmt_mntn_comment_link ),
 		esc_html( $post_name ),
 		esc_html( $user_name ),
+		esc_html( $commenter_name ),
+		$comment_content,
 	);
 
 	// Replace with actual values.
