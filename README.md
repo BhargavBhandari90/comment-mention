@@ -5,7 +5,7 @@
 - **Requires at least:** 4.6 
 - **Tested up to:** 5.5 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.2.3 
+- **Stable tag:** 1.2.4 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -39,6 +39,9 @@ Do you like this plugin? Support it by buying me coffee OR beer. ;)
 https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
+
+### 1.2.4 ###
+* Added new placeholders: #commenter_name# and #comment_content#.
 
 ### 1.2.3 ###
 * Fix issue of ajax with WP 5.5.
