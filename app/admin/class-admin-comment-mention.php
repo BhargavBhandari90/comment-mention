@@ -159,6 +159,8 @@ class CommentMentionAdmin {
 				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) );
 			}
 
+			do_action( 'cmt_mntn_before_setting_save', $cmt_mntn_settings );
+
 			// Save to option table.
 			update_option( 'cmt_mntn_settings', $cmt_mntn_settings );
 
