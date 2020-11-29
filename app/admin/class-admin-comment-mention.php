@@ -121,6 +121,8 @@ class CommentMentionAdmin {
 				</td>
 				</tr>
 
+				<?php do_action( 'cmt_mntn_more_options' ); ?>
+
 			</table>
 
 			<?php submit_button(); ?>
