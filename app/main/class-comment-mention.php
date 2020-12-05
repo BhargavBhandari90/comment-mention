@@ -122,7 +122,7 @@ class CommentMentionMain {
 		);
 
 		// Get usernames.
-		$results = $this->cmt_mntn_get_users( $args['term'] );
+		$results = apply_filters( 'cmt_mntn_ajax_get_users', $this->cmt_mntn_get_users( $args['term'] ) );
 
 		// Send response as json.
 		if ( is_wp_error( $results ) ) {

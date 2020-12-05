@@ -182,8 +182,6 @@ window.cmt_mntn = window.cmt_mntn || {};
 						params['group-id'] = parseInt( this.$inputor.data( 'suggestions-group-id' ), 10 );
 					}
 
-					console.log(ajax.url);
-
 					self.xhr = $.getJSON( ajax.url, params )
 						/**
 						 * Success callback for the @suggestions lookup.
