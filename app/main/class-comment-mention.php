@@ -103,8 +103,8 @@ class CommentMentionMain {
 		$cmt_mntn_vars = apply_filters(
 			'cmt_mntn_vars',
 			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'mention_result_tlp' => '<li data-value="@${name}"><span class="username">@${name}</span></li>',
+				'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+				'mention_result_tlp' => '<li data-value="@${user_login}"><span class="username">@${user_login}</span></li>',
 			)
 		);
 
