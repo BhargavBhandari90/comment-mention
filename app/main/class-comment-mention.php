@@ -147,15 +147,49 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_get_users( $username ) {
 
-		global $wpdb;
-
-		// Get results from DB.
-		$results = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT user_login as name FROM $wpdb->users WHERE user_login LIKE %s",
-				$username . '%'
+		$wp_user_query = new WP_User_Query(
+			array(
+				'search'         => $username . '*',
+				'search_columns' => array( 'user_login' ),
 			)
 		);
+
+		$found_users = $wp_user_query->get_results();
+		$results     = array();
+
+		if ( ! empty( $found_users ) ) {
+
+			foreach ( $found_users as $user ) {
+
+				$fname = get_user_meta( $user->ID, 'first_name', true );
+				$lname = get_user_meta( $user->ID, 'last_name', true );
+
+				$fullname = array();
+
+				if ( ! empty( $fname ) ) {
+					$fullname[] = $fname;
+				}
+
+				if ( ! empty( $lname ) ) {
+					$fullname[] = $lname;
+				}
+
+				$user_full_name = '';
+
+				if ( ! empty( $fullname ) ) {
+					$user_full_name = implode( ' ', $fullname );
+				}
+
+				$result                = new stdClass();
+				$result->user_login    = $user->user_login;
+				$result->user_nicename = $user->user_nicename;
+				$result->image         = get_avatar_url( $user->ID );
+				$result->name          = $user_full_name;
+				$result->user_id       = $user->ID;
+
+				$results[] = $result;
+			}
+		}
 
 		return $results;
 

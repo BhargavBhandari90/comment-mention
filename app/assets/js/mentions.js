@@ -204,7 +204,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 								 * @since 2.1.0
 								 */
 								function( suggestion ) {
-									suggestion.search = suggestion.search || suggestion.ID + ' ' + suggestion.name;
+									suggestion.search = suggestion.search || suggestion.user_login + ' ' + suggestion.name;
 									return suggestion;
 								}
 							);
