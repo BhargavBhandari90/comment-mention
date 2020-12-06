@@ -1,4 +1,4 @@
-/* global cmt_mntn */
+/* global cmt_mntn, Comment_Mention */
 
 window.cmt_mntn = window.cmt_mntn || {};
 
@@ -182,7 +182,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 						params['group-id'] = parseInt( this.$inputor.data( 'suggestions-group-id' ), 10 );
 					}
 
-					self.xhr = $.getJSON( ajax.url, params )
+					self.xhr = $.getJSON( Comment_Mention.ajaxurl, params )
 						/**
 						 * Success callback for the @suggestions lookup.
 						 *

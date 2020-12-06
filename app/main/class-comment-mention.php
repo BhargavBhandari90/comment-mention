@@ -100,13 +100,18 @@ class CommentMentionMain {
 			true
 		);
 
+		$cmt_mntn_vars = apply_filters(
+			'cmt_mntn_vars',
+			array(
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
 		// Set ajax URL.
 		wp_localize_script(
 			'cmt-mntn-mentions',
-			'ajax',
-			array(
-				'url' => admin_url( 'admin-ajax.php' ),
-			)
+			'Comment_Mention',
+			$cmt_mntn_vars
 		);
 
 	}
@@ -122,7 +127,7 @@ class CommentMentionMain {
 		);
 
 		// Get usernames.
-		$results = apply_filters( 'cmt_mntn_ajax_get_users', $this->cmt_mntn_get_users( $args['term'] ) );
+		$results = apply_filters( 'cmt_mntn_ajax_get_users', $this->cmt_mntn_get_users( $args['term'] ), $args );
 
 		// Send response as json.
 		if ( is_wp_error( $results ) ) {
