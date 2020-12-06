@@ -30,7 +30,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 		var suggestionsDefaults = {
 			delay:             200,
 			hideWithoutSuffix: true,
-			insertTpl:         '@${name}',
+			insertTpl:         '@${user_login}',
 			limit:             10,
 			startWithSpace:    false,
 			suffix:            '',
@@ -232,7 +232,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 
 			at:         '@',
 			searchKey:  'search',
-			displayTpl: '<li data-value="@${name}"><span class="username">@${name}</span></li>'
+			displayTpl: Comment_Mention.mention_result_tlp,
 		},
 
 		opts = $.extend( true, {}, suggestionsDefaults, mentionsDefaults, options );

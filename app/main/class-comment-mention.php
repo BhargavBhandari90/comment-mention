@@ -104,6 +104,7 @@ class CommentMentionMain {
 			'cmt_mntn_vars',
 			array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'mention_result_tlp' => '<li data-value="@${name}"><span class="username">@${name}</span></li>',
 			)
 		);
 
