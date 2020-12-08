@@ -3,7 +3,7 @@
  * Plugin Name:     Comment Mention
  * Description:     Mention user in comments. Mentioned user will get email notification
  * Author:          Bunty
- * Author URI:      https://bhargavb.wordpress.com
+ * Author URI:      https://bhargavb.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
  * Version:         1.2.4
