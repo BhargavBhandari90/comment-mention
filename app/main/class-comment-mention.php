@@ -105,6 +105,7 @@ class CommentMentionMain {
 			array(
 				'ajaxurl'            => admin_url( 'admin-ajax.php' ),
 				'mention_result_tlp' => '<li data-value="@${user_login}"><span class="username">@${user_login}</span></li>',
+				'cmt_mntn_nounce'    => wp_create_nonce( 'cmt-mntn-nounce' ),
 			)
 		);
 
