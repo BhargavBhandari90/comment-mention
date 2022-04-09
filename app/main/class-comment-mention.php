@@ -128,8 +128,12 @@ class CommentMentionMain {
 			'term' => sanitize_text_field( $_GET['term'] ),
 		);
 
+		do_action( 'cmt_mntn_ajax_before_get_users', $args );
+
 		// Get usernames.
 		$results = apply_filters( 'cmt_mntn_ajax_get_users', $this->cmt_mntn_get_users( $args['term'] ), $args );
+
+		do_action( 'cmt_mntn_ajax_after_get_users', $results, $args );
 
 		// Send response as json.
 		if ( is_wp_error( $results ) ) {
@@ -149,9 +153,12 @@ class CommentMentionMain {
 	public function cmt_mntn_get_users( $username ) {
 
 		$wp_user_query = new WP_User_Query(
-			array(
-				'search'         => $username . '*',
-				'search_columns' => array( 'user_login' ),
+			apply_filters(
+				'cmt_mntn_get_users_args',
+				array(
+					'search'         => $username . '*',
+					'search_columns' => array( 'user_login' ),
+				)
 			)
 		);
 
@@ -192,7 +199,7 @@ class CommentMentionMain {
 			}
 		}
 
-		return $results;
+		return apply_filters( 'cmt_mntn_user_results', $results );
 
 	}
 
@@ -239,7 +246,7 @@ class CommentMentionMain {
 		}
 
 		// Return the content.
-		return $content;
+		return apply_filters( 'cmt_mntn_at_name_filter', $content );
 	}
 
 	/**
@@ -382,25 +389,25 @@ class CommentMentionMain {
 			? $comment_data['comment_content']
 			: '';
 
-		$search = array(
+		$search = apply_filters( 'cmt_mtn_search_email_placeholders', array(
 			'#comment_link#',
 			'#post_name#',
 			'#user_name#',
 			'#commenter_name#',
 			'#comment_content#',
-		);
+		) );
 
-		$replace = array(
+		$replace = apply_filters( 'cmt_mtn_replace_email_placeholders', array(
 			esc_url( $cmt_mntn_comment_link ),
 			esc_html( $post_name ),
 			esc_html( $user_name ),
 			esc_html( $commenter_name ),
 			$comment_content,
-		);
+		) );
 
 		$mail_content = str_replace( $search, $replace, $mail_content );
 
-		return $mail_content;
+		return apply_filters( 'cmt_mntn_mail_body', $mail_content );
 	}
 
 	/**
@@ -419,7 +426,7 @@ class CommentMentionMain {
 		}
 
 		// Return subject.
-		return $subject;
+		return apply_filters( 'cmt_mntn_mail_body', $subject );
 	}
 
 	/**
@@ -435,7 +442,7 @@ Someone mentioned you in a post. See the details below:
 
 <a href="#comment_link#"><strong>#post_name#</strong></a>';
 
-		return $content;
+		return apply_filters( 'cmt_mntn_mail_body', $content );
 	}
 
 
