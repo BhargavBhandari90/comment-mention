@@ -40,6 +40,9 @@ https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
 
+### 1.2.5 ###
+* Added actions and filters.
+
 ### 1.2.4 ###
 * Added new placeholders: #commenter_name# and #comment_content#.
 
