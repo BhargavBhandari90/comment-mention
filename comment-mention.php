@@ -6,7 +6,7 @@
  * Author URI:      https://bhargavb.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
- * Version:         1.3.0
+ * Version:         1.3.1
  *
  * @package         Comment_Mention
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'CMT_MNTN_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'CMT_MNTN_VERSION', '1.3.0' );
+	define( 'CMT_MNTN_VERSION', '1.3.1' );
 }
 if ( ! defined( 'CMT_MNTN_PATH' ) ) {
 	/**
@@ -60,9 +60,11 @@ function cmt_mntn_plugin_active() {
 function cmt_mntn_setting_page_link( $links ) {
 
 	$settings_link = sprintf(
-		'<a href="%1$s">%2$s</a>',
+		'<a href="%1$s">%2$s</a> | <a href="%3$s" target="_blank">%4$s</a>',
 		esc_url( admin_url( 'admin.php?page=comment-mention' ) ),
-		esc_html__( 'Settings', 'comment-mention' )
+		esc_html__( 'Settings', 'comment-mention' ),
+		esc_url( 'https://buntywp.gumroad.com/l/zrttc' ),
+		esc_html__( 'Go Pro', 'comment-mention' )
 	);
 
 	array_push( $links, $settings_link );
