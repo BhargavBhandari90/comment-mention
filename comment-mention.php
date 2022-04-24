@@ -43,6 +43,15 @@ if ( ! defined( 'CMT_MNTN_BASE_NAME' ) ) {
 }
 
 /**
+ * Function to identify if plugin is active.
+ *
+ * @return bool
+ */
+function cmt_mntn_plugin_active() {
+	__return_true();
+}
+
+/**
  * Setting link for plugin.
  *
  * @param  array $links Array of plugin setting link.

@@ -30,7 +30,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 		var suggestionsDefaults = {
 			delay:             200,
 			hideWithoutSuffix: true,
-			insertTpl:         '@${user_login}',
+			insertTpl:         '@${user_login} ',
 			limit:             10,
 			startWithSpace:    false,
 			suffix:            '',

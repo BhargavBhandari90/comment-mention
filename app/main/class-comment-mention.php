@@ -62,59 +62,7 @@ class CommentMentionMain {
 			return;
 		}
 
-		// Atwho CSS.
-		// Ref: https://github.com/ichord/At.js/
-		wp_enqueue_style(
-			'cmt-mntn-atwho-css',
-			CMT_MNTN_URL . 'app/assets/css/jquery.atwho.css',
-			array(),
-			CMT_MNTN_VERSION
-		);
-
-		// caret CSS.
-		// Ref: https://github.com/ichord/At.js/
-		wp_enqueue_script(
-			'cmt-mntn-caret',
-			CMT_MNTN_URL . 'app/assets/js/jquery.caret.js',
-			array( 'jquery' ),
-			CMT_MNTN_VERSION,
-			true
-		);
-
-		// Atwho JS.
-		// Ref: https://github.com/ichord/At.js/
-		wp_enqueue_script(
-			'cmt-mntn-atwho',
-			CMT_MNTN_URL . 'app/assets/js/jquery.atwho.js',
-			array( 'cmt-mntn-caret' ),
-			CMT_MNTN_VERSION,
-			true
-		);
-
-		// Plugin script.
-		wp_enqueue_script(
-			'cmt-mntn-mentions',
-			CMT_MNTN_URL . 'app/assets/js/mentions.js',
-			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
-			CMT_MNTN_VERSION,
-			true
-		);
-
-		$cmt_mntn_vars = apply_filters(
-			'cmt_mntn_vars',
-			array(
-				'ajaxurl'            => admin_url( 'admin-ajax.php' ),
-				'mention_result_tlp' => '<li data-value="@${user_login}"><span class="username">@${user_login}</span></li>',
-				'cmt_mntn_nounce'    => wp_create_nonce( 'cmt-mntn-nounce' ),
-			)
-		);
-
-		// Set ajax URL.
-		wp_localize_script(
-			'cmt-mntn-mentions',
-			'Comment_Mention',
-			$cmt_mntn_vars
-		);
+		self::cmt_mntn_enqueue_script_callback();
 
 	}
 
@@ -162,7 +110,7 @@ class CommentMentionMain {
 			)
 		);
 
-		$found_users = $wp_user_query->get_results();
+		$found_users = apply_filters( 'cmt_mntn_found_users', $wp_user_query->get_results() );
 		$results     = array();
 
 		if ( ! empty( $found_users ) ) {
@@ -192,7 +140,7 @@ class CommentMentionMain {
 				$result->user_login    = $user->user_login;
 				$result->user_nicename = $user->user_nicename;
 				$result->image         = get_avatar_url( $user->ID );
-				$result->name          = $user_full_name;
+				$result->name          = ! empty( $user_full_name ) ? $user_full_name : $user->user_nicename;
 				$result->user_id       = $user->ID;
 
 				$results[] = $result;
@@ -445,6 +393,68 @@ Someone mentioned you in a post. See the details below:
 		return apply_filters( 'cmt_mntn_mail_body', $content );
 	}
 
+	/**
+	 * Callback for scripts and styles.
+	 *
+	 * @return void
+	 */
+	public static function cmt_mntn_enqueue_script_callback() {
+
+		// Atwho CSS.
+		// Ref: https://github.com/ichord/At.js/
+		wp_enqueue_style(
+			'cmt-mntn-atwho-css',
+			CMT_MNTN_URL . 'app/assets/css/jquery.atwho.css',
+			array(),
+			CMT_MNTN_VERSION
+		);
+
+		// caret CSS.
+		// Ref: https://github.com/ichord/At.js/
+		wp_enqueue_script(
+			'cmt-mntn-caret',
+			CMT_MNTN_URL . 'app/assets/js/jquery.caret.js',
+			array( 'jquery' ),
+			CMT_MNTN_VERSION,
+			true
+		);
+
+		// Atwho JS.
+		// Ref: https://github.com/ichord/At.js/
+		wp_enqueue_script(
+			'cmt-mntn-atwho',
+			CMT_MNTN_URL . 'app/assets/js/jquery.atwho.js',
+			array( 'cmt-mntn-caret' ),
+			CMT_MNTN_VERSION,
+			true
+		);
+
+		// Plugin script.
+		wp_enqueue_script(
+			'cmt-mntn-mentions',
+			CMT_MNTN_URL . 'app/assets/js/mentions.js',
+			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
+			CMT_MNTN_VERSION,
+			true
+		);
+
+		$cmt_mntn_vars = apply_filters(
+			'cmt_mntn_vars',
+			array(
+				'ajaxurl'            => admin_url( 'admin-ajax.php' ),
+				'mention_result_tlp' => '<li data-value="@${user_login}"><span class="username">@${user_login}</span></li>',
+				'cmt_mntn_nounce'    => wp_create_nonce( 'cmt-mntn-nounce' ),
+			)
+		);
+
+		// Set ajax URL.
+		wp_localize_script(
+			'cmt-mntn-mentions',
+			'Comment_Mention',
+			$cmt_mntn_vars
+		);
+
+	}
 
 }
 

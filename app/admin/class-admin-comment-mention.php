@@ -164,8 +164,23 @@ class CommentMentionAdmin {
 			// Save to option table.
 			update_option( 'cmt_mntn_settings', $cmt_mntn_settings );
 
+			add_action( 'admin_notices', array( $this, 'cmt_mntn_admin_notice' ) );
+
 		}
 
+	}
+
+	/**
+	 * Admin notice for saved data.
+	 *
+	 * @return void
+	 */
+	public function cmt_mntn_admin_notice() {
+		?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php esc_html_e( 'Seetings Saved', 'comment-mention' ); ?></p>
+		</div>
+		<?php
 	}
 
 }
