@@ -35,6 +35,7 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 - And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
 
 - [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
+- TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
 
 ## Installation ##
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
