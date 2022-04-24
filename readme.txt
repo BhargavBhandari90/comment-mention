@@ -25,6 +25,14 @@ Email setting is provided in backend. You can change email subject and content b
 
 https://www.youtube.com/watch?v=Nz47aKJhsKQ
 
+== PRO Features ==
+
+* Search by First/Last name while mention.
+* Enable mentioning on Page comment.
+* Go to wp-admin –> Comment Mention
+* And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
+
+* [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
 
 == Installation ==
 
