@@ -279,6 +279,17 @@ class CommentMentionMain {
 				$cmt_mntn_user_data                  = get_user_by( 'id', $uid );
 				$comment_data['mentioned_user_data'] = $cmt_mntn_user_data;
 
+				// Get Mentioned User's id.
+				$cmt_mntn_user_id = $cmt_mntn_user_data->ID;
+				if ( 0 !== $cmt_mntn_user_id ) {
+					// Check If User Turned Off Email Notification or not.
+
+					$cmt_mntn_email_enabled = ! empty( get_user_meta( $cmt_mntn_user_id, 'cmt_mntn_email_notification_status', true ) ) ? get_user_meta( $cmt_mntn_user_id, 'cmt_mntn_email_notification_status', true ) : 'false';
+					if ( ! empty( $cmt_mntn_email_enabled ) && $cmt_mntn_email_enabled === 'true' ) {
+						return;
+					}
+				}
+
 				// Get email body.
 				$cmt_mntn_mail_body = $this->cmt_mntn_mail_body( $comment_data );
 				$cmt_mntn_mail_sub  = $this->cmt_mntn_mail_subject();
@@ -337,21 +348,27 @@ class CommentMentionMain {
 			? $comment_data['comment_content']
 			: '';
 
-		$search = apply_filters( 'cmt_mtn_search_email_placeholders', array(
-			'#comment_link#',
-			'#post_name#',
-			'#user_name#',
-			'#commenter_name#',
-			'#comment_content#',
-		) );
+		$search = apply_filters(
+			'cmt_mtn_search_email_placeholders',
+			array(
+				'#comment_link#',
+				'#post_name#',
+				'#user_name#',
+				'#commenter_name#',
+				'#comment_content#',
+			)
+		);
 
-		$replace = apply_filters( 'cmt_mtn_replace_email_placeholders', array(
-			esc_url( $cmt_mntn_comment_link ),
-			esc_html( $post_name ),
-			esc_html( $user_name ),
-			esc_html( $commenter_name ),
-			$comment_content,
-		) );
+		$replace = apply_filters(
+			'cmt_mtn_replace_email_placeholders',
+			array(
+				esc_url( $cmt_mntn_comment_link ),
+				esc_html( $post_name ),
+				esc_html( $user_name ),
+				esc_html( $commenter_name ),
+				$comment_content,
+			)
+		);
 
 		$mail_content = str_replace( $search, $replace, $mail_content );
 
