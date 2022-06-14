@@ -63,7 +63,7 @@ function cmt_mntn_setting_page_link( $links ) {
 		'<a href="%1$s">%2$s</a> | <a href="%3$s" target="_blank">%4$s</a>',
 		esc_url( admin_url( 'admin.php?page=comment-mention' ) ),
 		esc_html__( 'Settings', 'comment-mention' ),
-		esc_url( 'https://buntywp.gumroad.com/l/zrttc' ),
+		esc_url( 'https://checkout.freemius.com/mode/dialog/plugin/10495/plan/17738/' ),
 		esc_html__( 'Go Pro', 'comment-mention' )
 	);
 
