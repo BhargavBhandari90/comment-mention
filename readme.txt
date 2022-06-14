@@ -61,6 +61,9 @@ https://www.paypal.com/paypalme/BnB90/
 
 == Changelog ==
 
+= 1.3.2 =
+* Changes for pro plugin.
+
 = 1.3.1 =
 * Changes for pro plugin.
 
