@@ -3,9 +3,9 @@
 - **Donate link:** https://www.paypal.me/BnB90/50 
 - **Tags:** comments, mention, email, user, bbpress 
 - **Requires at least:** 4.6 
-- **Tested up to:** 5.9.3 
+- **Tested up to:** 6.0.1 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.3.2 
+- **Stable tag:** 1.3.3 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -30,6 +30,7 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 ## PRO Features ##
 
 - Search by First/Last name while mention.
+- Search by Display name while mention.
 - Enable mentioning on Page comment.
 - Added option to Turn off Email notification.
 - Go to wp-admin –> Comment Mention
@@ -50,6 +51,9 @@ Do you like this plugin? Support it by buying me coffee OR beer. ;)
 https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
+
+### 1.3.3 ###
+* Minor bug fixes.
 
 ### 1.3.2 ###
 * Changes for pro plugin.
