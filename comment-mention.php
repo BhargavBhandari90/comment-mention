@@ -6,7 +6,7 @@
  * Author URI:      https://bhargavb.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
- * Version:         1.3.2
+ * Version:         1.3.3
  *
  * @package         Comment_Mention
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'CMT_MNTN_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'CMT_MNTN_VERSION', '1.3.2' );
+	define( 'CMT_MNTN_VERSION', '1.3.3' );
 }
 if ( ! defined( 'CMT_MNTN_PATH' ) ) {
 	/**
@@ -93,9 +93,9 @@ function sample_admin_notice__success() {
 		<?php
 		echo sprintf(
 			'<p>%1$s</p><a href="%2$s" target="_blank">%3$s</a> | <a href="%4$s">%5$s</a>',
-			esc_html__( 'Do you like Comment Mention plugin? Support it by buying me coffee OR beer. ;)', 'comment-mention' ),
-			'https://www.paypal.com/paypalme/BnB90/',
-			esc_html__( 'Buy Coffee/Beer', 'comment-mention' ),
+			esc_html__( 'Do you like Comment Mention plugin? Checkout our Pro plugin.', 'comment-mention' ),
+			'https://biliplugins.com/comment-mention-pro/',
+			esc_html__( 'Go Pro', 'comment-mention' ),
 			esc_url( wp_nonce_url( add_query_arg( 'dismiss-cm-notice', '1' ), 'dismiss-cm-notice-' . get_current_user_id() ) ),
 			esc_html__( 'Dismiss this notice', 'comment-mention' )
 		);
