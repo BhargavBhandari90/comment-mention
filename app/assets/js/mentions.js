@@ -244,6 +244,16 @@ window.cmt_mntn = window.cmt_mntn || {};
 		$( '#commentform textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
 		$( '.bbp-topic-form form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
 		$( '.bbp-reply-form form textarea' ).cmt_mntn_mentions( cmt_mntn.mentions.users );
+		window.onload = function() { 
+			my_timing = setInterval(function(){cmt_mntn_tinymce();},500);
+			function cmt_mntn_tinymce() {
+				if (typeof window.tinyMCE !== 'undefined' && window.tinyMCE.activeEditor !== null && typeof window.tinyMCE.activeEditor !== 'undefined') {  
+					$( window.tinyMCE.activeEditor.contentDocument.activeElement ).cmt_mntn_mentions( cmt_mntn.mentions.users );
+					window.clearInterval(my_timing);
+				}
+			}
+			cmt_mntn_tinymce();
+		};
 	});
 
 })( cmt_mntn, jQuery );

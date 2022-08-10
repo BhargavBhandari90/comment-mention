@@ -63,6 +63,9 @@ https://www.paypal.com/paypalme/BnB90/
 
 == Changelog ==
 
+= 1.4.0 =
+* Added support for TinyMCE.
+
 = 1.3.3 =
 * Minor bug fixes.
 
