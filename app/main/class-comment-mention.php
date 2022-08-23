@@ -37,6 +37,9 @@ class CommentMentionMain {
 		// Process comment.
 		add_action( 'comment_post', array( $this, 'cmt_mntn_preprocess_comment' ), 10, 3 );
 
+		// Check if user mentioned or not.
+		add_action( 'comment_post', array( $this, 'cmt_mntn_check_mention' ), 10, 3 );
+
 		// Get plugin settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
@@ -316,6 +319,26 @@ class CommentMentionMain {
 			}
 		}
 
+	}
+
+	/**
+	 * Check If user is mentioned.
+	 *
+	 * @param  int    $comment_ID        Current comment id.
+	 * @param  string $comment_status Comment status.
+	 * @param  obj    $comment_data      Comment data.
+	 * @return void
+	 */
+	public function cmt_mntn_check_mention( $comment_ID, $comment_status, $comment_data ) {
+		// Get content.
+		$content = $comment_data['comment_content'];
+
+		// Get usernames from comment content.
+		$usernames = $this->cmt_mntn_find_mentions( $content );
+
+		if ( ! empty( $usernames ) ) {
+			do_action( 'cmt_mntn_user_mentioned' );
+		}
 	}
 
 	/**
