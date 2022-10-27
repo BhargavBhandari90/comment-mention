@@ -25,7 +25,7 @@ class CommentMentionMain {
 	 */
 	public function __construct() {
 
-		// Enqueue script
+		// Enqueue script.
 		add_action( 'wp_enqueue_scripts', array( $this, 'cmt_mntn_enqueue_styles_script' ) );
 
 		// Ger users.
@@ -159,6 +159,10 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_at_name_filter( $content ) {
 
+		if ( function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() ) {
+			return $content;
+		}
+
 		// Try to find mentions.
 		$usernames = $this->cmt_mntn_find_mentions( $content );
 
@@ -257,7 +261,7 @@ class CommentMentionMain {
 			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
 			: false;
 
-		if ( ! $is_send_email_enabled ) {
+		if ( ! $is_send_email_enabled || function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() ) {
 			return;
 		}
 
@@ -330,6 +334,9 @@ class CommentMentionMain {
 	 * @return void
 	 */
 	public function cmt_mntn_check_mention( $comment_ID, $comment_status, $comment_data ) {
+		if ( function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() ) {
+			return;
+		}
 		// Get content.
 		$content = $comment_data['comment_content'];
 
