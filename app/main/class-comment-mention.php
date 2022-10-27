@@ -451,7 +451,7 @@ Someone mentioned you in a post. See the details below:
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_style(
 			'cmt-mntn-atwho-css',
-			CMT_MNTN_URL . 'app/assets/css/jquery.atwho.css',
+			CMT_MNTN_URL . 'app/assets/css/atwho.min.css',
 			array(),
 			CMT_MNTN_VERSION
 		);
@@ -460,7 +460,7 @@ Someone mentioned you in a post. See the details below:
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_script(
 			'cmt-mntn-caret',
-			CMT_MNTN_URL . 'app/assets/js/jquery.caret.js',
+			CMT_MNTN_URL . 'app/assets/js/caret.min.js',
 			array( 'jquery' ),
 			CMT_MNTN_VERSION,
 			true
@@ -470,7 +470,7 @@ Someone mentioned you in a post. See the details below:
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_script(
 			'cmt-mntn-atwho',
-			CMT_MNTN_URL . 'app/assets/js/jquery.atwho.js',
+			CMT_MNTN_URL . 'app/assets/js/atwho.min.js',
 			array( 'cmt-mntn-caret' ),
 			CMT_MNTN_VERSION,
 			true
@@ -479,7 +479,7 @@ Someone mentioned you in a post. See the details below:
 		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',
-			CMT_MNTN_URL . 'app/assets/js/mentions.js',
+			CMT_MNTN_URL . 'app/assets/js/mentions.min.js',
 			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
 			CMT_MNTN_VERSION,
 			true

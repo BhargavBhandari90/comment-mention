@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
 		      expand: true,
 		      cwd: 'app/assets/css',
 		      src: ['*.css', '!*.min.css'],
-		      dest: 'assets/css',
+		      dest: 'app/assets/css',
 		      ext: '.min.css'
 		    }]
 		  }
