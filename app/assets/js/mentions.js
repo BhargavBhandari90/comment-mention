@@ -191,6 +191,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 						 */
 						.done(function( response ) {
 							if ( ! response.success ) {
+								$('#cmt-mntn-subscription-reminder').show();
 								return;
 							}
 
