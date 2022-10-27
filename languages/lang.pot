@@ -1,42 +1,31 @@
-# Copyright (C) 2022 WPGULP
-# This file is distributed under the same license as the WPGULP package.
+# Copyright (C) 2022
+# This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPGULP\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/comment-mention\n"
+"POT-Creation-Date: 2022-10-27 09:08:19+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Content-Transfer-Econdig: 8bit\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language-Team: AhmadAwais <your_email@email.com>\n"
-"Last-Translator: Ahmad Awais <your_email@email.com>\n"
-"MIME-Version: 1.0\n"
-"Project-Id-Version: WPGULP\n"
-"Report-Msgid-Bugs-To: https://AhmadAwais.com/contact/\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: comment-mention.php:56
-msgid "Settings"
-msgstr ""
-
-#: comment-mention.php:85
-msgid "Do you like Comment Mention plugin? Support it by buying me coffee OR beer. ;)"
-msgstr ""
-
-#: comment-mention.php:87
-msgid "Buy Coffee/Beer"
-msgstr ""
-
-#: comment-mention.php:89
-msgid "Dismiss this notice"
-msgstr ""
-
-#: app/admin/class-admin-comment-mention.php:49, app/admin/class-admin-comment-mention.php:80
+#: app/admin/class-admin-comment-mention.php:49
+#: app/admin/class-admin-comment-mention.php:80
 msgid "Comment Mention Settings"
 msgstr ""
 
@@ -88,7 +77,11 @@ msgstr ""
 msgid "Comment content."
 msgstr ""
 
-#: app/includes/common-functions.php:99, app/main/class-comment-mention.php:424
+#: app/admin/class-admin-comment-mention.php:181
+msgid "Seetings Saved"
+msgstr ""
+
+#: app/includes/common-functions.php:99 app/main/class-comment-mention.php:419
 msgid "You were mentioned in a comment"
 msgstr ""
 
@@ -100,6 +93,22 @@ msgstr ""
 msgid "Enable User Mention in Topics & Replies Content"
 msgstr ""
 
-#: app/main/class-comment-mention.php:387
+#: app/main/class-comment-mention.php:376
 msgid "Someone"
+msgstr ""
+
+#: comment-mention.php:65
+msgid "Settings"
+msgstr ""
+
+#: comment-mention.php:67 comment-mention.php:98
+msgid "Go Pro"
+msgstr ""
+
+#: comment-mention.php:96
+msgid "Do you like Comment Mention plugin? Checkout our Pro plugin."
+msgstr ""
+
+#: comment-mention.php:100
+msgid "Dismiss this notice"
 msgstr ""
