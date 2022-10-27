@@ -1,11 +1,11 @@
 # Comment Mention #
-- **Contributors:** bhargavbhandari90 
+- **Contributors:** bhargavbhandari90, biliplugins, hackkzy404 
 - **Donate link:** https://www.paypal.me/BnB90/50 
 - **Tags:** comments, mention, email, user, bbpress 
 - **Requires at least:** 4.6 
-- **Tested up to:** 6.0.1 
+- **Tested up to:** 6.0.3 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.4.1 
+- **Stable tag:** 1.4.2 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -51,6 +51,9 @@ Do you like this plugin? Support it by buying me coffee OR beer. ;)
 https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
+
+### 1.4.2 ###
+* Made some changes related to pro plugin.
 
 ### 1.4.1 ###
 * Made some changes related to pro plugin.
