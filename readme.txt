@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
 Tested up to: 6.0.3
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,9 @@ e.g.
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 == Changelog ==
+
+= 1.4.6 =
+* JS & CSS optimizatin.
 
 = 1.4.5 =
 * JS & CSS optimizatin.
