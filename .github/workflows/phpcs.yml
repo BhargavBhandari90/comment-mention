@@ -18,3 +18,8 @@ jobs:
         with:
           php-version: '7.4'
           tools: composer:v2
+
+      - name: Setup WPCS
+        run: |
+          composer i
+          ./vendor/bin/phpcs --standard=WordPress app/

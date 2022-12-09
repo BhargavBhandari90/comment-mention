@@ -1,0 +1,18 @@
+{
+    "name": "bhargav/comment-mention",
+    "autoload": {
+        "psr-4": {
+            "Bhargav\\CommentMention\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bunty",
+            "email": "bhargav@buddyboss.com"
+        }
+    ],
+    "require-dev": {
+        "automattic/vipwpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+    }
+}
