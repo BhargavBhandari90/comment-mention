@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
 Tested up to: 6.0.3
-Stable tag: 1.4.2
+Stable tag: 1.4.5
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -37,6 +37,11 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 * [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
 * TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
 
+== Pro Plugin Compatibility ==
+
+* [GamiPress](https://gamipress.com/?ref=203)
+* [MemberPress](https://memberpress.com/)
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
@@ -53,15 +58,18 @@ e.g.
 
 == GIT Repo ==
 
-https://github.com/BhargavBhandari90/comment-mention
-
-== Buy me a coffee/beer ==
-
-Do you like this plugin? Support it by buying me coffee OR beer. ;)
-
-https://www.paypal.com/paypalme/BnB90/
+[https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 == Changelog ==
+
+= 1.4.5 =
+* JS & CSS optimizatin.
+
+= 1.4.4 =
+* Fix - Not able to mention.
+
+= 1.4.3 =
+* Fix - Not able to mention.
 
 = 1.4.2 =
 * Made some changes related to pro plugin.

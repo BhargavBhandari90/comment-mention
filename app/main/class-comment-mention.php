@@ -451,36 +451,36 @@ Someone mentioned you in a post. See the details below:
 		// Ref: https://github.com/ichord/At.js/
 		wp_enqueue_style(
 			'cmt-mntn-atwho-css',
-			CMT_MNTN_URL . 'app/assets/css/atwho.min.css',
+			CMT_MNTN_URL . 'build/comment-mention.css',
 			array(),
 			CMT_MNTN_VERSION
 		);
 
 		// caret CSS.
-		// Ref: https://github.com/ichord/At.js/
-		wp_enqueue_script(
-			'cmt-mntn-caret',
-			CMT_MNTN_URL . 'app/assets/js/caret.min.js',
-			array( 'jquery' ),
-			CMT_MNTN_VERSION,
-			true
-		);
+		// // Ref: https://github.com/ichord/At.js/
+		// wp_enqueue_script(
+		// 	'cmt-mntn-caret',
+		// 	CMT_MNTN_URL . 'app/assets/js/caret.min.js',
+		// 	array( 'jquery' ),
+		// 	CMT_MNTN_VERSION,
+		// 	true
+		// );
 
-		// Atwho JS.
-		// Ref: https://github.com/ichord/At.js/
-		wp_enqueue_script(
-			'cmt-mntn-atwho',
-			CMT_MNTN_URL . 'app/assets/js/atwho.min.js',
-			array( 'cmt-mntn-caret' ),
-			CMT_MNTN_VERSION,
-			true
-		);
+		// // Atwho JS.
+		// // Ref: https://github.com/ichord/At.js/
+		// wp_enqueue_script(
+		// 	'cmt-mntn-atwho',
+		// 	CMT_MNTN_URL . 'app/assets/js/atwho.min.js',
+		// 	array( 'cmt-mntn-caret' ),
+		// 	CMT_MNTN_VERSION,
+		// 	true
+		// );
 
 		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',
-			CMT_MNTN_URL . 'app/assets/js/mentions.min.js',
-			array( 'cmt-mntn-caret', 'cmt-mntn-atwho' ),
+			CMT_MNTN_URL . 'build/comment-mention.js',
+			array( 'jquery' ),
 			CMT_MNTN_VERSION,
 			true
 		);
