@@ -4,7 +4,8 @@
   "description": "Comment Mention plugin",
   "main": "Gruntfile.js",
   "scripts": {
-    "start": "grunt default",
+    "start": "npx wp-scripts start",
+    "build": "npx wp-scripts build",
     "readme": "grunt readme",
     "i18n": "grunt i18n"
   },
@@ -14,6 +15,7 @@
     "grunt-wp-i18n": "^1.0.3"
   },
   "devDependencies": {
+    "@wordpress/scripts": "^24.6.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
