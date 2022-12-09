@@ -22,4 +22,4 @@ jobs:
       - name: Setup WPCS
         run: |
           composer i
-          ./vendor/bin/phpcs --standard=WordPress app/
+          ./vendor/bin/phpcs --standard=WordPress --extensions=php app/
