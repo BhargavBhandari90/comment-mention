@@ -1,10 +1,13 @@
+.distignore
+.nvmrc
 composer.json
 composer.lock
-Gruntfile.json
+Gruntfile.js
 package.json
 package-lock.json
 webpack.config.js
-.nvmrc
 
+.git/
 .github/
+src/
 node_modules/
