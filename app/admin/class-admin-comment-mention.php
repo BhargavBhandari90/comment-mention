@@ -89,17 +89,17 @@ class CommentMentionAdmin {
 				<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Enabled Roles', 'comment-mention' ); ?></th>
 				<td>
-					<select name="cmt_mntn_enabled_user_roles[]" id="cmt_mntn_enabled_user_roles" multiple>
+					<fieldset class="metabox-prefs">
 						<?php
 						$editable_roles = array_reverse( get_editable_roles() );
 						if ( ! empty( $editable_roles ) ) {
 							foreach ( $editable_roles as $role => $details ) {
 								$name     = translate_user_role( $details['name'] );
-								$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'selected' : '';
+								$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'checked' : '';
 								echo sprintf(
-									'<option %1$s value="%2$s">%3$s</option>',
-									esc_attr( $selected ),
+									'<label><input type="checkbox" name="cmt_mntn_enabled_user_roles[]" value="%1$s" %2$s>%3$s</label>',
 									esc_attr( $role ),
+									esc_attr( $selected ),
 									esc_html( $name )
 								);
 							}
