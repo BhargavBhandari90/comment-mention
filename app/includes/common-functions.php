@@ -76,21 +76,27 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 	$commenter_name  = isset( $author_obj->user_login ) ? $author_obj->user_login : 'Someone';
 	$comment_content = get_post_field( 'post_content', $post_id );
 
-	$search = apply_filters( 'cmt_mtn_search_email_placeholders', array(
-		'#comment_link#',
-		'#post_name#',
-		'#user_name#',
-		'#commenter_name#',
-		'#comment_content#',
-	) );
+	$search = apply_filters(
+		'cmt_mtn_search_email_placeholders',
+		array(
+			'#comment_link#',
+			'#post_name#',
+			'#user_name#',
+			'#commenter_name#',
+			'#comment_content#',
+		)
+	);
 
-	$replace = apply_filters( 'cmt_mtn_replace_email_placeholders', array(
-		esc_url( $cmt_mntn_comment_link ),
-		esc_html( $post_name ),
-		esc_html( $user_name ),
-		esc_html( $commenter_name ),
-		$comment_content,
-	) );
+	$replace = apply_filters(
+		'cmt_mtn_replace_email_placeholders',
+		array(
+			esc_url( $cmt_mntn_comment_link ),
+			esc_html( $post_name ),
+			esc_html( $user_name ),
+			esc_html( $commenter_name ),
+			$comment_content,
+		)
+	);
 
 	// Replace with actual values.
 	$mail_setting['email_content'] = str_replace( $search, $replace, $mail_content );
@@ -99,4 +105,27 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 		: esc_html__( 'You were mentioned in a comment', 'comment-mention' );
 
 	return apply_filters( 'cmt_mntn_mail_setting', $mail_setting );
+}
+
+/**
+ * Checks if current user'role is enabled for Comment Mention.
+ */
+function cmt_mntn_check_enabled_userroles() {
+
+	$cmt_mntn_settings           = get_option( 'cmt_mntn_settings' );
+	$cmt_mntn_enabled_user_roles = ! empty( $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
+
+	if ( empty( $cmt_mntn_enabled_user_roles ) ) {
+		return false;
+	}
+
+	$user  = wp_get_current_user();
+	$roles = (array) $user->roles;
+
+	foreach ( $roles as $role ) {
+		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) ) {
+			return true;
+		}
+	}
+	return false;
 }

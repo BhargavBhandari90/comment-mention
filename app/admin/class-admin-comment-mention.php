@@ -69,11 +69,14 @@ class CommentMentionAdmin {
 		// Get status.
 		$cmt_mntn_email_enable = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
 
-		// Get subject
+		// Get subject.
 		$cmt_mntn_subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : $this->_comment_mention->cmt_mntn_mail_subject();
 
-		// Get content
+		// Get content.
 		$cmt_mntn_mail_content = ! empty( $this->cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $this->cmt_mntn_settings['cmt_mntn_mail_content'] : $this->_comment_mention->cmt_mntn_default_mail_content();
+
+		// Get Selected.
+		$cmt_mntn_enabled_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
 
 		?>
 		<div class="wrap">
@@ -82,6 +85,30 @@ class CommentMentionAdmin {
 		<form method="post" action="">
 			<?php wp_nonce_field( 'cmt_mntn_save_data_action', 'cmt_mntn_save_data_field' ); ?>
 			<table class="form-table">
+
+				<tr valign="top">
+				<th scope="row"><?php esc_html_e( 'Enabled Roles', 'comment-mention' ); ?></th>
+				<td>
+					<select name="cmt_mntn_enabled_user_roles[]" id="cmt_mntn_enabled_user_roles" multiple>
+						<?php
+						$editable_roles = array_reverse( get_editable_roles() );
+						if ( ! empty( $editable_roles ) ) {
+							foreach ( $editable_roles as $role => $details ) {
+								$name     = translate_user_role( $details['name'] );
+								$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'selected' : '';
+								echo sprintf(
+									'<option %1$s value="%2$s">%3$s</option>',
+									esc_attr( $selected ),
+									esc_attr( $role ),
+									esc_html( $name )
+								);
+							}
+						}
+						?>
+					</select>
+					<p class="description"><?php esc_html_e( 'Enable comment mention for selected roles.', 'comment-mention' ); ?><br/>
+				</td>
+				</tr>
 
 				<tr valign="top">
 				<th scope="row"><?php esc_html_e( 'Enable Emails', 'comment-mention' ); ?></th>
@@ -138,7 +165,7 @@ class CommentMentionAdmin {
 	 */
 	public function cmt_mntn_save_plugin_data() {
 
-		// Verify nounce for security.
+		// Verify nonce for security.
 		if (
 			isset( $_POST['cmt_mntn_save_data_field'] )
 			&& wp_verify_nonce( $_POST['cmt_mntn_save_data_field'], 'cmt_mntn_save_data_action' )
@@ -146,7 +173,7 @@ class CommentMentionAdmin {
 
 			$cmt_mntn_settings = array();
 
-			// Get data from form
+			// Get data from form.
 			if ( isset( $_POST['cmt_mntn_email_enable'] ) && ! empty( $_POST['cmt_mntn_email_enable'] ) ) {
 				$cmt_mntn_settings['cmt_mntn_email_enable'] = intval( $_POST['cmt_mntn_email_enable'] );
 			}
@@ -158,6 +185,8 @@ class CommentMentionAdmin {
 			if ( isset( $_POST['cmt_mntn_mail_content'] ) && ! empty( $_POST['cmt_mntn_mail_content'] ) ) {
 				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) );
 			}
+
+			$cmt_mntn_settings['cmt_mntn_enabled_user_roles'] = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
 			$cmt_mntn_settings = apply_filters( 'cmt_mntn_settings', $cmt_mntn_settings );
 
