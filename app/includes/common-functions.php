@@ -123,7 +123,7 @@ function cmt_mntn_check_enabled_userroles() {
 	$roles = (array) $user->roles;
 
 	foreach ( $roles as $role ) {
-		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) ) {
+		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) || current_user_can( 'manage_options' ) ) {
 			return true;
 		}
 	}
