@@ -112,6 +112,10 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
  */
 function cmt_mntn_check_enabled_userroles() {
 
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+
 	$cmt_mntn_settings           = get_option( 'cmt_mntn_settings' );
 	$cmt_mntn_enabled_user_roles = ! empty( $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
 
@@ -123,7 +127,7 @@ function cmt_mntn_check_enabled_userroles() {
 	$roles = (array) $user->roles;
 
 	foreach ( $roles as $role ) {
-		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) || current_user_can( 'manage_options' ) ) {
+		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) ) {
 			return true;
 		}
 	}
