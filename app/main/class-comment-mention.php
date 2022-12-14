@@ -162,7 +162,7 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_at_name_filter( $content ) {
 
-		if ( function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() || ! cmt_mntn_check_enabled_userroles() ) {
+		if ( ! cmt_mntn_can_user_mention() ) {
 			return $content;
 		}
 
@@ -264,7 +264,7 @@ class CommentMentionMain {
 			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
 			: false;
 
-		if ( ! $is_send_email_enabled || function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() || ! cmt_mntn_check_enabled_userroles() ) {
+		if ( ! $is_send_email_enabled || ! cmt_mntn_can_user_mention() ) {
 			return;
 		}
 
@@ -337,7 +337,7 @@ class CommentMentionMain {
 	 * @return void
 	 */
 	public function cmt_mntn_check_mention( $comment_ID, $comment_status, $comment_data ) {
-		if ( function_exists( 'cmt_mntn_pro_membership_status' ) && ! cmt_mntn_pro_membership_status() || ! cmt_mntn_check_enabled_userroles() ) {
+		if ( ! cmt_mntn_can_user_mention() ) {
 			return;
 		}
 		// Get content.
@@ -512,7 +512,6 @@ Someone mentioned you in a post. See the details below:
 	public function cmt_mntn_check_user_role_before_ajax() {
 		if ( ! cmt_mntn_check_enabled_userroles() ) {
 			wp_send_json_error( 'User Restricted' );
-			exit;
 		}
 	}
 

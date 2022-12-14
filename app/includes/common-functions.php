@@ -108,6 +108,16 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 }
 
 /**
+ * check if user can mention or not.
+ */
+function cmt_mntn_can_user_mention() {
+	if ( function_exists( 'cmt_mntn_pro_membership_status' ) && cmt_mntn_pro_membership_status() || cmt_mntn_check_enabled_userroles() ) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Checks if current user'role is enabled for Comment Mention.
  */
 function cmt_mntn_check_enabled_userroles() {
@@ -125,6 +135,10 @@ function cmt_mntn_check_enabled_userroles() {
 
 	$user  = wp_get_current_user();
 	$roles = (array) $user->roles;
+
+	if ( empty( $roles ) ) {
+		return false;
+	}
 
 	foreach ( $roles as $role ) {
 		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) ) {
