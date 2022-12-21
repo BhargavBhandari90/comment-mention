@@ -460,26 +460,6 @@ Someone mentioned you in a post. See the details below:
 			CMT_MNTN_VERSION
 		);
 
-		// caret CSS.
-		// // Ref: https://github.com/ichord/At.js/
-		// wp_enqueue_script(
-		// 'cmt-mntn-caret',
-		// CMT_MNTN_URL . 'app/assets/js/caret.min.js',
-		// array( 'jquery' ),
-		// CMT_MNTN_VERSION,
-		// true
-		// );
-
-		// // Atwho JS.
-		// // Ref: https://github.com/ichord/At.js/
-		// wp_enqueue_script(
-		// 'cmt-mntn-atwho',
-		// CMT_MNTN_URL . 'app/assets/js/atwho.min.js',
-		// array( 'cmt-mntn-caret' ),
-		// CMT_MNTN_VERSION,
-		// true
-		// );
-
 		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',

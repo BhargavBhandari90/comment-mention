@@ -92,7 +92,11 @@ class CommentMentionAdmin {
 					<fieldset class="metabox-prefs">
 						<?php
 						$editable_roles = array_reverse( get_editable_roles() );
-						unset( $editable_roles['administrator'] );
+
+						if ( ! empty( $editable_roles ) && array_key_exists( 'administrator', $editable_roles ) ) {
+							unset( $editable_roles['administrator'] );
+						}
+
 						if ( ! empty( $editable_roles ) ) {
 							foreach ( $editable_roles as $role => $details ) {
 								$name     = translate_user_role( $details['name'] );
