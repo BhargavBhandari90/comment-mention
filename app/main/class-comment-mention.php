@@ -40,9 +40,6 @@ class CommentMentionMain {
 		// Check if user mentioned or not.
 		add_action( 'comment_post', array( $this, 'cmt_mntn_check_mention' ), 10, 3 );
 
-		// Stop User Mention if user role is not selected.
-		add_action( 'cmt_mntn_ajax_before_get_users', array( $this, 'cmt_mntn_check_user_role_before_ajax' ) );
-
 		// Get plugin settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
@@ -76,6 +73,10 @@ class CommentMentionMain {
 	 * Get usernames.
 	 */
 	public function cmt_mntn_ajax_get_users() {
+
+		if ( ! cmt_mntn_check_enabled_userroles() ) {
+			wp_send_json_error( 'User Restricted' );
+		}
 
 		// Set arguments.
 		$args = array(
@@ -459,26 +460,6 @@ Someone mentioned you in a post. See the details below:
 			CMT_MNTN_VERSION
 		);
 
-		// caret CSS.
-		// // Ref: https://github.com/ichord/At.js/
-		// wp_enqueue_script(
-		// 	'cmt-mntn-caret',
-		// 	CMT_MNTN_URL . 'app/assets/js/caret.min.js',
-		// 	array( 'jquery' ),
-		// 	CMT_MNTN_VERSION,
-		// 	true
-		// );
-
-		// // Atwho JS.
-		// // Ref: https://github.com/ichord/At.js/
-		// wp_enqueue_script(
-		// 	'cmt-mntn-atwho',
-		// 	CMT_MNTN_URL . 'app/assets/js/atwho.min.js',
-		// 	array( 'cmt-mntn-caret' ),
-		// 	CMT_MNTN_VERSION,
-		// 	true
-		// );
-
 		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',
@@ -505,16 +486,6 @@ Someone mentioned you in a post. See the details below:
 		);
 
 	}
-
-	/**
-	 * Stop User Mention if user role is not selected.
-	 */
-	public function cmt_mntn_check_user_role_before_ajax() {
-		if ( ! cmt_mntn_check_enabled_userroles() ) {
-			wp_send_json_error( 'User Restricted' );
-		}
-	}
-
 }
 
 new CommentMentionMain();

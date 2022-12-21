@@ -126,7 +126,12 @@ function cmt_mntn_check_enabled_userroles() {
 		return true;
 	}
 
-	$cmt_mntn_settings           = get_option( 'cmt_mntn_settings' );
+	$cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
+
+	if ( ! empty( $cmt_mntn_settings ) && ! array_key_exists( 'cmt_mntn_enabled_user_roles', $cmt_mntn_settings ) ) {
+		return true;
+	}
+
 	$cmt_mntn_enabled_user_roles = ! empty( $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
 
 	if ( empty( $cmt_mntn_enabled_user_roles ) ) {
