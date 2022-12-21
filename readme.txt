@@ -3,8 +3,8 @@ Contributors: bhargavbhandari90, biliplugins, hackkzy404
 Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
-Tested up to: 6.0.3
-Stable tag: 1.4.6
+Tested up to: 6.1.1
+Stable tag: 1.5.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -62,11 +62,14 @@ e.g.
 
 == Changelog ==
 
+= 1.5.0 =
+* Added Option to enable comment mention for selected user roles.
+
 = 1.4.6 =
-* JS & CSS optimizatin.
+* JS & CSS optimization.
 
 = 1.4.5 =
-* JS & CSS optimizatin.
+* JS & CSS optimization.
 
 = 1.4.4 =
 * Fix - Not able to mention.
