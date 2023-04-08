@@ -5,7 +5,7 @@
 - **Requires at least:** 4.6 
 - **Tested up to:** 6.1.1 
 - **Requires PHP:** 5.6 
-- **Stable tag:** 1.5.0 
+- **Stable tag:** 1.6.0 
 - **License:** GPLv2 or later 
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -56,6 +56,9 @@ Do you like this plugin? Support it by buying me coffee OR beer. ;)
 https://www.paypal.com/paypalme/BnB90/
 
 ## Changelog ##
+
+## 1.6.0 ##
+* Added Option to Hide selected user roles while mentioning.
 
 ## 1.5.0 ##
 * Added Option to enable comment mention for selected user roles.

@@ -107,12 +107,15 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_get_users( $username ) {
 
+		$cmt_mntn_disabled_mention_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] : array();
+
 		$wp_user_query = new WP_User_Query(
 			apply_filters(
 				'cmt_mntn_get_users_args',
 				array(
 					'search'         => $username . '*',
 					'search_columns' => array( 'user_login' ),
+					'role__not_in'   => $cmt_mntn_disabled_mention_user_roles,
 				)
 			)
 		);
