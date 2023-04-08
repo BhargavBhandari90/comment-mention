@@ -114,7 +114,7 @@ class CommentMentionAdmin {
 							}
 							?>
 						</fieldset>
-						<p class="description"><?php esc_html_e( 'Enable comment mention for selected roles.', 'comment-mention' ); ?><br/>
+						<p class="description"><?php esc_html_e( 'Choose which user roles should be able to mention in Comments.', 'comment-mention' ); ?><br/>
 					</td>
 				</tr>
 				<tr>
@@ -138,7 +138,7 @@ class CommentMentionAdmin {
 							}
 							?>
 						</fieldset>
-						<p class="description"><?php esc_html_e( 'Disable Mentioning for selected roles.', 'comment-mention' ); ?><br/>
+						<p class="description"><?php esc_html_e( 'Hide selected user roles while mentioning in Comments.', 'comment-mention' ); ?><br/>
 					</td>
 				</tr>
 
