@@ -75,8 +75,11 @@ class CommentMentionAdmin {
 		// Get content.
 		$cmt_mntn_mail_content = ! empty( $this->cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $this->cmt_mntn_settings['cmt_mntn_mail_content'] : $this->_comment_mention->cmt_mntn_default_mail_content();
 
-		// Get Selected.
+		// Get selected users roles who can mention.
 		$cmt_mntn_enabled_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
+
+		// Get selected users roles that can not be mentioned.
+		$cmt_mntn_disabled_mention_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] : array();
 
 		?>
 		<div class="wrap">
@@ -87,70 +90,94 @@ class CommentMentionAdmin {
 			<table class="form-table">
 
 				<tr valign="top">
-				<th scope="row"><?php esc_html_e( 'Enabled Roles', 'comment-mention' ); ?></th>
-				<td>
-					<fieldset class="metabox-prefs">
-						<?php
-						$editable_roles = array_reverse( get_editable_roles() );
+					<th scope="row"><?php esc_html_e( 'Enabled Roles', 'comment-mention' ); ?></th>
+					<td>
+						<fieldset class="metabox-prefs">
+							<?php
+							$editable_roles = array_reverse( get_editable_roles() );
 
-						if ( ! empty( $editable_roles ) && array_key_exists( 'administrator', $editable_roles ) ) {
-							unset( $editable_roles['administrator'] );
-						}
-
-						if ( ! empty( $editable_roles ) ) {
-							foreach ( $editable_roles as $role => $details ) {
-								$name     = translate_user_role( $details['name'] );
-								$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'checked' : '';
-								echo sprintf(
-									'<label><input type="checkbox" name="cmt_mntn_enabled_user_roles[]" value="%1$s" %2$s>%3$s</label>',
-									esc_attr( $role ),
-									esc_attr( $selected ),
-									esc_html( $name )
-								);
+							if ( ! empty( $editable_roles ) && array_key_exists( 'administrator', $editable_roles ) ) {
+								unset( $editable_roles['administrator'] );
 							}
-						}
-						?>
-					</select>
-					<p class="description"><?php esc_html_e( 'Enable comment mention for selected roles.', 'comment-mention' ); ?><br/>
-				</td>
+
+							if ( ! empty( $editable_roles ) ) {
+								foreach ( $editable_roles as $role => $details ) {
+									$name     = translate_user_role( $details['name'] );
+									$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'checked' : '';
+									echo sprintf(
+										'<label><input type="checkbox" name="cmt_mntn_enabled_user_roles[]" value="%1$s" %2$s>%3$s</label>',
+										esc_attr( $role ),
+										esc_attr( $selected ),
+										esc_html( $name )
+									);
+								}
+							}
+							?>
+						</fieldset>
+						<p class="description"><?php esc_html_e( 'Enable comment mention for selected roles.', 'comment-mention' ); ?><br/>
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						<fieldset class="metabox-prefs">
+							<?php
+							$editable_roles = array_reverse( get_editable_roles() );
+
+							if ( ! empty( $editable_roles ) ) {
+								foreach ( $editable_roles as $role => $details ) {
+									$name     = translate_user_role( $details['name'] );
+									$selected = in_array( $role, $cmt_mntn_disabled_mention_user_roles, false ) ? 'checked' : '';
+									echo sprintf(
+										'<label><input type="checkbox" name="cmt_mntn_disabled_mention_user_roles[]" value="%1$s" %2$s>%3$s</label>',
+										esc_attr( $role ),
+										esc_attr( $selected ),
+										esc_html( $name )
+									);
+								}
+							}
+							?>
+						</fieldset>
+						<p class="description"><?php esc_html_e( 'Disable Mentioning for selected roles.', 'comment-mention' ); ?><br/>
+					</td>
 				</tr>
 
 				<tr valign="top">
-				<th scope="row"><?php esc_html_e( 'Enable Emails', 'comment-mention' ); ?></th>
-				<td>
-					<input type="checkbox" name="cmt_mntn_email_enable" value="1" <?php checked( $cmt_mntn_email_enable, '1' ); ?> />
-					<p class="description"><?php esc_html_e( 'Whether to send email to mentioned user or not.', 'comment-mention' ); ?><br/>
-				</td>
+					<th scope="row"><?php esc_html_e( 'Enable Emails', 'comment-mention' ); ?></th>
+					<td>
+						<input type="checkbox" name="cmt_mntn_email_enable" value="1" <?php checked( $cmt_mntn_email_enable, '1' ); ?> />
+						<p class="description"><?php esc_html_e( 'Whether to send email to mentioned user or not.', 'comment-mention' ); ?><br/>
+					</td>
 				</tr>
 
 				<tr valign="top">
-				<th scope="row"><?php esc_html_e( 'Email Subject', 'comment-mention' ); ?></th>
-				<td>
-					<input type="text" name="cmt_mntn_email_subject" value="<?php echo esc_attr( $cmt_mntn_subject ); ?>" />
-					<p class="description"><?php esc_html_e( 'Subject for mentioned user email.', 'comment-mention' ); ?><br/>
-				</td>
+					<th scope="row"><?php esc_html_e( 'Email Subject', 'comment-mention' ); ?></th>
+					<td>
+						<input type="text" name="cmt_mntn_email_subject" value="<?php echo esc_attr( $cmt_mntn_subject ); ?>" />
+						<p class="description"><?php esc_html_e( 'Subject for mentioned user email.', 'comment-mention' ); ?><br/>
+					</td>
 				</tr>
 
 				<tr valign="top">
-				<th scope="row"><?php esc_html_e( 'Email Content', 'comment-mention' ); ?></th>
-				<td>
-					<?php
+					<th scope="row"><?php esc_html_e( 'Email Content', 'comment-mention' ); ?></th>
+					<td>
+						<?php
 
-						$editor_id = 'cmt_mntn_mail_content';
-						$settings  = array(
-							'media_buttons' => false,
-						);
+							$editor_id = 'cmt_mntn_mail_content';
+							$settings  = array(
+								'media_buttons' => false,
+							);
 
-						wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
-						?>
-					<p class="description"><?php esc_html_e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
-					<strong>#comment_link#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Link where user is mentioned.', 'comment-mention' ); ?><br/>
-					<strong>#post_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Post title where user is mentioned.', 'comment-mention' ); ?><br/>
-					<strong>#user_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Username who is mentioned.', 'comment-mention' ); ?><br/>
-					<strong>#commenter_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Commenter name.', 'comment-mention' ); ?><br/>
-					<strong>#comment_content#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Comment content.', 'comment-mention' ); ?><br/>
-					</p>
-				</td>
+							wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
+							?>
+						<p class="description"><?php esc_html_e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
+						<strong>#comment_link#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Link where user is mentioned.', 'comment-mention' ); ?><br/>
+						<strong>#post_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Post title where user is mentioned.', 'comment-mention' ); ?><br/>
+						<strong>#user_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Username who is mentioned.', 'comment-mention' ); ?><br/>
+						<strong>#commenter_name#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Commenter name.', 'comment-mention' ); ?><br/>
+						<strong>#comment_content#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Comment content.', 'comment-mention' ); ?><br/>
+						</p>
+					</td>
 				</tr>
 
 				<?php do_action( 'cmt_mntn_more_options' ); ?>
@@ -191,7 +218,8 @@ class CommentMentionAdmin {
 				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) );
 			}
 
-			$cmt_mntn_settings['cmt_mntn_enabled_user_roles'] = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+			$cmt_mntn_settings['cmt_mntn_enabled_user_roles']          = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+			$cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] = filter_input( INPUT_POST, 'cmt_mntn_disabled_mention_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
 			$cmt_mntn_settings = apply_filters( 'cmt_mntn_settings', $cmt_mntn_settings );
 
