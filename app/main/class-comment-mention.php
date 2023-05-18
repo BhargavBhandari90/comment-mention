@@ -152,6 +152,8 @@ class CommentMentionMain {
 				$result->image         = get_avatar_url( $user->ID );
 				$result->name          = ! empty( $user_full_name ) ? $user_full_name : $user->user_nicename;
 				$result->user_id       = $user->ID;
+				$result->key           = $user->user_login;
+				$result->value         = $user->user_login;
 
 				$results[] = $result;
 			}
@@ -456,18 +458,40 @@ Someone mentioned you in a post. See the details below:
 
 		// Atwho CSS.
 		// Ref: https://github.com/ichord/At.js/
+		// wp_enqueue_style(
+		// 'cmt-mntn-atwho-css',
+		// CMT_MNTN_URL . 'build/comment-mention.css',
+		// array(),
+		// CMT_MNTN_VERSION
+		// );
 		wp_enqueue_style(
-			'cmt-mntn-atwho-css',
-			CMT_MNTN_URL . 'build/comment-mention.css',
+			'cmt-mntn-tribute-css',
+			CMT_MNTN_URL . 'src/css/tribute.css',
 			array(),
 			CMT_MNTN_VERSION
 		);
 
 		// Plugin script.
+		// wp_enqueue_script(
+		// 'cmt-mntn-mentions',
+		// CMT_MNTN_URL . 'build/comment-mention.js',
+		// array( 'jquery' ),
+		// CMT_MNTN_VERSION,
+		// true
+		// );
+
+		wp_enqueue_script(
+			'cmt-mntn-mentions-tribute',
+			CMT_MNTN_URL . 'src/js/tribute.js',
+			array(),
+			CMT_MNTN_VERSION,
+			true
+		);
+
 		wp_enqueue_script(
 			'cmt-mntn-mentions',
-			CMT_MNTN_URL . 'build/comment-mention.js',
-			array( 'jquery' ),
+			CMT_MNTN_URL . 'src/js/mentions.js',
+			array( 'cmt-mntn-mentions-tribute', 'jquery' ),
 			CMT_MNTN_VERSION,
 			true
 		);
