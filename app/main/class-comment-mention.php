@@ -456,30 +456,14 @@ Someone mentioned you in a post. See the details below:
 	 */
 	public static function cmt_mntn_enqueue_script_callback() {
 
-		// Atwho CSS.
-		// Ref: https://github.com/ichord/At.js/
-		// wp_enqueue_style(
-		// 'cmt-mntn-atwho-css',
-		// CMT_MNTN_URL . 'build/comment-mention.css',
-		// array(),
-		// CMT_MNTN_VERSION
-		// );
 		wp_enqueue_style(
-			'cmt-mntn-tribute-css',
-			CMT_MNTN_URL . 'src/css/tribute.css',
+			'cmt-mntn-mentions',
+			CMT_MNTN_URL . 'build/comment-mention.css',
 			array(),
 			CMT_MNTN_VERSION
 		);
 
 		// Plugin script.
-		// wp_enqueue_script(
-		// 'cmt-mntn-mentions',
-		// CMT_MNTN_URL . 'build/comment-mention.js',
-		// array( 'jquery' ),
-		// CMT_MNTN_VERSION,
-		// true
-		// );
-
 		wp_enqueue_script(
 			'cmt-mntn-mentions-tribute',
 			CMT_MNTN_URL . 'src/js/tribute.js',
@@ -487,11 +471,11 @@ Someone mentioned you in a post. See the details below:
 			CMT_MNTN_VERSION,
 			true
 		);
-
+		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',
-			CMT_MNTN_URL . 'src/js/mentions.js',
-			array( 'cmt-mntn-mentions-tribute', 'jquery' ),
+			CMT_MNTN_URL . 'build/comment-mention.js',
+			array( 'jquery', 'cmt-mntn-mentions-tribute' ),
 			CMT_MNTN_VERSION,
 			true
 		);
