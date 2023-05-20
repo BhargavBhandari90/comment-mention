@@ -4,6 +4,6 @@ module.exports = {
     ...defaultConfig,
     entry: {
         ...defaultConfig.entry,
-        'comment-mention': [ './src/js/index.js', './src/css/tribute.css' ],
+        'comment-mention': [ './src/js/index.js', './src/css/tribute.css', './src/css/atwho.css' ],
     }
 };

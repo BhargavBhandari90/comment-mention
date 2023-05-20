@@ -463,7 +463,16 @@ Someone mentioned you in a post. See the details below:
 			CMT_MNTN_VERSION
 		);
 
-		// Plugin script.
+		// AtwhoJS.
+		wp_enqueue_script(
+			'cmt-mntn-mentions-atwho',
+			CMT_MNTN_URL . 'src/js/atwho.js',
+			array(),
+			CMT_MNTN_VERSION,
+			true
+		);
+
+		// tributeJS.
 		wp_enqueue_script(
 			'cmt-mntn-mentions-tribute',
 			CMT_MNTN_URL . 'src/js/tribute.js',
@@ -471,6 +480,7 @@ Someone mentioned you in a post. See the details below:
 			CMT_MNTN_VERSION,
 			true
 		);
+
 		// Plugin script.
 		wp_enqueue_script(
 			'cmt-mntn-mentions',

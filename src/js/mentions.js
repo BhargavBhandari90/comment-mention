@@ -29,7 +29,7 @@ jQuery(function ($) {
 				window.tinyMCE.activeEditor !== null &&
 				typeof window.tinyMCE.activeEditor !== "undefined"
 			) {
-				tribute.attach($(window.tinymce.activeEditor.contentDocument.activeElement));
+				$(window.tinymce.activeEditor.contentDocument.activeElement);
 			}
 		}
 	};
