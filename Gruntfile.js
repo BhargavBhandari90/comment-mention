@@ -91,13 +91,13 @@ module.exports = function( grunt ) {
 	
 	grunt.loadNpmTasks( 'grunt-phpcbf' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
-	//grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
+	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.registerTask( 'default', [ 'i18n' ] );
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot', 'cssmin', 'uglify', 'phpcbf'] );
-	//grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
+	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 
 	grunt.util.linefeed = '\n';
 
