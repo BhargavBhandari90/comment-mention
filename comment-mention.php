@@ -182,16 +182,3 @@ require CMT_MNTN_PATH . 'app/includes/common-functions.php';
 require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
 require CMT_MNTN_PATH . 'app/main/class-bbpress-user-mention.php';
 require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';
-
-/**
- * Enables TinyMCE in BBP.
- *
- * @param array $args Array of arguments.
- * TODO: Remove.
- */
-function bbp_enable_visual_editor( $args = array() ) {
-	$args['tinymce']   = true;
-	$args['quicktags'] = false;
-	return $args;
-}
-add_filter( 'bbp_after_get_the_content_parse_args', 'bbp_enable_visual_editor' );
