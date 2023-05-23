@@ -19,6 +19,7 @@
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-phpcbf": "^0.1.1"
+    "grunt-phpcbf": "^0.1.1",
+    "grunt-wp-readme-to-markdown": "^2.1.0"
   }
 }
