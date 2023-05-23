@@ -87,6 +87,14 @@ module.exports = function( grunt ) {
 		  },
 		},
 
+		wp_readme_to_markdown: {
+			your_target: {
+				files: {
+					"README.md": "readme.txt",
+				},
+			},
+		},
+
 	} );
 	
 	grunt.loadNpmTasks( 'grunt-phpcbf' );
