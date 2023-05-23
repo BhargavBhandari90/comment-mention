@@ -240,7 +240,7 @@ class CommentMentionAdmin {
 	public function cmt_mntn_admin_notice() {
 		?>
 		<div class="notice notice-success is-dismissible">
-			<p><?php esc_html_e( 'Seetings Saved', 'comment-mention' ); ?></p>
+			<p><?php esc_html_e( 'Settings Saved', 'comment-mention' ); ?></p>
 		</div>
 		<?php
 	}

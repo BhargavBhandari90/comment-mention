@@ -1,3 +1,2 @@
-import './atwho';
 import './mentions';
-import './caret';
+import './atwho-mentions'
