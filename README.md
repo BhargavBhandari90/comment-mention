@@ -1,13 +1,13 @@
 # Comment Mention #
-- **Contributors:** bhargavbhandari90, biliplugins, hackkzy404 
-- **Donate link:** https://www.paypal.me/BnB90/50 
-- **Tags:** comments, mention, email, user, bbpress 
-- **Requires at least:** 4.6 
-- **Tested up to:** 6.1.1 
-- **Requires PHP:** 5.6 
-- **Stable tag:** 1.6.0 
-- **License:** GPLv2 or later 
-- **License URI:** http://www.gnu.org/licenses/gpl-2.0.html 
+**Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
+**Donate link:** https://www.paypal.me/BnB90/50  
+**Tags:** comments, mention, email, user, bbpress  
+**Requires at least:** 4.6  
+**Tested up to:** 6.1.1  
+**Stable tag:** 1.7.0  
+**Requires PHP:** 5.6  
+**License:** GPLv2 or later  
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
 Mention user in comments without BuddyPress plugin. Mentioned user will get email notification.
 
@@ -23,53 +23,62 @@ What this plugin does? Just wring username followed by '@' in comment box. It wi
 
 Email setting is provided in backend. You can change email subject and content by your own.
 
-It's compatible with BBPress as well.
-
 https://www.youtube.com/watch?v=Nz47aKJhsKQ
 
 ## PRO Features ##
 
-- Search by First/Last name while mention.
-- Search by Display name while mention.
-- Enable mentioning on Page comment.
-- Added option to Turn off Email notification.
-- Go to wp-admin –> Comment Mention
-- And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
+* Search by First/Last name while mention.
+* Search by Display name while mention.
+* Enable mentioning on Page comment.
+* Added option to Turn off Email notificatoin.
+* Go to wp-admin –> Comment Mention
+* And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
 
-- [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
-- TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
-
-## Installation ##
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Comment Mention menu to configure the plugin
+* [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
+* TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
 
 ## Pro Plugin Compatibility ##
 
 * [GamiPress](https://gamipress.com/?ref=203)
 * [MemberPress](https://memberpress.com/)
 
-## Buy me a coffee/beer ##
+## Installation ##
 
-Do you like this plugin? Support it by buying me coffee OR beer. ;)
+This section describes how to install the plugin and get it working.
 
-https://www.paypal.com/paypalme/BnB90/
+## Screenshots ##
+1. Mention the user by typing "@" in the comment box.
+2. Setting for sending email to mentioned user.
+
+e.g.
+
+1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress
+3. Use the Comment Mention menu to configure the plugin
+
+## GIT Repo ##
+
+[https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 ## Changelog ##
 
-## 1.6.0 ##
+### 1.7.0 ###
+* Mention script Updated.
+* Minor Bug Fixes.
+
+### 1.6.0 ###
 * Added Option to Hide selected user roles while mentioning.
 
-## 1.5.0 ##
+### 1.5.0 ###
 * Added Option to enable comment mention for selected user roles.
 
-## 1.4.6 ##
+### 1.4.6 ###
 * JS & CSS optimization.
 
-## 1.4.5 ##
+### 1.4.5 ###
 * JS & CSS optimization.
 
-## 1.4.4 ##
+### 1.4.4 ###
 * Fix - Not able to mention.
 
 ### 1.4.3 ###
