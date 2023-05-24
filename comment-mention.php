@@ -6,7 +6,7 @@
  * Author URI:      https://bhargavb.com
  * Text Domain:     comment-mention
  * Domain Path:     /languages
- * Version:         1.7.0
+ * Version:         1.7.1
  *
  * @package         Comment_Mention
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'CMT_MNTN_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'CMT_MNTN_VERSION', '1.7.0' );
+	define( 'CMT_MNTN_VERSION', '1.7.1' );
 }
 if ( ! defined( 'CMT_MNTN_PATH' ) ) {
 	/**
