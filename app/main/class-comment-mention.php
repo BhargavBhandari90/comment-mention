@@ -42,7 +42,6 @@ class CommentMentionMain {
 
 		// Get plugin settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
-
 	}
 
 	/**
@@ -61,12 +60,11 @@ class CommentMentionMain {
 
 		// If bbpress pages and mention is not enable, then don't include the scripts and styles.
 		if ( isset( $bbpress_post_types[ get_post_type() ] ) &&
-			 ! cmt_mntn_enable_bbp_user_mention() ) {
+			! cmt_mntn_enable_bbp_user_mention() ) {
 			return;
 		}
 
 		self::cmt_mntn_enqueue_script_callback();
-
 	}
 
 	/**
@@ -160,7 +158,6 @@ class CommentMentionMain {
 		}
 
 		return apply_filters( 'cmt_mntn_user_results', $results );
-
 	}
 
 	/**
@@ -191,7 +188,7 @@ class CommentMentionMain {
 				foreach ( $content_matches[1] as $replacement ) {
 					$replacements[ '#BPAN' . $replace_count ] = $replacement;
 					$content                                  = str_replace( $replacement, '#BPAN' . $replace_count, $content );
-					$replace_count++;
+					++$replace_count;
 				}
 			}
 		}
@@ -331,7 +328,6 @@ class CommentMentionMain {
 
 			}
 		}
-
 	}
 
 	/**
@@ -466,7 +462,7 @@ Someone mentioned you in a post. See the details below:
 		// AtwhoJS.
 		wp_enqueue_script(
 			'cmt-mntn-mentions-atwho',
-			CMT_MNTN_URL . 'src/js/atwho.js',
+			CMT_MNTN_URL . 'assets/js/atwho.js',
 			array(),
 			CMT_MNTN_VERSION,
 			true
@@ -475,7 +471,7 @@ Someone mentioned you in a post. See the details below:
 		// tributeJS.
 		wp_enqueue_script(
 			'cmt-mntn-mentions-tribute',
-			CMT_MNTN_URL . 'src/js/tribute.js',
+			CMT_MNTN_URL . 'assets/js/tribute.js',
 			array(),
 			CMT_MNTN_VERSION,
 			true
@@ -505,7 +501,6 @@ Someone mentioned you in a post. See the details below:
 			'Comment_Mention',
 			$cmt_mntn_vars
 		);
-
 	}
 }
 
