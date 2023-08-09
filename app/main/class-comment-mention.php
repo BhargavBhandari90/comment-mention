@@ -491,6 +491,7 @@ Someone mentioned you in a post. See the details below:
 			array(
 				'ajaxurl'            => admin_url( 'admin-ajax.php' ),
 				'mention_result_tlp' => '<li data-value="@${user_login}"><span class="username">@${user_login}</span></li>',
+				'mention_insert_tlp' => '@${user_login}',
 				'cmt_mntn_nounce'    => wp_create_nonce( 'cmt-mntn-nounce' ),
 			)
 		);

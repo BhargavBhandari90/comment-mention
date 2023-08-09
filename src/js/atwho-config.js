@@ -31,10 +31,10 @@ window.cmt_mntn = window.cmt_mntn || {};
 		var suggestionsDefaults = {
 				delay: 200,
 				hideWithoutSuffix: true,
-				insertTpl: "@${user_login} ",
+				insertTpl: Comment_Mention.mention_insert_tlp,
 				limit: 10,
 				startWithSpace: false,
-				suffix: "",
+				suffix: " ",
 
 				callbacks: {
 					/**
@@ -281,7 +281,7 @@ window.cmt_mntn = window.cmt_mntn || {};
 					typeof window.tinyMCE.activeEditor !== "undefined"
 				) {
 					$(
-						window.tinyMCE.activeEditor.contentDocument.activeElement
+						tinyMCE.get("bbp_reply_content").contentDocument.activeElement
 					).cmt_mntn_mentions(cmt_mntn.mentions.users);
 					window.clearInterval(my_timing);
 				}
