@@ -30,11 +30,11 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 * Search by First/Last name while mention.
 * Search by Display name while mention.
 * Enable mentioning on Page comment.
-* Added option to Turn off Email notificatoin.
+* Added option to Turn off Email notification.
 * Go to wp-admin –> Comment Mention
 * And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
 
-* [Get Comment Mention Pro](https://buntywp.gumroad.com/l/zrttc)
+* [Get Comment Mention Pro](https://biliplugins.com/comment-mention-pro-product/)
 * TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
 
 == Pro Plugin Compatibility ==
