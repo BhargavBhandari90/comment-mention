@@ -357,7 +357,7 @@ class CommentMentionMain {
 	 * Mail body for user mail
 	 *
 	 * @param  array $comment_data Array of comment data.
-	 * @return strin               Mail body.
+	 * @return string              Mail body.
 	 */
 	function cmt_mntn_mail_body( $comment_data ) {
 
