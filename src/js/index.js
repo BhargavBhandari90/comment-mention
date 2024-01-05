@@ -1,2 +1,2 @@
-import './mentions';
-// import './atwho-mentions'
+import './atwho-config';
+import './tribute-config';
