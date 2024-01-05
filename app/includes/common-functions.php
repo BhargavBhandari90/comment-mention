@@ -66,6 +66,9 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 		: '';
 
 	$mail_content = ! empty( $cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $cmt_mntn_settings['cmt_mntn_mail_content'] : '';
+	$mail_subject = ! empty( $cmt_mntn_settings['cmt_mntn_email_subject'] )
+		? $cmt_mntn_settings['cmt_mntn_email_subject']
+		: esc_html__( 'You were mentioned in a comment', 'comment-mention' );
 
 	if ( empty( $mail_content ) ) {
 		$mail_content = CommentMentionMain::cmt_mntn_default_mail_content();
@@ -76,7 +79,7 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 	$commenter_name  = isset( $author_obj->user_login ) ? $author_obj->user_login : 'Someone';
 	$comment_content = get_post_field( 'post_content', $post_id );
 
-	$search = apply_filters(
+	$search_content = apply_filters(
 		'cmt_mtn_search_email_placeholders',
 		array(
 			'#comment_link#',
@@ -87,7 +90,7 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 		)
 	);
 
-	$replace = apply_filters(
+	$replace_content = apply_filters(
 		'cmt_mtn_replace_email_placeholders',
 		array(
 			esc_url( $cmt_mntn_comment_link ),
@@ -98,11 +101,27 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 		)
 	);
 
+	$search_subject = apply_filters(
+		'cmt_mtn_search_email_sub_placeholders',
+		array(
+			'#post_name#',
+			'#user_name#',
+			'#commenter_name#',
+		)
+	);
+
+	$replace_subject = apply_filters(
+		'cmt_mtn_replace_email_sub_placeholders',
+		array(
+			esc_html( $post_name ),
+			esc_html( $user_name ),
+			esc_html( $commenter_name ),
+		)
+	);
+
 	// Replace with actual values.
-	$mail_setting['email_content'] = str_replace( $search, $replace, $mail_content );
-	$mail_setting['email_subject'] = ! empty( $cmt_mntn_settings['cmt_mntn_email_subject'] )
-		? $cmt_mntn_settings['cmt_mntn_email_subject']
-		: esc_html__( 'You were mentioned in a comment', 'comment-mention' );
+	$mail_setting['email_content'] = str_replace( $search_content, $replace_content, $mail_content );
+	$mail_setting['email_subject'] = str_replace( $search_subject, $replace_subject, $mail_subject );
 
 	return apply_filters( 'cmt_mntn_mail_setting', $mail_setting );
 }
