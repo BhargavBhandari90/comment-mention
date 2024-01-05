@@ -305,7 +305,7 @@ class CommentMentionMain {
 
 				// Get email body.
 				$cmt_mntn_mail_body = $this->cmt_mntn_mail_body( $comment_data );
-				$cmt_mntn_mail_sub  = $this->cmt_mntn_mail_subject();
+				$cmt_mntn_mail_sub  = $this->cmt_mntn_mail_subject( $comment_data );
 
 				// Set headers.
 				$headers[] = 'Content-Type: text/html; charset=UTF-8';
@@ -357,7 +357,7 @@ class CommentMentionMain {
 	 * Mail body for user mail
 	 *
 	 * @param  array $comment_data Array of comment data.
-	 * @return strin               Mail body.
+	 * @return string              Mail body.
 	 */
 	function cmt_mntn_mail_body( $comment_data ) {
 
@@ -412,8 +412,22 @@ class CommentMentionMain {
 
 	/**
 	 * Get Email subject sent to mentioned User.
+	 *
+	 * @param array $comment_data Array of comment data.
+	 * @return string Mail subject.
 	 */
-	public function cmt_mntn_mail_subject() {
+	public function cmt_mntn_mail_subject( $comment_data ) {
+
+		// Get post name related to that comment.
+		$post_name = get_the_title( $comment_data['comment_post_ID'] );
+
+		// Get mentioned user's display name.
+		$user_name = $comment_data['mentioned_user_data']->display_name;
+
+		// Get commenter's name.
+		$commenter_name = isset( $comment_data['comment_author'] )
+			? $comment_data['comment_author']
+			: esc_html__( 'Someone', 'comment-mention' );
 
 		// Get subject from settings.
 		$subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : '';
@@ -424,6 +438,26 @@ class CommentMentionMain {
 			$subject = esc_html__( 'You were mentioned in a comment', 'comment-mention' );
 
 		}
+
+		$search = apply_filters(
+			'cmt_mtn_search_email_sub_placeholders',
+			array(
+				'#post_name#',
+				'#user_name#',
+				'#commenter_name#',
+			)
+		);
+
+		$replace = apply_filters(
+			'cmt_mtn_replace_email_sub_placeholders',
+			array(
+				esc_html( $post_name ),
+				esc_html( $user_name ),
+				esc_html( $commenter_name ),
+			)
+		);
+
+		$subject = str_replace( $search, $replace, $subject );
 
 		// Return subject.
 		return apply_filters( 'cmt_mntn_mail_body', $subject );
