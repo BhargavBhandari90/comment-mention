@@ -281,7 +281,7 @@ class CommentMentionMain {
 		$usernames = $this->cmt_mntn_find_mentions( $content );
 
 		// Bail if $usernames empty.
-		if ( empty( $usernames ) || is_array( $usernames ) ) {
+		if ( empty( $usernames ) || ! is_array( $usernames ) ) {
 			return;
 		}
 
