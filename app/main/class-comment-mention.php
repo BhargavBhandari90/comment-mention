@@ -280,6 +280,11 @@ class CommentMentionMain {
 		// Get usernames from comment content.
 		$usernames = $this->cmt_mntn_find_mentions( $content );
 
+		// Bail if $usernames empty.
+		if ( empty( $usernames ) || is_array( $usernames ) ) {
+			return;
+		}
+
 		// Iterate the username loop.
 		foreach ( $usernames as $username ) {
 
