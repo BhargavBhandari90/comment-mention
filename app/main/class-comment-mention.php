@@ -421,13 +421,17 @@ class CommentMentionMain {
 	 * @param array $comment_data Array of comment data.
 	 * @return string Mail subject.
 	 */
-	public function cmt_mntn_mail_subject( $comment_data ) {
+	public function cmt_mntn_mail_subject( $comment_data = array() ) {
 
 		// Get post name related to that comment.
-		$post_name = get_the_title( $comment_data['comment_post_ID'] );
+		$post_name = ! empty( $comment_data['comment_post_ID'] )
+			? get_the_title( $comment_data['comment_post_ID'] )
+			: '';
 
 		// Get mentioned user's display name.
-		$user_name = $comment_data['mentioned_user_data']->display_name;
+		$user_name = ! empty( $comment_data['mentioned_user_data']->display_name )
+			? $comment_data['mentioned_user_data']->display_name
+			: '';
 
 		// Get commenter's name.
 		$commenter_name = isset( $comment_data['comment_author'] )

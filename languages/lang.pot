@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/comment-mention\n"
-"POT-Creation-Date: 2024-01-19 06:35:06+00:00\n"
+"POT-Creation-Date: 2024-02-06 09:15:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,79 +24,79 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: app/admin/class-admin-comment-mention.php:49
-#: app/admin/class-admin-comment-mention.php:86
+#: app/admin/class-admin-comment-mention.php:48
+#: app/admin/class-admin-comment-mention.php:84
 msgid "Comment Mention Settings"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:50
+#: app/admin/class-admin-comment-mention.php:49
 msgid "Comment Mention"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:93
+#: app/admin/class-admin-comment-mention.php:91
 msgid "Enabled Roles"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:117
+#: app/admin/class-admin-comment-mention.php:115
 msgid "Choose which user roles should be able to mention in Comments."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:141
+#: app/admin/class-admin-comment-mention.php:139
 msgid "Hide selected user roles while mentioning in Comments."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:146
+#: app/admin/class-admin-comment-mention.php:144
 msgid "Enable Emails"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:149
+#: app/admin/class-admin-comment-mention.php:147
 msgid "Whether to send email to mentioned user or not."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:154
+#: app/admin/class-admin-comment-mention.php:152
 msgid "Email Subject"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:157
+#: app/admin/class-admin-comment-mention.php:155
 msgid "Subject for mentioned user email. Available shortcodes:"
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:156
+#: app/admin/class-admin-comment-mention.php:177
+msgid "Post title where user is mentioned."
+msgstr ""
+
+#: app/admin/class-admin-comment-mention.php:157
+#: app/admin/class-admin-comment-mention.php:178
+msgid "Username who is mentioned."
 msgstr ""
 
 #: app/admin/class-admin-comment-mention.php:158
 #: app/admin/class-admin-comment-mention.php:179
-msgid "Post title where user is mentioned."
-msgstr ""
-
-#: app/admin/class-admin-comment-mention.php:159
-#: app/admin/class-admin-comment-mention.php:180
-msgid "Username who is mentioned."
-msgstr ""
-
-#: app/admin/class-admin-comment-mention.php:160
-#: app/admin/class-admin-comment-mention.php:181
 msgid "Commenter name."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:166
+#: app/admin/class-admin-comment-mention.php:164
 msgid "Email Content"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:177
+#: app/admin/class-admin-comment-mention.php:175
 msgid "Mail content for mentioned user email. Available shortcodes:"
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:178
+#: app/admin/class-admin-comment-mention.php:176
 msgid "Link where user is mentioned."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:182
+#: app/admin/class-admin-comment-mention.php:180
 msgid "Comment content."
 msgstr ""
 
-#: app/admin/class-admin-comment-mention.php:247
+#: app/admin/class-admin-comment-mention.php:243
 msgid "Settings Saved"
 msgstr ""
 
-#: app/includes/common-functions.php:71 app/main/class-comment-mention.php:443
+#: app/includes/common-functions.php:71 app/main/class-comment-mention.php:447
 msgid "You were mentioned in a comment"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgid "Enable User Mention in Topics & Replies Content"
 msgstr ""
 
 #: app/main/class-comment-mention.php:386
-#: app/main/class-comment-mention.php:435
+#: app/main/class-comment-mention.php:439
 msgid "Someone"
 msgstr ""
 
