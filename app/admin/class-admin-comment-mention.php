@@ -37,7 +37,6 @@ class CommentMentionAdmin {
 
 		// Main class object for future use.
 		$this->_comment_mention = new CommentMentionMain();
-
 	}
 
 	/**
@@ -55,7 +54,6 @@ class CommentMentionAdmin {
 				'cmt_mntn_admin_settings',
 			)
 		);
-
 	}
 
 	/**
@@ -193,7 +191,6 @@ class CommentMentionAdmin {
 		</form>
 		</div>
 		<?php
-
 	}
 
 	/**
@@ -233,7 +230,6 @@ class CommentMentionAdmin {
 			add_action( 'admin_notices', array( $this, 'cmt_mntn_admin_notice' ) );
 
 		}
-
 	}
 
 	/**
