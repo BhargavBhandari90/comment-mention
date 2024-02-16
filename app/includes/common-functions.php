@@ -147,7 +147,11 @@ function cmt_mntn_check_enabled_userroles() {
 
 	$cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 
-	if ( ! empty( $cmt_mntn_settings ) || ! array_key_exists( 'cmt_mntn_enabled_user_roles', $cmt_mntn_settings ) ) {
+	if ( empty( $cmt_mntn_settings ) || ! is_array( $cmt_mntn_settings ) ) {
+		return true;
+	}
+
+	if ( ! array_key_exists( 'cmt_mntn_enabled_user_roles', $cmt_mntn_settings ) ) {
 		return true;
 	}
 
