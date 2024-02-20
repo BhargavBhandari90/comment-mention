@@ -195,8 +195,9 @@ class CommentMentionMain {
 
 		// Linkify the mentions with the username.
 		foreach ( (array) $usernames as $user_id => $username ) {
-			$author_url = get_author_posts_url( $user_id );
-			$content    = preg_replace( '/(@' . $username . '\b)/', "<a class='comment-mention' href='$author_url' rel='nofollow'>@$username</a>", $content );
+			$author_url     = get_author_posts_url( $user_id );
+			$mentioned_name = apply_filters( 'cmnt_mntn_replace_mentioned_name', $username, $user_id );
+			$content        = preg_replace( '/(@' . $username . '\b)/', "<a class='comment-mention' href='$author_url' rel='nofollow'>@$mentioned_name</a>", $content );
 		}
 
 		// Put everything back.
