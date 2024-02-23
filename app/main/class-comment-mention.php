@@ -327,7 +327,7 @@ class CommentMentionMain {
 				// Send mail.
 				wp_mail(
 					esc_html( $cmt_mntn_user_data->user_email ),
-					esc_html( $cmt_mntn_mail_sub ),
+					stripslashes( html_entity_decode( esc_html( $cmt_mntn_mail_sub ), ENT_QUOTES, 'UTF-8' ) ),
 					wp_kses_post( $cmt_mntn_mail_body ),
 					$headers
 				);
