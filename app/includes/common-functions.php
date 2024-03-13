@@ -46,12 +46,10 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 	$cmt_mntn_comment_link = trailingslashit( get_permalink( $post_id ) ) . '#post-' . intval( $post_id );
 
 	// Get topic id related to reply.
-	if ( 'reply' === get_post_type( $post_id ) && function_exists( 'bbp_get_reply_topic_id' ) ) {
-
-		$topic_id = bbp_get_reply_topic_id( $post_id );
+	if ( 'reply' === get_post_type( $post_id ) && function_exists( 'bbp_get_reply_url' ) ) {
 
 		// Get current comment link.
-		$cmt_mntn_comment_link = trailingslashit( get_permalink( $topic_id ) ) . '#post-' . intval( $post_id );
+		$cmt_mntn_comment_link = bbp_get_reply_url( (int) $post_id );
 	}
 
 	// Get setting.
