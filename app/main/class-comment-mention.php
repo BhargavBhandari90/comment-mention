@@ -73,7 +73,7 @@ class CommentMentionMain {
 	public function cmt_mntn_ajax_get_users() {
 
 		if ( ! cmt_mntn_check_enabled_userroles() ) {
-			wp_send_json_error( 'User Restricted' );
+			wp_send_json_error( esc_html__( 'You\'re not allowed to mention users.', 'comment-mention' ) );
 		}
 
 		// Set arguments.
@@ -264,6 +264,10 @@ class CommentMentionMain {
 	 */
 	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
 
+		if ( ! cmt_mntn_can_user_mention() ) {
+			return;
+		}
+
 		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] )
 			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
 			: false;
@@ -345,6 +349,7 @@ class CommentMentionMain {
 	 * @return void
 	 */
 	public function cmt_mntn_check_mention( $comment_ID, $comment_status, $comment_data ) {
+
 		if ( ! cmt_mntn_can_user_mention() ) {
 			return;
 		}

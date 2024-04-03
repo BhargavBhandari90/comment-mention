@@ -115,6 +115,10 @@ class CommentMentionBBPress {
 	 */
 	public function cmt_mntn_bbpress_mention_user_email( $post_id ) {
 
+		if ( ! cmt_mntn_can_user_mention() ) {
+			return;
+		}
+
 		// Bail, if anything goes wrong.
 		if ( empty( $post_id ) ) {
 			return;
