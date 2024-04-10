@@ -35,8 +35,20 @@ jQuery(function ($) {
 				}
 			},
 			success: function (response) {
-				var usernames = response.data;
-				cb(usernames);
+				if (response.success) {
+					var usernames = response.data;
+					cb(usernames);
+				} else {
+					if (response.data && typeof response.data === 'string') {
+						if ($('#cmnt-mntn-notice').length) {
+							$('#cmnt-mntn-notice').html(`<p id="cmnt-mntn-notice">${response.data}</p>`);
+						} else {
+							$("#commentform textarea").after(`<p id="cmnt-mntn-notice">${response.data}</p>`);
+							$(".bbp-topic-form form .bbp-the-content-wrapper").after(`<p id="cmnt-mntn-notice">${response.data}</p>`);
+							$(".bbp-reply-form form .bbp-the-content-wrapper").after(`<p id="cmnt-mntn-notice">${response.data}</p>`);
+						}
+					}
+				}
 			},
 		});
 	}

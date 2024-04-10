@@ -125,10 +125,13 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 }
 
 /**
- * check if user can mention or not.
+ * Check if user can mention or not.
  */
 function cmt_mntn_can_user_mention() {
-	if ( function_exists( 'cmt_mntn_pro_membership_status' ) && cmt_mntn_pro_membership_status() || cmt_mntn_check_enabled_userroles() ) {
+
+	$is_eligible = apply_filters( 'cmt_mntn_user_can_mention', cmt_mntn_check_enabled_userroles() );
+
+	if ( $is_eligible ) {
 		return true;
 	}
 	return false;
