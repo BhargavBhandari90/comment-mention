@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
 Tested up to: 6.6.2
-Stable tag: 1.7.12
+Stable tag: 1.7.13
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -31,7 +31,7 @@ https://www.youtube.com/watch?v=Nz47aKJhsKQ
 * Search by Display name while mention.
 * Enable mentioning on Page comment.
 * Added option to Turn off Email notification.
-* Mention by First Name & Last Name.
+* Mention by First Name & Last Name ( Under development... ).
 * Go to wp-admin –> Comment Mention
 * And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
 
@@ -62,6 +62,9 @@ e.g.
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 == Changelog ==
+
+= 1.7.13 =
+* Mention script improvisation for pro plugin.
 
 = 1.7.12 =
 * Mention script improvisation.

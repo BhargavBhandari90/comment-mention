@@ -71,9 +71,17 @@ jQuery(
 
 			let content = $( '#comment' ).val();
 
+			let already_mentioned = localStorage.getItem('mentionMap');
+
+			if ( '' !== already_mentioned ) {
+				already_mentioned = JSON.parse(already_mentioned);
+				$.each(already_mentioned, function(key, value) {
+					mentionMap[key] = value;
+				});
+			}
+
 			Object.keys( mentionMap ).forEach(
 				name => {
-
 					const nameMention     = '@' + mentionMap[name];         // Mention format in textarea1 (name)
 					const usernameMention = '@' + name; // Mention format in textarea2 (username)
 					content               = content.split( nameMention ).join( usernameMention );
