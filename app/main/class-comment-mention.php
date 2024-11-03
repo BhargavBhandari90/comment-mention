@@ -169,6 +169,8 @@ class CommentMentionMain {
 			return $content;
 		}
 
+		$content = apply_filters( 'cmt_mntn_comment_pre_content', $content );
+
 		// Try to find mentions.
 		$usernames = $this->cmt_mntn_find_mentions( $content );
 
