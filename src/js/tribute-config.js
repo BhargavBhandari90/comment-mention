@@ -1,5 +1,6 @@
 jQuery(
 	function ($) {
+		let getUsers;
 		const mentionMap = {};
 		let tribute      = new Tribute(
 			{
@@ -9,12 +10,17 @@ jQuery(
 						term: search,
 					};
 
-					$.ajax(
+					getUsers = $.ajax(
 						{
 							url: Comment_Mention.ajaxurl,  // Replace with your API endpoint
 							method: 'GET',
 							data: data,    // Send current text as the search term
 							dataType: 'json',
+							beforeSend: function () {
+								if (getUsers != null) {
+									getUsers.abort();
+								}
+							},
 							success: function(response) {
 								// Format the response for Tribute.js
 								// const results = response.data;
@@ -67,6 +73,7 @@ jQuery(
 
 			Object.keys( mentionMap ).forEach(
 				name => {
+
 					const nameMention     = '@' + mentionMap[name];         // Mention format in textarea1 (name)
 					const usernameMention = '@' + name; // Mention format in textarea2 (username)
 					content               = content.split( nameMention ).join( usernameMention );
