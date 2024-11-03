@@ -1,10 +1,10 @@
 # Comment Mention #
 **Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
 **Donate link:** https://www.paypal.me/BnB90/50  
-**Tags:** comments, mention, email, user, bbpress, buntywp  
+**Tags:** comments, mention, email, user, bbpress  
 **Requires at least:** 4.6  
 **Tested up to:** 6.6.2  
-**Stable tag:** 1.7.11  
+**Stable tag:** 1.7.12  
 **Requires PHP:** 5.6  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -62,6 +62,9 @@ e.g.
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 ## Changelog ##
+
+### 1.7.12 ###
+* Mention script improvisation.
 
 ### 1.7.11 ###
 * Hook added : `cmt_mntn_comment_pre_content`.
