@@ -3,8 +3,8 @@ Contributors: bhargavbhandari90, biliplugins, hackkzy404
 Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
-Tested up to: 6.6.2
-Stable tag: 1.7.13
+Tested up to: 6.7
+Stable tag: 1.7.14
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,10 @@ e.g.
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 == Changelog ==
+
+= 1.7.14 =
+* Mention script improvisation for pro plugin.
+* Added hooks for pro plugin.
 
 = 1.7.13 =
 * Mention script improvisation for pro plugin.
