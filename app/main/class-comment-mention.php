@@ -275,7 +275,7 @@ class CommentMentionMain {
 		}
 
 		// Get content.
-		$content = $comment_data['comment_content'];
+		$content = apply_filters( 'cmt_mntn_main_content', $comment_data['comment_content'], $comment_ID );
 
 		// Add data to array for post use.
 		$comment_data['comment_ID'] = $comment_ID;

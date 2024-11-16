@@ -50,9 +50,9 @@ jQuery(
 				},
 				selectTemplate: function(item) {
 					if ( 'undefined' !== typeof( Comment_Mention.mention_by_fullname ) && '1' === Comment_Mention.mention_by_fullname ) {
-						return '@' + item.original.name;  // Use `name` in textarea1
+						return '@' + item.original.name;
 					} else {
-						return '@' + item.original.key;  // Use `name` in textarea1
+						return '@' + item.original.key;
 					}
 				}
 			}
@@ -63,13 +63,35 @@ jQuery(
 		tribute.attach( $( ".bbp-reply-form form textarea" ) );
 
 		if ( $( '#main_comment' ).length > 0 ) {
-			$( '#comment' ).on( 'tribute-replaced', cmt_mntn_sync_usernames );
-			$( '#comment' ).on( 'input', cmt_mntn_sync_usernames );
+			$( '#comment' ).on( 'tribute-replaced', function() {
+				cmt_mntn_sync_usernames( 'comment', 'main_comment' );
+			});
+			$( '#comment' ).on( 'input', function() {
+				cmt_mntn_sync_usernames( 'comment', 'main_comment' );
+			});
 		}
 
-		function cmt_mntn_sync_usernames() {
+		if ( $( '#bbp_main_reply_content' ).length > 0 ) {
+			$( '#bbp_reply_content' ).on( 'tribute-replaced', function() {
+				cmt_mntn_sync_usernames( 'bbp_reply_content', 'bbp_main_reply_content' );
+			});
+			$( '#bbp_reply_content' ).on( 'input', function() {
+				cmt_mntn_sync_usernames( 'bbp_reply_content', 'bbp_main_reply_content' );
+			});
+		}
 
-			let content = $( '#comment' ).val();
+		if ( $( '#bbp_main_topic_content' ).length > 0 ) {
+			$( '#bbp_topic_content' ).on( 'tribute-replaced', function() {
+				cmt_mntn_sync_usernames( 'bbp_topic_content', 'bbp_main_topic_content' );
+			});
+			$( '#bbp_topic_content' ).on( 'input', function() {
+				cmt_mntn_sync_usernames( 'bbp_topic_content', 'bbp_main_topic_content' );
+			});
+		}
+
+		function cmt_mntn_sync_usernames( default_id, main_id ) {
+
+			let content = $( '#' + default_id ).val();
 
 			let already_mentioned = localStorage.getItem('mentionMap');
 
@@ -88,7 +110,7 @@ jQuery(
 				}
 			);
 
-			$( '#main_comment' ).val( content );
+			$( '#' + main_id ).val( content );
 		}
 	}
 );

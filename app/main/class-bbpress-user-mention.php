@@ -131,7 +131,7 @@ class CommentMentionBBPress {
 		}
 
 		// Get topic content.
-		$topic_content = get_post_field( 'post_content', $post_id );
+		$topic_content = apply_filters( 'cmt_mntn_bbp_post_content', get_post_field( 'post_content', $post_id ) );
 
 		// Prevention.
 		if ( empty( $topic_content ) ) {
