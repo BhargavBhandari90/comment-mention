@@ -30,3 +30,7 @@
   .tribute-container .menu-highlighted {
     font-weight: bold;
   }
+
+  .comment-mention {
+    text-decoration: none;
+  }
