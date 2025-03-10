@@ -208,7 +208,7 @@ class CommentMentionAdmin {
 					</td>
 				</tr>
 
-				<?php // Pro setting. ?>
+				<?php if ( ! class_exists( 'Comment_Mention_Pro' ) ) : ?>
 
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'Search user by First/Last name - PRO', 'comment-mention-pro' ); ?></th>
@@ -246,7 +246,7 @@ class CommentMentionAdmin {
 					</td>
 				</tr>
 
-				<?php // Pro setting end. ?>
+				<?php endif; ?>
 
 				<?php do_action( 'cmt_mntn_more_options' ); ?>
 
