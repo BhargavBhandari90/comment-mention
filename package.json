@@ -1,6 +1,6 @@
 {
   "name": "comment-mention",
-  "version": "1.0.0",
+  "version": "1.7.14",
   "description": "Comment Mention plugin",
   "main": "Gruntfile.js",
   "scripts": {

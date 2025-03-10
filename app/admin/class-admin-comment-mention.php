@@ -20,6 +20,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CommentMentionAdmin {
 
 	/**
+	 * Settings array.
+	 *
+	 * @var array
+	 */
+	public $cmt_mntn_settings = array();
+
+	/**
+	 * Object for comments mention class.
+	 *
+	 * @var object
+	 */
+	public $_comment_mention;
+
+	/**
 	 * Cunstructor for admin class.
 	 */
 	public function __construct() {
@@ -79,6 +93,10 @@ class CommentMentionAdmin {
 		// Get selected users roles that can not be mentioned.
 		$cmt_mntn_disabled_mention_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] : array();
 
+		$cmt_mntn_enable_avatar = ! empty( $this->cmt_mntn_settings['cmt_mntn_enable_avatar'] )
+			? $this->cmt_mntn_settings['cmt_mntn_enable_avatar']
+			: false;
+
 		?>
 		<div class="wrap">
 		<h1><?php esc_html_e( 'Comment Mention Settings', 'comment-mention' ); ?></h1>
@@ -102,7 +120,7 @@ class CommentMentionAdmin {
 								foreach ( $editable_roles as $role => $details ) {
 									$name     = translate_user_role( $details['name'] );
 									$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'checked' : '';
-									echo sprintf(
+									printf(
 										'<label><input type="checkbox" name="cmt_mntn_enabled_user_roles[]" value="%1$s" %2$s>%3$s</label>',
 										esc_attr( $role ),
 										esc_attr( $selected ),
@@ -126,7 +144,7 @@ class CommentMentionAdmin {
 								foreach ( $editable_roles as $role => $details ) {
 									$name     = translate_user_role( $details['name'] );
 									$selected = in_array( $role, $cmt_mntn_disabled_mention_user_roles, false ) ? 'checked' : '';
-									echo sprintf(
+									printf(
 										'<label><input type="checkbox" name="cmt_mntn_disabled_mention_user_roles[]" value="%1$s" %2$s>%3$s</label>',
 										esc_attr( $role ),
 										esc_attr( $selected ),
@@ -182,6 +200,54 @@ class CommentMentionAdmin {
 					</td>
 				</tr>
 
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Enable Avatar', 'comment-mention' ); ?></th>
+					<td>
+						<input type="checkbox" name="cmt_mntn_enable_avatar" value="1" <?php checked( $cmt_mntn_enable_avatar, '1' ); ?> />
+						<p class="description"><?php esc_html_e( 'Enable Avatar for Mentioned user.', 'comment-mention' ); ?><br/>
+					</td>
+				</tr>
+
+				<?php if ( ! class_exists( 'Comment_Mention_Pro' ) ) : ?>
+
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Search user by First/Last name - PRO', 'comment-mention-pro' ); ?></th>
+					<td>
+						<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+						<p class="description"><?php esc_html_e( 'Enable mention search from First/Last name.', 'comment-mention-pro' ); ?><br/>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Search user by Display name - PRO', 'comment-mention-pro' ); ?></th>
+					<td>
+						<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+						<p class="description"><?php esc_html_e( 'Enable mention search from Display name.', 'comment-mention-pro' ); ?><br/>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Enable mention for WordPress Pages - PRO', 'comment-mention-pro' ); ?></th>
+					<td>
+						<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+						<p class="description"><?php esc_html_e( 'Enable mention on page comments.', 'comment-mention-pro' ); ?><br/>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Enable "Reply-to" - PRO', 'comment-mention-pro' ); ?></th>
+					<td>
+						<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+						<p class="description"><?php esc_html_e( 'Automatically adds username when you reply.', 'comment-mention-pro' ); ?><br/>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row"><?php esc_html_e( 'Enable Mention by First Name & Last Name - PRO', 'comment-mention-pro' ); ?></th>
+					<td>
+						<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+						<p class="description"><?php esc_html_e( 'Mention by First Name & Last Name.', 'comment-mention-pro' ); ?><br/>
+					</td>
+				</tr>
+
+				<?php endif; ?>
+
 				<?php do_action( 'cmt_mntn_more_options' ); ?>
 
 			</table>
@@ -222,6 +288,10 @@ class CommentMentionAdmin {
 			$cmt_mntn_settings['cmt_mntn_enabled_user_roles']          = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 			$cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] = filter_input( INPUT_POST, 'cmt_mntn_disabled_mention_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 
+			if ( isset( $_POST['cmt_mntn_enable_avatar'] ) && ! empty( $_POST['cmt_mntn_enable_avatar'] ) ) {
+				$cmt_mntn_settings['cmt_mntn_enable_avatar'] = intval( $_POST['cmt_mntn_enable_avatar'] );
+			}
+
 			$cmt_mntn_settings = apply_filters( 'cmt_mntn_settings', $cmt_mntn_settings );
 
 			// Save to option table.
@@ -244,7 +314,6 @@ class CommentMentionAdmin {
 		</div>
 		<?php
 	}
-
 }
 
 new CommentMentionAdmin();

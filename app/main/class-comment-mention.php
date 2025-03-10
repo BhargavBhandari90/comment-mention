@@ -21,6 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CommentMentionMain {
 
 	/**
+	 * Settings.
+	 *
+	 * @var array
+	 */
+	public $cmt_mntn_settings = array();
+
+	/**
 	 * Cunstructor for admin class.
 	 */
 	public function __construct() {
@@ -199,7 +206,28 @@ class CommentMentionMain {
 		foreach ( (array) $usernames as $user_id => $username ) {
 			$author_url     = get_author_posts_url( $user_id );
 			$mentioned_name = apply_filters( 'cmnt_mntn_replace_mentioned_name', $username, $user_id );
-			$content        = preg_replace( '/(@' . $username . '\b)/', "<a class='comment-mention' href='$author_url' rel='nofollow'>@$mentioned_name</a>", $content );
+			$link_text      = '@' . $mentioned_name;
+
+			$avatar_enabled = isset( $this->cmt_mntn_settings['cmt_mntn_enable_avatar'] )
+				? $this->cmt_mntn_settings['cmt_mntn_enable_avatar']
+				: false;
+
+			if ( $avatar_enabled ) {
+				$avtar     = get_avatar( $user_id, 25, '', $username, array( 'class' => 'cmt-mntn-avatar' ) );
+				$link_text = $avtar . ' ' . $link_text;
+			}
+
+			$user_link = wp_sprintf(
+				'<a class="comment-mention" href="%1$s" rel="nofollow">%2$s</a>',
+				esc_url( $author_url ),
+				wp_kses_post( $link_text )
+			);
+
+			$content = preg_replace(
+				'/(@' . $username . '\b)/',
+				$user_link,
+				$content
+			);
 		}
 
 		// Put everything back.
@@ -321,7 +349,7 @@ class CommentMentionMain {
 				// Set mail as HTML format.
 				add_filter(
 					'wp_mail_content_type',
-					function() {
+					function () {
 						return 'text/html';
 					}
 				);
