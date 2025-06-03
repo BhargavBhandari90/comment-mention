@@ -8,6 +8,9 @@
     "build": "npx wp-scripts build",
     "readme": "grunt readme",
     "i18n": "grunt i18n",
+    "wp-env": "wp-env",
+    "start:env": "wp-env start",
+    "stop:env": "wp-env stop",
     "test:e2e": "wp-scripts test-e2e"
   },
   "author": "Bili Plugins",
@@ -16,7 +19,9 @@
     "grunt-wp-i18n": "^1.0.3"
   },
   "devDependencies": {
+    "@wordpress/e2e-test-utils-playwright": "^1.24.0",
     "@wordpress/scripts": "^24.6.0",
+    "@wordpress/env": "^10.24.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
