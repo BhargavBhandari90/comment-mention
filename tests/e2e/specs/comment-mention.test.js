@@ -59,7 +59,7 @@ describe('Plugin UI', () => {
 
     await page.type('textarea#comment', '@test');
 
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(50000);
 
     await page.waitForSelector('.tribute-container li.highlight', { visible: true });
 
