@@ -1,4 +1,18 @@
+const { execSync } = require('child_process');
 describe('Plugin UI', () => {
+
+  beforeAll(() => {
+    try {
+      console.log('Creating test user...');
+      execSync(
+        'npx wp-env run cli wp user create testuser testuser@example.com --role=subscriber --user_pass=password',
+        { stdio: 'inherit' }
+      );
+    } catch (err) {
+      console.warn('User may already exist. Skipping creation.');
+    }
+  });
+
   it('Should load plugin\'s setting page', async () => {
     await page.goto('http://localhost:8888/wp-login.php');
 
@@ -40,7 +54,7 @@ describe('Plugin UI', () => {
 
     await expect(page).toMatch('Hello world!');
 
-    await page.type('textarea#comment', '@adm');
+    await page.type('textarea#comment', '@test');
 
     await page.waitForSelector('.tribute-container li.highlight', { visible: true });
 
@@ -54,7 +68,7 @@ describe('Plugin UI', () => {
     ]);
 
     // Optional: Confirm the comment appears on the page
-    await expect(page).toMatch('@admin this is a test comment');
+    await expect(page).toMatch('@testuser this is a test comment');
 
   });
 });
