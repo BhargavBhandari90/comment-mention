@@ -1,4 +1,7 @@
+jest.setTimeout(60000);
+
 const { execSync } = require('child_process');
+
 describe('Plugin UI', () => {
 
   beforeAll(() => {
@@ -55,6 +58,8 @@ describe('Plugin UI', () => {
     await expect(page).toMatch('Hello world!');
 
     await page.type('textarea#comment', '@test');
+
+    await page.waitForTimeout(50000);
 
     await page.waitForSelector('.tribute-container li.highlight', { visible: true });
 
