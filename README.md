@@ -61,6 +61,30 @@ e.g.
 
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
+## Development Prerequisites
+- [Node/NPM](https://nodejs.org/en/download/)
+- [NVM](https://github.com/nvm-sh/nvm)
+- [Docker](https://www.docker.com/)
+
+## Development Setup
+1. Go to plugin's root
+2. Run `npm install`
+
+## End to End Testing
+
+Start Local WordPress Environment, run:
+
+	npm run start:env
+
+To run e2e test, run:
+
+	npm run test:e2e
+
+To run e2e test in interactive mode, run:
+
+	npm run test:e2e -- --puppeteer-interactive
+
+
 ## Changelog ##
 
 ### 1.7.15 ###
