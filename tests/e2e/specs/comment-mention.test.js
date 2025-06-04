@@ -9,7 +9,7 @@ describe('Plugin UI', () => {
         { stdio: 'inherit' }
       );
     } catch (err) {
-      console.warn('User may already exist. Skipping creation.');
+      console.log('User may already exist. Skipping creation....');
     }
   });
 
