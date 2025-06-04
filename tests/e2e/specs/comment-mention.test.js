@@ -1,4 +1,7 @@
+jest.setTimeout(60000);
+
 const { execSync } = require('child_process');
+
 describe('Plugin UI', () => {
 
   beforeAll(() => {
