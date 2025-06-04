@@ -1,8 +1,6 @@
-jest.setTimeout(60000);
-
 const { execSync } = require('child_process');
 
-describe('Plugin UI', () => {
+describe('Test User Mention in Post Comment', () => {
 
   beforeAll(() => {
     try {
@@ -17,6 +15,7 @@ describe('Plugin UI', () => {
   });
 
   it('Should load plugin\'s setting page', async () => {
+
     await page.goto('http://localhost:8888/wp-login.php');
 
     await page.type('#user_login', 'admin');
@@ -27,13 +26,10 @@ describe('Plugin UI', () => {
       page.click('#wp-submit'),
     ]);
 
-    // Optional: verify login worked
     await expect(page).toMatch('Dashboard');
 
-    // Go to plugin settings
     await page.goto('http://localhost:8888/wp-admin/admin.php?page=comment-mention');
 
-    // Wait for heading or known element to ensure page loaded
     await expect(page).toMatch('Comment Mention Settings');
 
     await page.click('input[name="cmt_mntn_email_enable"]');
@@ -51,7 +47,9 @@ describe('Plugin UI', () => {
       page.waitForNavigation({ waitUntil: 'domcontentloaded' }),
       await page.click('#submit'),
     ]);
+  });
 
+  it('Should mention testuser in post comment', async () => {
 
     await page.goto('http://localhost:8888/hello-world/');
 
@@ -59,7 +57,7 @@ describe('Plugin UI', () => {
 
     await page.type('textarea#comment', '@test');
 
-    await page.waitForTimeout(50000);
+    await page.waitForTimeout(5000);
 
     await page.waitForSelector('.tribute-container li.highlight', { visible: true });
 
@@ -72,7 +70,6 @@ describe('Plugin UI', () => {
       page.click('input#submit'),
     ]);
 
-    // Optional: Confirm the comment appears on the page
     await expect(page).toMatch('@testuser this is a test comment');
 
   });
