@@ -11,7 +11,13 @@
     "wp-env": "wp-env",
     "start:env": "wp-env start",
     "stop:env": "wp-env stop",
-    "test:e2e": "wp-scripts test-e2e"
+    "env": "wp-env",
+    "env:start": "wp-env start",
+    "env:clean": "wp-env clean",
+    "env:stop": "wp-env stop",
+    "env:destroy": "wp-env destroy",
+    "postenv:start": "bash ./tests/e2e/bin/initialize.sh",
+    "test:e2e": "npx playwright test --config tests/e2e/playwright.config.js"
   },
   "author": "Bili Plugins",
   "dependencies": {
@@ -21,11 +27,14 @@
   "devDependencies": {
     "@wordpress/e2e-test-utils-playwright": "^1.24.0",
     "@wordpress/scripts": "^24.6.0",
-    "@wordpress/env": "^10.24.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-phpcbf": "^0.1.1",
-    "grunt-wp-readme-to-markdown": "^2.1.0"
+    "grunt-wp-readme-to-markdown": "^2.1.0",
+    "@babel/runtime": "^7.27.1",
+    "@playwright/test": "^1.52.0",
+    "@woocommerce/e2e-utils-playwright": "^0.3.1",
+    "@wordpress/env": "^10.23.0"
   }
 }
