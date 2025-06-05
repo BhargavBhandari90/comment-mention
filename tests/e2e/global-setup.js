@@ -2,7 +2,7 @@ const { chromium, expect } = require('@playwright/test');
 
 
 const fs = require('fs');
-const { admin } = require('./config');
+const { admin, testuser } = require('./config');
 
 module.exports = async (config) => {
     const { stateDir, baseURL, userAgent } = config.projects[0].use;
@@ -12,20 +12,23 @@ module.exports = async (config) => {
 
     // used throughout tests for authentication
     process.env.ADMINSTATE = `${stateDir}adminState.json`;
+    process.env.TESTUSERSTATE = `${stateDir}testuserState.json`;
 
     // Clear out the previous save states
     try {
         fs.unlinkSync(process.env.ADMINSTATE);
-        console.log('Admin state file deleted successfully.');
+        fs.unlinkSync(process.env.TESTUSERSTATE);
+        console.log('Admin and Test User state files deleted successfully.');
     } catch (err) {
         if (err.code === 'ENOENT') {
-            console.log('Admin state file does not exist.');
+            console.log('Admin or Test User state file does not exist.');
         } else {
-            console.log('Admin state file could not be deleted: ' + err);
+            console.log('Admin or Test User state file could not be deleted: ' + err);
         }
     }
 
     let adminLoggedIn = false;
+    let testuserLoggedIn = false;
 
     const contextOptions = { baseURL, userAgent };
 
@@ -70,6 +73,46 @@ module.exports = async (config) => {
         process.exit(1);
     }
 
+    const testuserContext = await browser.newContext(contextOptions);
+    const testuserPage = await testuserContext.newPage();
+
+    const testuserRetries = 5;
+    for (let i = 0; i < testuserRetries; i++) {
+        try {
+            console.log('Login as testuser...');
+            await testuserPage.goto(`/wp-admin`);
+            await testuserPage.fill('input[name="log"]', testuser.username);
+            await testuserPage.fill('input[name="pwd"]', testuser.password);
+            await testuserPage.locator("#wp-submit").click();
+            await testuserPage.waitForLoadState('networkidle');
+            await testuserPage.goto(`/wp-admin`);
+            await testuserPage.waitForLoadState('domcontentloaded');
+
+            await expect(testuserPage.locator('div.wrap > h1')).toHaveText(
+                'Dashboard'
+            );
+            await testuserPage
+                .context()
+                .storageState({ path: process.env.TESTUSERSTATE });
+            console.log('Logged-in as testuser successfully.');
+            testuserLoggedIn = true;
+            break;
+        } catch (e) {
+            console.log(
+                `Testuser login failed, Re-trying... ${i}/${testuserRetries}`
+            );
+            console.log(e);
+        }
+    }
+
+    if (!testuserLoggedIn) {
+        console.error(
+            'Testuser login failed... Check your credentials.'
+        );
+        process.exit(1);
+    }
+
     await adminContext.close();
+    await testuserContext.close();
     await browser.close();
 };
