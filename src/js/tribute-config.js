@@ -30,6 +30,7 @@ jQuery(
 										return item;
 									}
 								);
+
 								cb( results );  // Pass formatted results to Tribute.js
 							},
 							error: function(xhr, status, error) {
@@ -40,9 +41,10 @@ jQuery(
 					);
 				},
 				lookup: function (users, mentionText) {
+
 					if (users.key.includes( mentionText )) {
 						return users.key + " (" + users.name + ")";
-					} else if (users.name.includes( mentionText )) {
+					} else if (users.name.toLowerCase().includes( mentionText ) || users.name.includes( mentionText )) {
 						return users.name + " (" + users.key + ")";
 					} else if (users.user_nicename.includes( mentionText )) {
 						return users.user_nicename + " (" + users.name + ")";
