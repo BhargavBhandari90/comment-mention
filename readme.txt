@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BnB90/50
 Tags: comments, mention, email, user, bbpress
 Requires at least: 4.6
 Tested up to: 6.8.1
-Stable tag: 1.7.16
+Stable tag: 1.7.17
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,9 @@ e.g.
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
 
 == Changelog ==
+
+= 1.7.17 =
+* Fixed - Pro links were displaying even pro plugin is active.
 
 = 1.7.16 =
 * Removed case-sensitivity while searching users.

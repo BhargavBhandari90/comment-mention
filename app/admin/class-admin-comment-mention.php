@@ -208,7 +208,7 @@ class CommentMentionAdmin {
 					</td>
 				</tr>
 
-				<?php if ( ! class_exists( 'Comment_Mention_Pro' ) ) : ?>
+				<?php if ( ! class_exists( 'CommentMentionMainPro' ) ) : ?>
 
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'Search user by First/Last name - PRO', 'comment-mention-pro' ); ?></th>
