@@ -1,5 +1,5 @@
 name: E2E test
- 
+
 on:
   push:
     branches:
@@ -8,33 +8,33 @@ on:
     types: [opened, synchronize]
     branches:
       - master
- 
+
 jobs:
   e2e:
     name: E2E Test
     runs-on: ubuntu-latest
- 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
- 
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
- 
+
       - name: Node install
         run: |
           npm ci
- 
+
       - name: Build
         run: |
           npm run build
- 
+
       - name: Install Playwright Browsers
         run: npx playwright install chromium
- 
+
       - name: Setup WP environment
         run: npm run env:start
- 
+
       - name: Run E2E Test
         run: npm run test:e2e
