@@ -1,5 +1,4 @@
-<?php
-
+<?php // phpcs:ignore
 /**
  * Functions of Comment Mention functions.
  *
@@ -65,7 +64,6 @@ class CommentMentionBBPress {
 		);
 
 		return $settings;
-
 	}
 
 	/**
@@ -87,7 +85,7 @@ class CommentMentionBBPress {
 		checked( cmt_mntn_enable_bbp_user_mention( true ) );
 		bbp_maybe_admin_setting_disabled( '_bbp_enable_user_mention' );
 		?>
-		 />
+		/>
 		<label for="_bbp_enable_user_mention"><?php esc_html_e( 'Enable User Mention in Topics & Replies Content', 'comment-mention' ); ?></label>
 
 		<?php
@@ -168,7 +166,7 @@ class CommentMentionBBPress {
 				// Set mail as HTML format.
 				add_filter(
 					'wp_mail_content_type',
-					function() {
+					function () {
 						return 'text/html';
 					}
 				);
@@ -183,9 +181,7 @@ class CommentMentionBBPress {
 
 			}
 		}
-
 	}
-
 }
 
 new CommentMentionBBPress();

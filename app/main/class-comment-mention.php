@@ -1,5 +1,4 @@
-<?php
-
+<?php // phpcs:ignore
 /**
  * Functions of Comment Mention functions.
  *
@@ -85,7 +84,7 @@ class CommentMentionMain {
 
 		// Set arguments.
 		$args = array(
-			'term' => sanitize_text_field( $_GET['term'] ),
+			'term' => ! empty( $_GET['term'] ) ? sanitize_text_field( wp_unslash( $_GET['term'] ) ) : '', // phpcs:ignore
 		);
 
 		do_action( 'cmt_mntn_ajax_before_get_users', $args );
@@ -169,6 +168,9 @@ class CommentMentionMain {
 
 	/**
 	 * Find and link @-mentioned users in the contents of a given item.
+	 *
+	 * @param mixed $content Comment content.
+	 * @return mixed         Updated comment content.
 	 */
 	public function cmt_mntn_at_name_filter( $content ) {
 
@@ -243,6 +245,9 @@ class CommentMentionMain {
 
 	/**
 	 * Locate usernames in an comment content string, as designated by an @ sign.
+	 *
+	 * @param mixed $content Comment content.
+	 * @return mixed         Modified content.
 	 */
 	public static function cmt_mntn_find_mentions( $content ) {
 
@@ -287,12 +292,12 @@ class CommentMentionMain {
 	/**
 	 * Send email notifications to mentioned users.
 	 *
-	 * @param  int    $comment_ID        Current comment id.
+	 * @param  int    $comment_id        Current comment id.
 	 * @param  string $comment_status Comment status.
 	 * @param  obj    $comment_data      Comment data.
 	 * @return void
 	 */
-	public function cmt_mntn_preprocess_comment( $comment_ID, $comment_status, $comment_data ) {
+	public function cmt_mntn_preprocess_comment( $comment_id, $comment_status, $comment_data ) {
 
 		$is_send_email_enabled = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] )
 			? $this->cmt_mntn_settings['cmt_mntn_email_enable']
@@ -303,10 +308,10 @@ class CommentMentionMain {
 		}
 
 		// Get content.
-		$content = apply_filters( 'cmt_mntn_main_content', $comment_data['comment_content'], $comment_ID );
+		$content = apply_filters( 'cmt_mntn_main_content', $comment_data['comment_content'], $comment_id );
 
 		// Add data to array for post use.
-		$comment_data['comment_ID'] = $comment_ID;
+		$comment_data['comment_ID'] = $comment_id;
 
 		// Get usernames from comment content.
 		$usernames = $this->cmt_mntn_find_mentions( $content );
@@ -334,7 +339,7 @@ class CommentMentionMain {
 					// Check If User Turned Off Email Notification or not.
 
 					$cmt_mntn_email_enabled = ! empty( get_user_meta( $cmt_mntn_user_id, 'cmt_mntn_email_notification_status', true ) ) ? get_user_meta( $cmt_mntn_user_id, 'cmt_mntn_email_notification_status', true ) : 'false';
-					if ( ! empty( $cmt_mntn_email_enabled ) && $cmt_mntn_email_enabled === 'true' ) {
+					if ( ! empty( $cmt_mntn_email_enabled ) && 'true' === $cmt_mntn_email_enabled ) {
 						return;
 					}
 				}
@@ -369,12 +374,12 @@ class CommentMentionMain {
 	/**
 	 * Check If user is mentioned.
 	 *
-	 * @param  int    $comment_ID        Current comment id.
+	 * @param  int    $comment_id        Current comment id.
 	 * @param  string $comment_status Comment status.
 	 * @param  obj    $comment_data      Comment data.
 	 * @return void
 	 */
-	public function cmt_mntn_check_mention( $comment_ID, $comment_status, $comment_data ) {
+	public function cmt_mntn_check_mention( $comment_id, $comment_status, $comment_data ) {
 		if ( ! cmt_mntn_can_user_mention() ) {
 			return;
 		}
@@ -395,7 +400,7 @@ class CommentMentionMain {
 	 * @param  array $comment_data Array of comment data.
 	 * @return string              Mail body.
 	 */
-	function cmt_mntn_mail_body( $comment_data ) {
+	public function cmt_mntn_mail_body( $comment_data ) {
 
 		// Get current comment link.
 		$cmt_mntn_comment_link = get_permalink( $comment_data['comment_post_ID'] ) . '#comment-' . $comment_data['comment_ID'];

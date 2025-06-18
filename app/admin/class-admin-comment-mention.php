@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Functions of Comment Mention functions.
  *
@@ -31,7 +31,7 @@ class CommentMentionAdmin {
 	 *
 	 * @var object
 	 */
-	public $_comment_mention;
+	public $comment_mention;
 
 	/**
 	 * Cunstructor for admin class.
@@ -119,7 +119,7 @@ class CommentMentionAdmin {
 							if ( ! empty( $editable_roles ) ) {
 								foreach ( $editable_roles as $role => $details ) {
 									$name     = translate_user_role( $details['name'] );
-									$selected = in_array( $role, $cmt_mntn_enabled_user_roles, false ) ? 'checked' : '';
+									$selected = in_array( $role, $cmt_mntn_enabled_user_roles, true ) ? 'checked' : '';
 									printf(
 										'<label><input type="checkbox" name="cmt_mntn_enabled_user_roles[]" value="%1$s" %2$s>%3$s</label>',
 										esc_attr( $role ),
@@ -143,7 +143,7 @@ class CommentMentionAdmin {
 							if ( ! empty( $editable_roles ) ) {
 								foreach ( $editable_roles as $role => $details ) {
 									$name     = translate_user_role( $details['name'] );
-									$selected = in_array( $role, $cmt_mntn_disabled_mention_user_roles, false ) ? 'checked' : '';
+									$selected = in_array( $role, $cmt_mntn_disabled_mention_user_roles, true ) ? 'checked' : '';
 									printf(
 										'<label><input type="checkbox" name="cmt_mntn_disabled_mention_user_roles[]" value="%1$s" %2$s>%3$s</label>',
 										esc_attr( $role ),
@@ -208,7 +208,7 @@ class CommentMentionAdmin {
 					</td>
 				</tr>
 
-				<?php if ( ! class_exists( 'Comment_Mention_Pro' ) ) : ?>
+				<?php if ( ! class_exists( 'CommentMentionMainPro' ) ) : ?>
 
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'Search user by First/Last name - PRO', 'comment-mention-pro' ); ?></th>
@@ -267,7 +267,7 @@ class CommentMentionAdmin {
 		// Verify nonce for security.
 		if (
 			isset( $_POST['cmt_mntn_save_data_field'] )
-			&& wp_verify_nonce( $_POST['cmt_mntn_save_data_field'], 'cmt_mntn_save_data_action' )
+			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cmt_mntn_save_data_field'] ) ), 'cmt_mntn_save_data_action' )
 		) {
 
 			$cmt_mntn_settings = array();
@@ -278,11 +278,11 @@ class CommentMentionAdmin {
 			}
 
 			if ( isset( $_POST['cmt_mntn_email_subject'] ) && ! empty( $_POST['cmt_mntn_email_subject'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_email_subject'] = sanitize_text_field( $_POST['cmt_mntn_email_subject'] );
+				$cmt_mntn_settings['cmt_mntn_email_subject'] = sanitize_text_field( wp_unslash( $_POST['cmt_mntn_email_subject'] ) );
 			}
 
 			if ( isset( $_POST['cmt_mntn_mail_content'] ) && ! empty( $_POST['cmt_mntn_mail_content'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) );
+				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) ); // phpcs:ignore
 			}
 
 			$cmt_mntn_settings['cmt_mntn_enabled_user_roles']          = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );

@@ -15,14 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Is user mention enabled for BBPress?
  *
- * @param bool $default Optional. Default value true.
+ * @param bool $plugin_default Optional. Default value true.
  *
  * @return bool Is user mention enabled for BBPress?
  */
-function cmt_mntn_enable_bbp_user_mention( $default = 1 ) {
+function cmt_mntn_enable_bbp_user_mention( $plugin_default = 1 ) {
 
-	// Filter & return
-	return (bool) apply_filters( 'cmt_mntn_enable_bbp_user_mention', (bool) get_option( '_bbp_enable_user_mention', $default ) );
+	return (bool) apply_filters( 'cmt_mntn_enable_bbp_user_mention', (bool) get_option( '_bbp_enable_user_mention', $plugin_default ) );
 }
 
 /**
@@ -125,7 +124,7 @@ function cmt_mntn_mail_setting( $uid, $post_id ) {
 }
 
 /**
- * check if user can mention or not.
+ * Check if user can mention or not.
  */
 function cmt_mntn_can_user_mention() {
 	if ( function_exists( 'cmt_mntn_pro_membership_status' ) && cmt_mntn_pro_membership_status() || cmt_mntn_check_enabled_userroles() ) {
@@ -167,7 +166,7 @@ function cmt_mntn_check_enabled_userroles() {
 	}
 
 	foreach ( $roles as $role ) {
-		if ( in_array( $role, $cmt_mntn_enabled_user_roles, false ) ) {
+		if ( in_array( $role, $cmt_mntn_enabled_user_roles, true ) ) {
 			return true;
 		}
 	}
