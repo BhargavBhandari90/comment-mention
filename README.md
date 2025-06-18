@@ -1,4 +1,7 @@
 # Comment Mention #
+
+![WPCS](https://github.com/BhargavBhandari90/comment-mention/workflows/WPCS/badge.svg?branch=master)
+
 **Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
 **Donate link:** https://www.paypal.me/BnB90/50  
 **Tags:** comments, mention, email, user, bbpress  
