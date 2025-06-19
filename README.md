@@ -82,11 +82,7 @@ Start Local WordPress Environment, run:
 
 To run e2e test, run:
 
-	npm run test:e2e
-
-To run e2e test in interactive mode, run:
-
-	npm run test:e2e -- --puppeteer-interactive
+	 npm run test:e2e
 
 
 ## Changelog ##
