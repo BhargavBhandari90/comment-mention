@@ -8,7 +8,7 @@
 **Tags:** comments, mention, email, user, bbpress  
 **Requires at least:** 4.6  
 **Tested up to:** 6.8.1  
-**Stable tag:** 1.7.17  
+**Stable tag:** 1.7.18  
 **Requires PHP:** 5.6  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -90,6 +90,9 @@ To run e2e test in interactive mode, run:
 
 
 ## Changelog ##
+
+### 1.7.18 ###
+* Improvements based on PHP 8.x.
 
 ### 1.7.17 ###
 * Fixed - Pro links were displaying even pro plugin is active.

@@ -20,6 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class CommentMentionBBPress {
 
 	/**
+	 * Plugin Settings.
+	 *
+	 * @var array
+	 */
+	public $cmt_mntn_settings;
+
+	/**
 	 * Cunstructor for bbpress class.
 	 */
 	public function __construct() {
