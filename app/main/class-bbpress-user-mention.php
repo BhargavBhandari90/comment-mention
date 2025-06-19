@@ -51,6 +51,13 @@ class CommentMentionBBPress {
 
 		}
 
+		add_filter( 'bbp_kses_allowed_tags', array( $this, 'cmt_mntn_bbp_kses_allowed_tags' ) );
+
+		if ( ! class_exists( 'CommentMentionMainPro' ) ) {
+			remove_filter( 'bbp_make_clickable', 'bbp_make_mentions_clickable', 8 );
+			add_filter( 'bbp_make_clickable', array( $this, 'cmt_mntn_make_mentions_clickable_nopro' ), 8 );
+		}
+
 		// Get plugin settings.
 		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 	}
@@ -147,7 +154,7 @@ class CommentMentionBBPress {
 		$usernames = CommentMentionMain::cmt_mntn_find_mentions( $topic_content );
 
 		// If no user mention, then don't do anything.
-		if ( empty( $usernames ) ) {
+		if ( empty( $usernames ) || ! is_array( $usernames ) ) {
 			return;
 		}
 
@@ -188,6 +195,89 @@ class CommentMentionBBPress {
 
 			}
 		}
+	}
+
+	/**
+	 * Allow html tag for mentioned user.
+	 *
+	 * @param array $allowed_tags Array of allowd tags.
+	 * @return array              Updated array of allowed tags.
+	 */
+	public function cmt_mntn_bbp_kses_allowed_tags( $allowed_tags ) {
+
+		$allowed_tags['span'] = array(
+			'class'               => array(),
+			'data-atwho-at-query' => array(),
+		);
+
+		return $allowed_tags;
+	}
+
+	/**
+	 * Make mentiones clickabke.
+	 *
+	 * @param string $text Content text.
+	 * @return string
+	 */
+	public function cmt_mntn_make_mentions_clickable_nopro( $text = '' ) {
+		return preg_replace_callback( '/\B@[a-zA-Z0-9._@]+/', array( $this, 'cmt_mntn_make_mentions_clickable_nopro_callback' ), $text );
+	}
+
+	/**
+	 * Callback to convert mention matches to HTML A tag.
+	 *
+	 * @param array $matches Regular expression matches in the current text blob.
+	 *
+	 * @return string Original text if no user exists, or link to user profile.
+	 */
+	public function cmt_mntn_make_mentions_clickable_nopro_callback( $matches = array() ) {
+
+		// Bail if the match is empty malformed.
+		if ( empty( $matches[0] ) || ! is_string( $matches[0] ) ) {
+			return $matches[0];
+		}
+
+		$username = ltrim( $matches[0], '@' );
+
+		// Get user; bail if not found.
+		$user = get_user_by( 'login', $username );
+
+		if ( empty( $user ) || bbp_is_user_inactive( $user->ID ) ) {
+			return $matches[0];
+		}
+
+		// Default anchor classes.
+		$classes = array(
+			'bbp-user-mention',
+			'bbp-user-id-' . absint( $user->ID ),
+		);
+
+		// Filter classes.
+		$classes = (array) apply_filters( 'bbp_make_mentions_clickable_classes', $classes, $user );
+
+		// Escape & implode if not empty, otherwise an empty string.
+		$class_str = ! empty( $classes )
+			? implode( ' ', array_map( 'sanitize_html_class', $classes ) )
+			: '';
+
+		// Setup as a variable to avoid a potentially empty class attribute.
+		$class = ! empty( $class_str )
+			? ' class="' . esc_attr( $class_str ) . '"'
+			: '';
+
+		// Create the link to the user's profile.
+		$html   = '<a href="%1$s"' . $class . '>%2$s</a>';
+		$url    = bbp_get_user_profile_url( $user->ID );
+		$anchor = sprintf( $html, esc_url( $url ), esc_html( $matches[0] ) );
+
+		// Prevent this link from being followed by bots.
+		$link = bbp_rel_nofollow( $anchor );
+
+		// Concatenate the matches into the return value.
+		$retval = $link;
+
+		// Return the link.
+		return $retval;
 	}
 }
 

@@ -34,6 +34,13 @@ class CommentMentionAdmin {
 	public $comment_mention;
 
 	/**
+	 * Object for main class.
+	 *
+	 * @var object
+	 */
+	public $comment_mention_main;
+
+	/**
 	 * Cunstructor for admin class.
 	 */
 	public function __construct() {
@@ -50,7 +57,7 @@ class CommentMentionAdmin {
 		add_action( 'init', array( $this, 'cmt_mntn_save_plugin_data' ) );
 
 		// Main class object for future use.
-		$this->_comment_mention = new CommentMentionMain();
+		$this->comment_mention_main = new CommentMentionMain();
 	}
 
 	/**
@@ -82,10 +89,10 @@ class CommentMentionAdmin {
 		$cmt_mntn_email_enable = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
 
 		// Get subject.
-		$cmt_mntn_subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : $this->_comment_mention->cmt_mntn_mail_subject();
+		$cmt_mntn_subject = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_subject'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_subject'] : $this->comment_mention_main->cmt_mntn_mail_subject();
 
 		// Get content.
-		$cmt_mntn_mail_content = ! empty( $this->cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $this->cmt_mntn_settings['cmt_mntn_mail_content'] : $this->_comment_mention->cmt_mntn_default_mail_content();
+		$cmt_mntn_mail_content = ! empty( $this->cmt_mntn_settings['cmt_mntn_mail_content'] ) ? $this->cmt_mntn_settings['cmt_mntn_mail_content'] : $this->comment_mention_main->cmt_mntn_default_mail_content();
 
 		// Get selected users roles who can mention.
 		$cmt_mntn_enabled_user_roles = ! empty( $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] ) ? $this->cmt_mntn_settings['cmt_mntn_enabled_user_roles'] : array();
