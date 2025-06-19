@@ -89,6 +89,7 @@ To run e2e test, run:
 
 ### 1.7.18 ###
 * Improvements based on PHP 8.x.
+* Fixed - Displaying span tag in bbPress replies.
 
 ### 1.7.17 ###
 * Fixed - Pro links were displaying even pro plugin is active.
