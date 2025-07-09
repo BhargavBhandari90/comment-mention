@@ -1,7 +1,7 @@
 === Comment Mention ===
 Contributors: bhargavbhandari90, biliplugins, hackkzy404
-Donate link: https://www.paypal.me/BnB90/50
-Tags: comments, mention, email, user, bbpress
+Donate link: https://www.paypal.me/BnB90/10
+Tags: comments, mention, tagging, bbPress, WooCommerce
 Requires at least: 4.6
 Tested up to: 6.8.1
 Stable tag: 1.7.19
@@ -9,104 +9,126 @@ Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Mention user in comments without BuddyPress plugin. Mentioned user will get email notification.
-
-Compatible with BBPress as well.
+Mention users in WordPress comments without needing BuddyPress! Automatically notify mentioned users via email. Also supports bbPress.
 
 == Description ==
 
-Now you can enable user mention functionality in post comments without using BuddyPress plugin.
+**Comment Mention** lets you easily enable @mentions in your WordPress comments — no BuddyPress required!
 
-This plugin is useful for those who wants to enable mention on their blog site.
+When someone mentions a user by typing `@username` in a comment, the mentioned user receives an email notification. Perfect for blogs, communities, and discussion-based sites.
 
-What this plugin does? Just wring username followed by '@' in comment box. It will send the email to mentioned user.
+**Key features:**
 
-Email setting is provided in backend. You can change email subject and content by your own.
+- Simple and lightweight — works with the native WordPress comment system.
+- Mention users by typing `@username`.
+- Sends customizable email notifications to mentioned users.
+- Backend settings to customize email subject and content.
+- Compatible with bbPress — mention users in forum topics and replies.
+- Compatible with WooCommerce - mention users in product reviews.
+
+== FREE Plugin Compatibility ==
+
+- bbPress - Mention users in topics & replies.
+- WooCommerce - Mention users in product reviews.
+
+**Watch it in action:**
 
 https://www.youtube.com/watch?v=Nz47aKJhsKQ
 
+---
+
 == PRO Features ==
 
-* Search by First/Last name while mention.
-* Search by Display name while mention.
-* Enable mentioning on Page comment.
-* Added option to Turn off Email notification.
-* Mention by First Name & Last Name ( Under development... ).
-* Go to wp-admin –> Comment Mention
-* And you will see options to enable pro features https://prnt.sc/r5W2X4utYe3v
+Upgrade to **Comment Mention Pro** to unlock advanced features:
 
-* [Get Comment Mention Pro](https://biliplugins.com/comment-mention-pro-product/)
-* TO USE THIS PRO PLUGIN, MAKE SURE YOU HAVE AT LEAST Comment Mention PLUGIN v1.3.0
+- Autocomplete search by first name, last name, or display name while mentioning.
+- Enable mentions in page comments.
+- Option to disable email notifications for mentions.
+- Future: Mention by first & last name (under development).
+- Extra controls for role-based mention restrictions.
+- Additional hooks and filters for developers.
+
+🛠️ Go to **wp-admin → Comment Mention** to enable pro features.  
+🔗 [Get Comment Mention Pro](https://biliplugins.com/comment-mention-pro-product/)
+
+> **Note:** Requires Comment Mention plugin v1.3.0 or higher.
+
+---
 
 == Pro Plugin Compatibility ==
 
-* [GamiPress](https://gamipress.com/?ref=203)
-* [MemberPress](https://memberpress.com/)
+- [GamiPress](https://gamipress.com/?ref=203) — reward users with points, achievements, or ranks when they mention or get mentioned.
+- [MemberPress](https://memberpress.com/) — integrate mentions into membership sites.
+
+---
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+1. Upload the plugin files to the `/wp-content/plugins/comment-mention` directory, or install via the WordPress plugins screen directly.
+2. Activate the plugin through the "Plugins" menu in WordPress.
+3. Configure settings under **Comment Mention** in the admin menu.
+
+---
 
 == Screenshots ==
-1. Mention the user by typing "@" in the comment box.
-2. Setting for sending email to mentioned user.
 
-e.g.
+1. Mention the user by typing `@` in the comment box.
+2. Admin settings screen to customize email notifications.
 
-1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Comment Mention menu to configure the plugin
+---
 
-== GIT Repo ==
+== GitHub Repository ==
 
 [https://github.com/BhargavBhandari90/comment-mention](https://github.com/BhargavBhandari90/comment-mention)
+
+---
 
 == Changelog ==
 
 = 1.7.19 =
-* Fixed - Mentioning users in bbPress topic and reply when bbp style pack is active.
+* Fixed - Mentioning users in bbPress topics and replies when bbp style pack is active.
 
 = 1.7.18 =
-* Improvements based on PHP 8.x.
+* Improvements for PHP 8.x.
 * Fixed - Displaying span tag in bbPress replies.
 
 = 1.7.17 =
-* Fixed - Pro links were displaying even pro plugin is active.
+* Fixed - Pro links displaying even when pro plugin was active.
 
 = 1.7.16 =
-* Removed case-sensitivity while searching users.
+* Removed case sensitivity when searching for users.
 
 = 1.7.15 =
 * Added option to enable avatars for mentioned users.
 
 = 1.7.14 =
-* Mention script improvisation for pro plugin.
+* Improved mention script for pro plugin.
 * Added hooks for pro plugin.
 
 = 1.7.13 =
-* Mention script improvisation for pro plugin.
+* Further improvements to mention script for pro plugin.
 
 = 1.7.12 =
-* Mention script improvisation.
+* Mention script optimization.
 
 = 1.7.11 =
-* Hook added : `cmt_mntn_comment_pre_content`.
-* Updated mention script for pro feature.
+* Added `cmt_mntn_comment_pre_content` hook.
+* Updated mention script for pro features.
 
 = 1.7.10 =
-* Fix bbPress reply link.
+* Fixed bbPress reply link.
 
 = 1.7.9 =
-* Bug Fix : Double quotes issue with Email subject.
+* Bug fix: Double quotes issue with email subject.
 
 = 1.7.8 =
-* Hook added : `cmnt_mntn_replace_mentioned_name`.
+* Added hook: `cmnt_mntn_replace_mentioned_name`.
 
 = 1.7.7 =
-* Bug Fix : Unable to mention user on freshly installed `Comment Mention`.
+* Bug fix: Unable to mention users on freshly installed Comment Mention.
 
 = 1.7.6 =
-* Update plugin issue fix.
+* Fixed plugin update issue.
 
 = 1.7.5 =
 * Minor bug fix.
@@ -115,23 +137,23 @@ e.g.
 * Minor bug fix.
 
 = 1.7.3 =
-* Added shortcode support for Email subject.
+* Added shortcode support for email subject.
 
 = 1.7.2 =
-* Minor Updates.
+* Minor updates.
 
 = 1.7.1 =
-* Minor Bug Fixes.
+* Minor bug fixes.
 
 = 1.7.0 =
-* Mention script Updated.
-* Minor Bug Fixes.
+* Updated mention script.
+* Minor bug fixes.
 
 = 1.6.0 =
-* Added Option to Hide selected user roles while mentioning.
+* Added option to hide selected user roles when mentioning.
 
 = 1.5.0 =
-* Added Option to enable comment mention for selected user roles.
+* Added option to enable mentions for selected user roles.
 
 = 1.4.6 =
 * JS & CSS optimization.
@@ -140,55 +162,62 @@ e.g.
 * JS & CSS optimization.
 
 = 1.4.4 =
-* Fix - Not able to mention.
+* Fixed: Not able to mention.
 
 = 1.4.3 =
-* Fix - Not able to mention.
+* Fixed: Not able to mention.
 
 = 1.4.2 =
-* Made some changes related to pro plugin.
+* Adjustments for pro plugin.
 
 = 1.4.1 =
-* Made some changes related to pro plugin.
+* Adjustments for pro plugin.
 
 = 1.4.0 =
-* Added support for TinyMCE.
+* Added TinyMCE support.
 
 = 1.3.3 =
 * Minor bug fixes.
 
 = 1.3.2 =
-* Changes for pro plugin.
+* Updates for pro plugin.
 
 = 1.3.1 =
-* Changes for pro plugin.
+* Updates for pro plugin.
 
 = 1.3.0 =
-* Changes for pro plugin.
+* Updates for pro plugin.
 
 = 1.2.5 =
 * Added actions and filters.
 
 = 1.2.4 =
-* Added new placeholders: #commenter_name# and #comment_content#.
+* Added placeholders: #commenter_name#, #comment_content#.
 
 = 1.2.3 =
-* Fix issue of ajax with WP 5.5.
+* Fixed AJAX issue with WP 5.5.
 
 = 1.2.2 =
-* Fix issue of class not added for mentions added by other than administrator.
+* Fixed class issue for non-admin mentions.
 
 = 1.2.1 =
-* Fix issue of mention with post comment.
+* Fixed mention issue with post comments.
 
 = 1.2.0 =
-* Add bbpress compatibility.
+* Added bbPress compatibility.
 
 = 1.1.0 =
-* Add support for language.
+* Added language support.
 
 = 1.0.1 =
-* Fix issue of sending two mails to mentioned users.
+* Fixed double email issue for mentioned users.
 
 = 1.0.0 =
-* Initial Release.
+* Initial release.
+
+---
+
+== Upgrade Notice ==
+
+= 1.7.19 =
+Recommended update to fix bbPress compatibility and improve stability.
