@@ -252,8 +252,20 @@ class CommentMentionAdmin {
 						<p class="description"><?php esc_html_e( 'Mention by First Name & Last Name.', 'comment-mention-pro' ); ?><br/>
 					</td>
 				</tr>
-
-				<?php endif; ?>
+					<?php
+					if ( class_exists( 'Tribe__Events__Main' ) ) {
+						?>
+						<tr valign="top">
+							<th scope="row"><?php esc_html_e( 'Enable Mention Event organizers in event - PRO', 'comment-mention-pro' ); ?></th>
+							<td>
+								<a target="_blank" href="https://biliplugins.com/comment-mention-pro-product/?ref=freeplugin">Get PRO</a>
+								<p class="description"><?php esc_html_e( 'Mention Event organizers by "@organizers".', 'comment-mention-pro' ); ?><br/>
+							</td>
+						</tr>
+						<?php
+					}
+					endif;
+				?>
 
 				<?php do_action( 'cmt_mntn_more_options' ); ?>
 
