@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@wordpress/e2e-test-utils-playwright": "^1.24.0",
-    "@wordpress/scripts": "^24.6.0",
+    "@wordpress/scripts": "^30.19.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-uglify": "^5.0.0",
     "grunt-contrib-watch": "^1.1.0",
