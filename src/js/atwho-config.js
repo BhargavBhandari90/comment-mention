@@ -280,9 +280,16 @@ window.cmt_mntn = window.cmt_mntn || {};
 					window.tinyMCE.activeEditor !== null &&
 					typeof window.tinyMCE.activeEditor !== "undefined"
 				) {
-					$(
-						tinyMCE.get("bbp_reply_content").contentDocument.activeElement
-					).cmt_mntn_mentions(cmt_mntn.mentions.users);
+					if ( tinyMCE.get("bbp_reply_content") ) {
+						$(
+							tinyMCE.get("bbp_reply_content").contentDocument.activeElement
+						).cmt_mntn_mentions(cmt_mntn.mentions.users);
+					}
+					if ( tinyMCE.get("bbp_topic_content") ) {
+						$(
+							tinyMCE.get("bbp_topic_content").contentDocument.activeElement
+						).cmt_mntn_mentions(cmt_mntn.mentions.users);
+					}
 					window.clearInterval(my_timing);
 				}
 			}
