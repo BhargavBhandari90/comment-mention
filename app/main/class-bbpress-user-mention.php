@@ -170,8 +170,14 @@ class CommentMentionBBPress {
 				$cmt_mntn_user_data    = get_user_by( 'id', $uid );
 				$cmt_mntn_mail_setting = cmt_mntn_mail_setting( $uid, $post_id );
 
-				// Get email body.
-				$cmt_mntn_mail_body = $cmt_mntn_mail_setting['email_content'];
+				/**
+				 * Filters the Email content.
+				 *
+				 * @since 1.7.20
+				 *
+				 * @param string $cmt_mntn_mail_setting['email_content'] The email content.
+				 */
+				$cmt_mntn_mail_body = apply_filters( 'cmt_mntn_email_content', $cmt_mntn_mail_setting['email_content'] );
 				$cmt_mntn_mail_sub  = $cmt_mntn_mail_setting['email_subject'];
 
 				// Set headers.

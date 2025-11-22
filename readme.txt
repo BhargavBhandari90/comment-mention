@@ -3,8 +3,8 @@ Contributors: bhargavbhandari90, biliplugins, hackkzy404
 Donate link: https://www.paypal.me/BnB90/10
 Tags: comments, mention, tagging, bbPress, WooCommerce
 Requires at least: 4.6
-Tested up to: 6.8.1
-Stable tag: 1.7.19
+Tested up to: 6.8.3
+Stable tag: 1.7.20
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -84,6 +84,9 @@ Upgrade to **Comment Mention Pro** to unlock advanced features:
 ---
 
 == Changelog ==
+
+= 1.7.20 =
+* Added hook for email content.
 
 = 1.7.19 =
 * Fixed - Mentioning users in bbPress topics and replies when bbp style pack is active.
