@@ -7,7 +7,7 @@
 **Donate link:** https://www.paypal.me/BnB90/50  
 **Tags:** comments, mention, email, user, bbpress  
 **Requires at least:** 4.6  
-**Tested up to:** 6.8.3  
+**Tested up to:** 7.0  
 **Stable tag:** 1.7.20  
 **Requires PHP:** 5.6  
 **License:** GPLv2 or later  
