@@ -30,7 +30,7 @@
     "grunt-phpcbf": "^0.1.1",
     "grunt-wp-readme-to-markdown": "^2.1.0",
     "@babel/runtime": "^7.27.1",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.56.1",
     "@woocommerce/e2e-utils-playwright": "^0.3.1",
     "@wordpress/env": "^10.23.0"
   }
