@@ -56,8 +56,13 @@ class CommentMentionAdmin {
 		// Save plugin settings.
 		add_action( 'init', array( $this, 'cmt_mntn_save_plugin_data' ) );
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'cmt_mntn_admin_enqueue_scripts' ) );
+
 		// Main class object for future use.
 		$this->comment_mention_main = new CommentMentionMain();
+
+		// Get settings.
+		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
 	}
 
 	/**
@@ -82,9 +87,6 @@ class CommentMentionAdmin {
 	 */
 	public function cmt_mntn_admin_settings() {
 
-		// Get settings.
-		$this->cmt_mntn_settings = get_option( 'cmt_mntn_settings' );
-
 		// Get status.
 		$cmt_mntn_email_enable = ! empty( $this->cmt_mntn_settings['cmt_mntn_email_enable'] ) ? $this->cmt_mntn_settings['cmt_mntn_email_enable'] : false;
 
@@ -105,10 +107,10 @@ class CommentMentionAdmin {
 			: false;
 
 		?>
-		<div class="wrap">
-		<h1><?php esc_html_e( 'Comment Mention Settings', 'comment-mention' ); ?></h1>
+		<!-- <div class="wrap"> -->
+		<!-- <h1><?php // esc_html_e( 'Comment Mention Settings', 'comment-mention' ); ?></h1> -->
 
-		<form method="post" action="">
+		<form method="post" action="" style="display: none;">
 			<?php wp_nonce_field( 'cmt_mntn_save_data_action', 'cmt_mntn_save_data_field' ); ?>
 			<table class="form-table">
 
@@ -262,7 +264,52 @@ class CommentMentionAdmin {
 			<?php submit_button(); ?>
 
 		</form>
+		<div id="cmt-mntn-admin-page">
+			<div class="cmt-mntn-skeleton" aria-hidden="true">
+				<div class="cmt-mntn-skeleton__header">
+					<div class="cmt-mntn-skeleton__brand">
+						<div class="cmt-mntn-skeleton__circle"></div>
+						<div class="cmt-mntn-skeleton__line" style="width:160px;height:20px;"></div>
+					</div>
+					<div class="cmt-mntn-skeleton__line" style="width:200px;height:14px;"></div>
+				</div>
+
+				<div class="cmt-mntn-skeleton__tabs">
+					<div class="cmt-mntn-skeleton__tab cmt-mntn-skeleton__tab--active"></div>
+					<div class="cmt-mntn-skeleton__tab"></div>
+				</div>
+				<div class="cmt-mntn-skeleton__body">
+
+					<div class="cmt-mntn-skeleton__card">
+						<div class="cmt-mntn-skeleton__card-header">
+							<div class="cmt-mntn-skeleton__line" style="width:120px;height:16px;"></div>
+							<div class="cmt-mntn-skeleton__line" style="width:100px;height:32px;border-radius:3px;"></div>
+						</div>
+						<?php for ( $i = 0; $i < 3; $i++ ) : ?>
+						<div class="cmt-mntn-skeleton__section">
+							<div class="cmt-mntn-skeleton__line" style="width:140px;height:13px;"></div>
+							<div class="cmt-mntn-skeleton__line" style="width:90%;height:12px;margin-top:6px;"></div>
+							<div class="cmt-mntn-skeleton__line" style="width:100%;height:40px;margin-top:12px;border-radius:3px;"></div>
+						</div>
+						<?php endfor; ?>
+					</div>
+
+					<div class="cmt-mntn-skeleton__sidebar">
+						<div class="cmt-mntn-skeleton__card">
+							<div class="cmt-mntn-skeleton__card-header">
+								<div class="cmt-mntn-skeleton__line" style="width:80px;height:14px;"></div>
+							</div>
+							<div class="cmt-mntn-skeleton__section">
+								<div class="cmt-mntn-skeleton__line" style="width:100%;height:12px;"></div>
+								<div class="cmt-mntn-skeleton__line" style="width:80%;height:12px;margin-top:6px;"></div>
+								<div class="cmt-mntn-skeleton__line" style="width:100px;height:14px;margin-top:10px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- </div> -->
 		<?php
 	}
 
@@ -320,6 +367,62 @@ class CommentMentionAdmin {
 			<p><?php esc_html_e( 'Settings Saved', 'comment-mention' ); ?></p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Enqueue admin scripts and styles.
+	 *
+	 * @param string $hook The current admin page.
+	 */
+	public function cmt_mntn_admin_enqueue_scripts( $hook ) {
+
+		if ( 'toplevel_page_comment-mention' !== $hook ) {
+			return;
+		}
+
+		$asset_file = include trailingslashit( CMT_MNTN_PATH ) . 'build/admin-ui.asset.php';
+
+		wp_enqueue_script(
+			'cmt-mntn-admin-page-script',
+			CMT_MNTN_URL . 'build/admin-ui.js',
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			true
+		);
+
+		$asset_file = include trailingslashit( CMT_MNTN_PATH ) . 'build/admin-ui.asset.php';
+
+		wp_enqueue_style(
+			'cmt-mntn-admin-page-style',
+			CMT_MNTN_URL . 'build/admin-ui.css',
+			array(),
+			$asset_file['version']
+		);
+
+		// All editable roles (excluding administrator) as { slug: label }.
+		$roles          = array();
+		$editable_roles = array_reverse( get_editable_roles() );
+		foreach ( $editable_roles as $slug => $details ) {
+			$roles[ $slug ] = translate_user_role( $details['name'] );
+		}
+
+		$data = array(
+			'settings'       => $this->cmt_mntn_settings,
+			'apiUrl'         => rest_url( 'cmt-mntn/v1' ),
+			'nonce'          => wp_create_nonce( 'wp_rest' ),
+			'userId'         => get_current_user_id(),
+			'editable_roles' => $editable_roles,
+			'hasPro'         => class_exists( 'CommentMentionMainPro' ),
+			'defaults'       => array(
+				'cmt_mntn_email_subject' => $this->comment_mention_main->cmt_mntn_mail_subject(),
+				'cmt_mntn_mail_content'  => $this->comment_mention_main->cmt_mntn_default_mail_content(),
+			),
+		);
+
+		wp_add_inline_script(
+			'cmt-mntn-admin-page-script',
+			'const cmtMntn = ' . wp_json_encode( $data ) . ';',
+		);
 	}
 }
 
