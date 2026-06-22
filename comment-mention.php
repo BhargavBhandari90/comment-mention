@@ -91,7 +91,7 @@ function sample_admin_notice__success() {
 	?>
 	<div class="notice notice-success is-dismissible">
 		<?php
-		echo sprintf(
+		printf(
 			'<p>%1$s</p><a href="%2$s" target="_blank">%3$s</a> | <a href="%4$s">%5$s</a>',
 			esc_html__( 'Do you like Comment Mention plugin? Checkout our Pro plugin.', 'comment-mention' ),
 			'https://biliplugins.com/comment-mention-pro-product/',
@@ -182,3 +182,4 @@ require CMT_MNTN_PATH . 'app/includes/common-functions.php';
 require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
 require CMT_MNTN_PATH . 'app/main/class-bbpress-user-mention.php';
 require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';
+require CMT_MNTN_PATH . 'app/rest/v1/class-cmt-mntn-settings-rest.php';
