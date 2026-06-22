@@ -1,9 +1,14 @@
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const defaultConfig = require("@wordpress/scripts/config/webpack.config");
 
 module.exports = {
-    ...defaultConfig,
-    entry: {
-        ...defaultConfig.entry,
-        'comment-mention': [ './src/js/index.js', './src/css/tribute.css', './src/css/atwho.css' ],
-    }
+	...defaultConfig,
+	entry: {
+		...defaultConfig.entry,
+		"comment-mention": [
+			"./src/js/index.js",
+			"./src/css/tribute.css",
+			"./src/css/atwho.css",
+		],
+		"admin-ui": ["./admin-ui/index.js", "./admin-ui/styles/index.scss"],
+	},
 };
