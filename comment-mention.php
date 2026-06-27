@@ -177,9 +177,48 @@ function cmt_mntn_text_domain_loader() {
 
 add_action( 'plugins_loaded', 'cmt_mntn_text_domain_loader' );
 
-// Include admin functions file.
-require CMT_MNTN_PATH . 'app/includes/common-functions.php';
-require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
-require CMT_MNTN_PATH . 'app/main/class-bbpress-user-mention.php';
-require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';
-require CMT_MNTN_PATH . 'app/rest/v1/class-cmt-mntn-settings-rest.php';
+/**
+ * Initialize core files safely.
+ */
+function cmt_mntn_init() {
+	$required_pro_version = '2.0.0';
+
+	if ( defined( 'CMT_MNTN_PRO_VERSION' ) && version_compare( CMT_MNTN_PRO_VERSION, $required_pro_version, '<' ) ) {
+		add_action(
+			'admin_notices',
+			function () use ( $required_pro_version ) {
+				?>
+			<div class="notice notice-error">
+				<p>
+					<?php
+					printf(
+						wp_kses_post(
+						/* translators: 1: Plugin name, 2: Required Pro version, 3: Pro plugin name. */
+							__(
+								'<strong>%1$s:</strong> This version requires <strong>Comment Mention Pro %2$s</strong> or later. Please update <strong>%3$s</strong> to continue using the plugin.',
+								'comment-mention'
+							)
+						),
+						esc_html__( 'Comment Mention', 'comment-mention' ),
+						esc_html( $required_pro_version ),
+						esc_html__( 'Comment Mention Pro', 'comment-mention' )
+					);
+					?>
+				</p>
+			</div>
+				<?php
+			}
+		);
+
+		return;
+	}
+
+	// Include admin functions file.
+	require CMT_MNTN_PATH . 'app/includes/common-functions.php';
+	require CMT_MNTN_PATH . 'app/main/class-comment-mention.php';
+	require CMT_MNTN_PATH . 'app/main/class-bbpress-user-mention.php';
+	require CMT_MNTN_PATH . 'app/admin/class-admin-comment-mention.php';
+	require CMT_MNTN_PATH . 'app/rest/v1/class-cmt-mntn-settings-rest.php';
+}
+
+add_action( 'plugins_loaded', 'cmt_mntn_init' );
