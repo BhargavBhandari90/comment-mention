@@ -5,9 +5,9 @@
 **Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
 **Donate link:** https://www.paypal.me/BnB90/50  
 **Tags:** comments, mention, email, user, bbpress  
-**Requires at least:** 4.6  
+**Requires at least:** 5.0
 **Tested up to:** 7.0  
-**Stable tag:** 1.7.20  
+**Stable tag:** 2.0.0
 **Requires PHP:** 5.6  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -74,6 +74,11 @@ e.g.
 2. Run `npm install`
 
 ## Changelog ##
+
+### 2.0.0 ###
+* Redesigned the plugin settings page.
+* Improved the admin user interface and user experience.
+* Performance and stability improvements.
 
 ### 1.7.20 ###
 * Added hook for email content.
