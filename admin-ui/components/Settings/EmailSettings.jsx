@@ -5,7 +5,6 @@ import { __ } from '@wordpress/i18n';
 import {
 	ToggleControl,
 	TextControl,
-	TextareaControl,
 } from '@wordpress/components';
 
 /**
