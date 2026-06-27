@@ -12,6 +12,7 @@ import {
  * Internal dependencies
  */
 import { useSettings } from '../../context/SettingsContext';
+import RichTextEditor from '../RichTextEditor';
 
 const SUBJECT_SHORTCODES = [
 	{ code: '#post_name#', desc: __( 'post title', 'comment-mention' ) },
@@ -87,14 +88,13 @@ const EmailSettings = () => {
 					</div>
 
 					<div>
-						<TextareaControl
+						<RichTextEditor
 							label={ __( 'Email body', 'comment-mention' ) }
 							value={ settings.cmt_mntn_mail_content || '' }
 							onChange={ ( val ) =>
 								updateSetting( 'cmt_mntn_mail_content', val )
 							}
 							rows={ 10 }
-							__nextHasNoMarginBottom
 						/>
 						<ShortcodePills shortcodes={ CONTENT_SHORTCODES } />
 					</div>
