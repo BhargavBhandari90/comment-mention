@@ -28,7 +28,7 @@ const SupportCard = () => {
 					{__("Support forum", "comment-mention")}
 				</a>
 				<a
-					href="https://biliplugins.com/docs/comment-mention/"
+					href="https://wordpress.org/plugins/comment-mention/#description"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="cmt-mntn-support-link"

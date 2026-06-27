@@ -165,7 +165,9 @@ const SettingsLayout = () => {
 
 						{ /* Sidebar remains visible on all tabs, but you can also make it dynamic if needed */ }
 						<div className="cmt-mntn-sidebar">
-							<SupportCard />
+							{ activeTab.name !== 'pro-settings' && (
+								<SupportCard />
+							) }
 							{ ! hasPro && <ProUpsellCard /> }
 						</div>
 					</div>
