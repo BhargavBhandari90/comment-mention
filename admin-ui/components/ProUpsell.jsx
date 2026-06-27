@@ -47,14 +47,7 @@ const PRO_FEATURES = [
 ];
 
 const ProUpsell = () => (
-	<Section
-		icon={ people }
-		title={ __( 'Advanced mentions', 'comment-mention-pro' ) }
-		description={ __(
-			'Pro features for mention behaviour.',
-			'comment-mention-pro'
-		) }
-	>
+	<Section>
 		{ PRO_FEATURES.map( ( { key, label, desc } ) => (
 			<div key={ key } className="cmt-mntn-setting-row">
 				<ToggleControl

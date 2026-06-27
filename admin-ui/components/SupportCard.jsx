@@ -25,7 +25,7 @@ const SupportCard = () => {
 					className="cmt-mntn-support-link"
 				>
 					<Icon icon={external} />
-					{__("Support forum", "comment-mention")}
+					{__("Contact Support", "comment-mention")}
 				</a>
 				<a
 					href="https://wordpress.org/plugins/comment-mention/#description"
@@ -35,6 +35,15 @@ const SupportCard = () => {
 				>
 					<Icon icon={external} />
 					{__("Documentation", "comment-mention")}
+				</a>
+				<a
+					href="https://www.facebook.com/groups/commentmention"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="cmt-mntn-support-link"
+				>
+					<Icon icon={external} />
+					{__("Join Community", "comment-mention")}
 				</a>
 			</div>
 		</div>
