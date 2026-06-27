@@ -27,6 +27,7 @@ export default function RichTextEditor( {
 	label,
 	help,
 	id = 'cmt-mntn-mail-content',
+	rows = 8,
 } ) {
 	const textareaRef = useRef( null );
 	const initializedRef = useRef( false );
@@ -78,7 +79,7 @@ export default function RichTextEditor( {
 					ref={ textareaRef }
 					id={ id }
 					defaultValue={ value }
-					rows={ 8 }
+					rows={ rows || 8 }
 					className="cmt-mntn-rte__textarea"
 					style={ { width: '100%' } }
 				/>
