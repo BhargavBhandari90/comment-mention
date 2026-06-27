@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Functions of Comment Mention functions.
  *
