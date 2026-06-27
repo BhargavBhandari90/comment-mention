@@ -2,9 +2,9 @@
 Contributors: bhargavbhandari90, biliplugins, hackkzy404
 Donate link: https://www.paypal.me/BnB90/10
 Tags: comments, mention, tagging, bbPress, WooCommerce
-Requires at least: 4.6
+Requires at least: 5.0
 Tested up to: 7.0
-Stable tag: 1.7.20
+Stable tag: 2.0.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -48,7 +48,7 @@ Upgrade to **Comment Mention Pro** to unlock advanced features:
 - Extra controls for role-based mention restrictions.
 - Additional hooks and filters for developers.
 
-🛠️ Go to **wp-admin → Comment Mention** to enable pro features.  
+🛠️ Go to **wp-admin → Comment Mention** to enable pro features.
 🔗 [Get Comment Mention Pro](https://biliplugins.com/comment-mention-pro-product/)
 
 > **Note:** Requires Comment Mention plugin v1.3.0 or higher.
@@ -73,7 +73,8 @@ Upgrade to **Comment Mention Pro** to unlock advanced features:
 == Screenshots ==
 
 1. Mention the user by typing `@` in the comment box.
-2. Admin settings screen to customize email notifications.
+2. Admin settings screen for free plugin.
+3. Admin settings screen for pro plugin.
 
 ---
 
@@ -84,6 +85,11 @@ Upgrade to **Comment Mention Pro** to unlock advanced features:
 ---
 
 == Changelog ==
+
+= 2.0.0 =
+* Redesigned the plugin settings page.
+* Improved the admin user interface and user experience.
+* Performance and stability improvements.
 
 = 1.7.20 =
 * Added hook for email content.

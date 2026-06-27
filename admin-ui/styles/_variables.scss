@@ -1,0 +1,52 @@
+// =============================================================================
+// _variables.scss — WordPress design tokens + plugin-specific vars
+// =============================================================================
+
+// WordPress color palette (matches wp-admin)
+$wp-white: #fff;
+$wp-bg: #f0f0f1;
+$wp-border: #949494;
+$wp-border-light: #e0e0e0;
+$wp-border-faint: #f0f0f1;
+$wp-text: #1d2327;
+$wp-text-subtle: #646970;
+$wp-text-muted: #8c8f94;
+$wp-blue: #3858e9;
+$wp-blue-hover: #2145e6;
+$wp-blue-tint: #f0f3ff;
+$wp-green: #00a32a;
+$wp-red: #d63638;
+$wp-yellow: #dba617;
+$wp-yellow-tint: #fff8e6;
+
+// Typography
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-size-base: 13px;
+$font-size-sm: 12px;
+$font-size-xs: 11px;
+$font-size-md: 14px;
+$font-size-lg: 18px;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 12px;
+$space-base: 16px;
+$space-lg: 20px;
+$space-xl: 24px;
+
+// Layout
+$sidebar-width: 280px;
+$content-gap: 20px;
+$border-radius: 4px;
+$border-radius-sm: 3px;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+
+// Integration badge colors
+$woo-purple: #7f54b3;
+$woo-purple-tint: #f3eeff;
+$mp-red: #b34242;
+$mp-red-tint: #fff0f0;

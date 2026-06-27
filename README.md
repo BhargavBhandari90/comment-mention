@@ -1,14 +1,13 @@
 # Comment Mention #
 
 [![WPCS](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/wpcs.yml/badge.svg?branch=master)](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/wpcs.yml)
-[![E2E test](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/e2e.yml/badge.svg?branch=master)](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/e2e.yml)
 
 **Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
 **Donate link:** https://www.paypal.me/BnB90/50  
 **Tags:** comments, mention, email, user, bbpress  
-**Requires at least:** 4.6  
+**Requires at least:** 5.0
 **Tested up to:** 7.0  
-**Stable tag:** 1.7.20  
+**Stable tag:** 2.0.0
 **Requires PHP:** 5.6  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -74,18 +73,12 @@ e.g.
 1. Go to plugin's root
 2. Run `npm install`
 
-## End to End Testing
-
-Start Local WordPress Environment, run:
-
-	npm run start:env
-
-To run e2e test, run:
-
-	 npm run test:e2e
-
-
 ## Changelog ##
+
+### 2.0.0 ###
+* Redesigned the plugin settings page.
+* Improved the admin user interface and user experience.
+* Performance and stability improvements.
 
 ### 1.7.20 ###
 * Added hook for email content.
