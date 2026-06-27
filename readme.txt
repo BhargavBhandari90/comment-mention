@@ -73,7 +73,8 @@ Upgrade to **Comment Mention Pro** to unlock advanced features:
 == Screenshots ==
 
 1. Mention the user by typing `@` in the comment box.
-2. Admin settings screen to customize email notifications.
+2. Admin settings screen for free plugin.
+3. Admin settings screen for pro plugin.
 
 ---
 
