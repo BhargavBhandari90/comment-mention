@@ -70,6 +70,9 @@ class CommentMentionAdmin {
 	 */
 	public function cmt_mntn_plugin_setup_menu() {
 
+		$icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="black"><text x="10" y="15" text-anchor="middle" font-size="20" font-family="Arial, sans-serif">&#64;</text></svg>';
+		$icon_url = 'data:image/svg+xml;base64,' . base64_encode( $icon_svg ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+
 		add_menu_page(
 			esc_html__( 'Comment Mention Settings', 'comment-mention' ),
 			esc_html__( 'Comment Mention', 'comment-mention' ),
@@ -78,7 +81,8 @@ class CommentMentionAdmin {
 			array(
 				$this,
 				'cmt_mntn_admin_settings',
-			)
+			),
+			$icon_url
 		);
 	}
 
