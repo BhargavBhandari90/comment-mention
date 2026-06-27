@@ -1,7 +1,6 @@
 # Comment Mention #
 
 [![WPCS](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/wpcs.yml/badge.svg?branch=master)](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/wpcs.yml)
-[![E2E test](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/e2e.yml/badge.svg?branch=master)](https://github.com/BhargavBhandari90/comment-mention/actions/workflows/e2e.yml)
 
 **Contributors:** [bhargavbhandari90](https://profiles.wordpress.org/bhargavbhandari90/), [biliplugins](https://profiles.wordpress.org/biliplugins/), [hackkzy404](https://profiles.wordpress.org/hackkzy404/)  
 **Donate link:** https://www.paypal.me/BnB90/50  
@@ -73,17 +72,6 @@ e.g.
 ## Development Setup
 1. Go to plugin's root
 2. Run `npm install`
-
-## End to End Testing
-
-Start Local WordPress Environment, run:
-
-	npm run start:env
-
-To run e2e test, run:
-
-	 npm run test:e2e
-
 
 ## Changelog ##
 
