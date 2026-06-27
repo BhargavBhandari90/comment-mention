@@ -201,7 +201,7 @@ class CommentMentionAdmin {
 								'media_buttons' => false,
 							);
 
-							wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
+							// wp_editor( wp_kses_post( $cmt_mntn_mail_content ), $editor_id, $settings );
 							?>
 						<p class="description"><?php esc_html_e( 'Mail content for mentioned user email. Available shortcodes:', 'comment-mention' ); ?><br/>
 						<strong>#comment_link#</strong>&nbsp;-&nbsp;<?php esc_html_e( 'Link where user is mentioned.', 'comment-mention' ); ?><br/>
@@ -385,6 +385,9 @@ class CommentMentionAdmin {
 		}
 
 		$asset_file = include trailingslashit( CMT_MNTN_PATH ) . 'build/admin-ui.asset.php';
+
+		// Enqueue wp_editor.
+		wp_enqueue_editor();
 
 		wp_enqueue_script(
 			'cmt-mntn-admin-page-script',
