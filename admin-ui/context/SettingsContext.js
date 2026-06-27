@@ -11,7 +11,6 @@ import {
 const SettingsContext = createContext();
 
 export function SettingsProvider( { children } ) {
-	// const [ settings, setSettings ] = useState( cmtMntn.settings || {} );
 	const [ settings, setSettings ] = useState( () => {
 		const saved = cmtMntn.settings || {};
 		const defaults = cmtMntn.defaults || {};
