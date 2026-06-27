@@ -53,9 +53,6 @@ class CommentMentionAdmin {
 		// Add admin menu.
 		add_action( 'admin_menu', array( $this, 'cmt_mntn_plugin_setup_menu' ) );
 
-		// Save plugin settings.
-		add_action( 'init', array( $this, 'cmt_mntn_save_plugin_data' ) );
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'cmt_mntn_admin_enqueue_scripts' ) );
 
 		// Main class object for future use.
@@ -135,62 +132,6 @@ class CommentMentionAdmin {
 					</div>
 				</div>
 			</div>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Save plugin settings to option.
-	 */
-	public function cmt_mntn_save_plugin_data() {
-
-		// Verify nonce for security.
-		if (
-			isset( $_POST['cmt_mntn_save_data_field'] )
-			&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cmt_mntn_save_data_field'] ) ), 'cmt_mntn_save_data_action' )
-		) {
-
-			$cmt_mntn_settings = array();
-
-			// Get data from form.
-			if ( isset( $_POST['cmt_mntn_email_enable'] ) && ! empty( $_POST['cmt_mntn_email_enable'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_email_enable'] = intval( $_POST['cmt_mntn_email_enable'] );
-			}
-
-			if ( isset( $_POST['cmt_mntn_email_subject'] ) && ! empty( $_POST['cmt_mntn_email_subject'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_email_subject'] = sanitize_text_field( wp_unslash( $_POST['cmt_mntn_email_subject'] ) );
-			}
-
-			if ( isset( $_POST['cmt_mntn_mail_content'] ) && ! empty( $_POST['cmt_mntn_mail_content'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_mail_content'] = wp_kses_post( wp_kses_stripslashes( $_POST['cmt_mntn_mail_content'] ) ); // phpcs:ignore
-			}
-
-			$cmt_mntn_settings['cmt_mntn_enabled_user_roles']          = filter_input( INPUT_POST, 'cmt_mntn_enabled_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-			$cmt_mntn_settings['cmt_mntn_disabled_mention_user_roles'] = filter_input( INPUT_POST, 'cmt_mntn_disabled_mention_user_roles', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-
-			if ( isset( $_POST['cmt_mntn_enable_avatar'] ) && ! empty( $_POST['cmt_mntn_enable_avatar'] ) ) {
-				$cmt_mntn_settings['cmt_mntn_enable_avatar'] = intval( $_POST['cmt_mntn_enable_avatar'] );
-			}
-
-			$cmt_mntn_settings = apply_filters( 'cmt_mntn_settings', $cmt_mntn_settings );
-
-			// Save to option table.
-			update_option( 'cmt_mntn_settings', $cmt_mntn_settings );
-
-			add_action( 'admin_notices', array( $this, 'cmt_mntn_admin_notice' ) );
-
-		}
-	}
-
-	/**
-	 * Admin notice for saved data.
-	 *
-	 * @return void
-	 */
-	public function cmt_mntn_admin_notice() {
-		?>
-		<div class="notice notice-success is-dismissible">
-			<p><?php esc_html_e( 'Settings Saved', 'comment-mention' ); ?></p>
 		</div>
 		<?php
 	}
