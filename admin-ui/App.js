@@ -44,7 +44,6 @@ const SettingsLayout = () => {
 	// 1. Read initial tab from URL parameter, fallback to 'general-settings'
 	const getTabFromUrl = () => {
 		const searchParams = new URLSearchParams( window.location.search );
-		console.log( searchParams );
 
 		const tabParam = searchParams.get( 'tab' );
 		// Ensure the tab in URL is valid
